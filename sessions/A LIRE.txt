@@ -1,0 +1,7 @@
+ATTENTION
+
+Si vous êtes chez OVH avec un hébergement mutualisé veuillez ajouter la ligne suivante dans le fichier. ovhconfig:
+
+app.engine.flags=noforcetmp
+
+Ce fichier se trouve à la racine de votre serveur FTP (Au même niveau que le dossier www/)

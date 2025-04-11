@@ -91,7 +91,7 @@ if ($accountBanRow > 0)
 }
 else
 {
-    echo "Aucun joueur ne peut être débanni pour le moment.";
+    echo "Aucun joueur n'est actuellement banni.";
 }
 
 require_once("../html/footer.php");

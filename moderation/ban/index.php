@@ -47,7 +47,7 @@ if ($accountUnBanRow > 0)
 }
 else
 {
-    echo "Il n'y a actuellement aucun joueur qui peut être banni";
+    echo "Aucun joueur ne peut être banni pour le moment.";
 }
 
 echo "<hr>";
@@ -91,7 +91,7 @@ if ($accountBanRow > 0)
 }
 else
 {
-    echo "Il n'y a actuellement aucun joueur qui peut être débanni";
+    echo "Aucun joueur ne peut être débanni pour le moment.";
 }
 
 require_once("../html/footer.php");

@@ -53,7 +53,7 @@ if (isset($_POST['modoAccountId'])
                     //On met à jour le compte dans la base de donnée
                     $updateAccount = $bdd->prepare("UPDATE car_accounts 
                     SET accountStatus = 0, 
-                    accountReason = 'Empty'
+                    accountReason = 'None'
                     WHERE accountId = :modoAccountId");
 
                     $updateAccount->execute([

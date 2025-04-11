@@ -45,6 +45,10 @@ if ($accountUnBanRow > 0)
         
     <?php
 }
+else
+{
+    echo "Il n'y a actuellement aucun joueur qui peut être banni";
+}
 
 echo "<hr>";
 
@@ -84,6 +88,10 @@ if ($accountBanRow > 0)
     </form>
 
     <?php
+}
+else
+{
+    echo "Il n'y a actuellement aucun joueur qui peut être débanni";
 }
 
 require_once("../html/footer.php");

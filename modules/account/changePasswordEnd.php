@@ -1,5 +1,6 @@
 <?php 
 require_once("../../kernel/kernel.php");
+require_once("../../kernel/security/passwordManager.php");
 
 //S'il n'y a aucune session c'est que le joueur n'est pas connecté alors on le redirige vers l'accueil
 if (empty($_SESSION['account'])) { exit(header("Location: ../../index.php")); }
@@ -22,31 +23,37 @@ if (isset($_POST['oldPassword'])
 		$_SESSION['token'] = NULL;
 		
         //On récupère les valeurs du formulaire dans une variable
-        $oldPassword = sha1(htmlspecialchars(addslashes($_POST['oldPassword'])));
-        $newPassword = sha1(htmlspecialchars(addslashes($_POST['newPassword'])));
-        $confirmNewPassword = sha1(htmlspecialchars(addslashes($_POST['confirmNewPassword'])));
+        $inputOldPassword = $_POST['oldPassword'];
+        $newPassword = $_POST['newPassword'];
+        $confirmNewPassword = $_POST['confirmNewPassword'];
     
-        //On vérifie si les deux mots de passes sont identiques
+        //On vérifie si les deux nouveaux mots de passes sont identiques
         if ($newPassword == $confirmNewPassword) 
         {
-            //On fait une requête pour vérifier si l'ancien mot de passe est correct
-            $accountQuery = $bdd->prepare("SELECT * FROM car_accounts 
-            WHERE accountPseudo = ?
-            AND accountPassword = ?");
-            $accountQuery->execute([$accountPseudo, $oldPassword]);
-            $accountRow = $accountQuery->rowCount();
-    
-            //S'il y a un résultat de trouvé c'est que la combinaison pseudo/mot de passe est bonne
-            if ($accountRow == 1)
+            //On récupère le hash actuel de l'utilisateur
+            $accountQuery = $bdd->prepare("SELECT accountPassword FROM car_accounts 
+            WHERE accountId = ?");
+            $accountQuery->execute([$accountId]);
+            
+            if ($accountQuery->rowCount() == 1) 
             {
-                //On met à jour le mot de passe dans la base de donnée
-                $updateAccount = $bdd->prepare("UPDATE car_accounts 
-                SET accountPassword = :newPassword
-                WHERE accountId = :accountId");
-                $updateAccount->execute(array(
-                'newPassword' => $newPassword,
-                'accountId' => $accountId));
-                $updateAccount->closeCursor();
+                $account = $accountQuery->fetch();
+                $storedPassword = $account['accountPassword'];
+                
+                //Vérifier l'ancien mot de passe
+                if (PasswordManager::verifyPassword($inputOldPassword, $storedPassword))
+                {
+                    //Hash du nouveau mot de passe avec bcrypt
+                    $newPasswordHash = PasswordManager::hashPassword($newPassword);
+                    
+                    //On met à jour le mot de passe dans la base de donnée
+                    $updateAccount = $bdd->prepare("UPDATE car_accounts 
+                    SET accountPassword = :newPassword
+                    WHERE accountId = :accountId");
+                    $updateAccount->execute(array(
+                    'newPassword' => $newPasswordHash,
+                    'accountId' => $accountId));
+                    $updateAccount->closeCursor();
                 ?>
                 
                 Le mot de passe a bien été mit à jour
@@ -58,11 +65,15 @@ if (isset($_POST['oldPassword'])
                 </form>
                 
                 <?php
+                }
+                else
+                {
+                    echo "L'ancien mot de passe saisit est incorrect";
+                }
             }
-            //S'il n'y a aucun résultat de trouvé c'est que la combinaison pseudo/mot de passe est mauvaise
             else
             {
-                echo "L'ancien mot de passe saisit est incorrect";
+                echo "Erreur lors de la récupération du compte";
             }
             $accountQuery->closeCursor();
         }

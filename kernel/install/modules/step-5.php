@@ -1,6 +1,7 @@
 <?php
 require_once("../html/header.php");
 require_once("../../config.php");
+require_once("../../security/passwordManager.php");
 
 //Si tous les champs ont bien été rempli
 if (isset($_POST['accountPseudo']) 
@@ -32,16 +33,16 @@ if (isset($_POST['accountPseudo'])
         {
             //On récupère les valeurs du formulaire dans une variable
             $accountPseudo = htmlspecialchars(addslashes($_POST['accountPseudo']));
-            $accountPassword = sha1(htmlspecialchars(addslashes($_POST['accountPassword'])));
-            $accountPasswordConfirm = sha1(htmlspecialchars(addslashes($_POST['accountPasswordConfirm'])));
+            $accountPassword = PasswordManager::hashPassword($_POST['accountPassword']);
+            $accountPasswordConfirm = PasswordManager::hashPassword($_POST['accountPasswordConfirm']);
             $accountEmail = htmlspecialchars(addslashes($_POST['accountEmail']));
             $accountEmailConfirm = htmlspecialchars(addslashes($_POST['accountEmailConfirm']));
             $characterRaceId = htmlspecialchars(addslashes($_POST['characterRaceId']));
             $characterSex = htmlspecialchars(addslashes($_POST['characterSex']));
             $characterName = htmlspecialchars(addslashes($_POST['characterName']));
     
-            //On vérifie si les deux mots de passes sont identiques
-            if ($accountPassword == $accountPasswordConfirm) 
+            //On vérifie si les deux mots de passes sont identiques (avant hash)
+            if ($_POST['accountPassword'] == $_POST['accountPasswordConfirm']) 
             {
                 //On vérifie si les deux adresses emails sont identique
                 if ($accountEmail == $accountEmailConfirm) 

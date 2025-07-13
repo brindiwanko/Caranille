@@ -1,5 +1,6 @@
 <?php 
 require_once("../../kernel/kernel.php");
+require_once("../../kernel/security/passwordManager.php");
 
 //Si les variables $_POST suivantes existent
 if (isset($_POST['accountPseudo']) 
@@ -13,22 +14,27 @@ if (isset($_POST['accountPseudo'])
         //On supprime le token de l'ancien formulaire
         $_SESSION['token'] = NULL;
         
-        //Récupération des valeurs des deux champs dans une variable
+        //Récupération des valeurs des champs
         $accountPseudo = htmlspecialchars(addslashes($_POST['accountPseudo']));
-        $accountPassword = sha1(htmlspecialchars(addslashes($_POST['accountPassword'])));
+        $inputPassword = $_POST['accountPassword'];
     
-        //On fait une requête pour vérifier si le pseudo et le mot de passe concorde bien
+        //On fait une requête pour récupérer les informations du compte
         $accountQuery = $bdd->prepare("SELECT * FROM car_accounts 
-        WHERE accountPseudo = ?
-        AND accountPassword = ?");
-        $accountQuery->execute([$accountPseudo, $accountPassword]);
+        WHERE accountPseudo = ?");
+        $accountQuery->execute([$accountPseudo]);
         $accountRow = $accountQuery->rowCount();
     
-        //S'il y a un résultat de trouvé c'est que la combinaison pseudo/mot de passe est bonne
+        //S'il y a un résultat de trouvé, on vérifie le mot de passe
         if ($accountRow == 1)
         {
-            //Dans ce cas on boucle pour récupérer le tableau retourné par la base de donnée pour récupérer les informations du compte
-            while ($account = $accountQuery->fetch())
+            //Dans ce cas on boucle pour récupérer le tableau retourné par la base de donnée
+            $account = $accountQuery->fetch();
+            
+            //On récupère le hash stocké
+            $storedPassword = $account['accountPassword'];
+            
+            //Vérification du mot de passe avec bcrypt
+            if (PasswordManager::verifyPassword($inputPassword, $storedPassword))
             {
                 //On récupère les informations du compte comme l'id et les accès (joueur, modérateur, administrateur)
                 $accountId = stripslashes($account['accountId']);
@@ -117,8 +123,12 @@ if (isset($_POST['accountPseudo'])
                     <?php
                 }
             }
+            else
+            {
+                echo "Mauvais Pseudo/Mot de passe";
+            }
         }
-        //S'il n'y a aucun résultat de trouvé c'est que la combinaison pseudo/mot de passe est mauvaise
+        //S'il n'y a aucun résultat de trouvé c'est que le pseudo n'existe pas
         else
         {
             echo "Mauvais Pseudo/Mot de passe";

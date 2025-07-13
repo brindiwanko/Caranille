@@ -1,5 +1,6 @@
 <?php 
 require_once("../../kernel/kernel.php");
+require_once("../../kernel/security/passwordManager.php");
 require_once("../../html/header.php");
 
 //Si les variables $_POST suivantes existent
@@ -19,11 +20,11 @@ if (isset($_POST['accountCode'])
 
         //On récupère les valeurs du formulaire dans une variable
         $accountCode = htmlspecialchars(addslashes($_POST['accountCode']));
-        $accountPassword = sha1(htmlspecialchars(addslashes($_POST['accountPassword'])));
-        $accountPasswordConfirm = sha1(htmlspecialchars(addslashes($_POST['accountPasswordConfirm'])));
+        $accountPassword = PasswordManager::hashPassword($_POST['accountPassword']);
+        $accountPasswordConfirm = PasswordManager::hashPassword($_POST['accountPasswordConfirm']);
 
-        //On vérifie si les deux mots de passes sont identiques
-        if ($accountPassword == $accountPasswordConfirm) 
+        //On vérifie si les deux mots de passes sont identiques (avant hash)
+        if ($_POST['accountPassword'] == $_POST['accountPasswordConfirm']) 
         {
             //On fait une requête pour vérifier si une demande de vérification est en cours
             $accountForgetPasswordQuery = $bdd->prepare("SELECT * FROM car_forgets_passwords 

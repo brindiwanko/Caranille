@@ -33,8 +33,8 @@ if (isset($_POST['accountPseudo'])
         {
             //On récupère les valeurs du formulaire dans une variable
             $accountPseudo = htmlspecialchars(addslashes($_POST['accountPseudo']));
-            $accountPassword = PasswordManager::hashPassword($_POST['accountPassword']);
-            $accountPasswordConfirm = PasswordManager::hashPassword($_POST['accountPasswordConfirm']);
+            $accountPassword = $_POST['accountPassword'];
+            $accountPasswordConfirm = $_POST['accountPasswordConfirm'];
             $accountEmail = htmlspecialchars(addslashes($_POST['accountEmail']));
             $accountEmailConfirm = htmlspecialchars(addslashes($_POST['accountEmailConfirm']));
             $characterRaceId = htmlspecialchars(addslashes($_POST['characterRaceId']));
@@ -42,7 +42,7 @@ if (isset($_POST['accountPseudo'])
             $characterName = htmlspecialchars(addslashes($_POST['characterName']));
     
             //On vérifie si les deux mots de passes sont identiques (avant hash)
-            if ($_POST['accountPassword'] == $_POST['accountPasswordConfirm']) 
+            if ($accountPassword == $accountPasswordConfirm) 
             {
                 //On vérifie si les deux adresses emails sont identique
                 if ($accountEmail == $accountEmailConfirm) 
@@ -87,6 +87,9 @@ if (isset($_POST['accountPseudo'])
                                 //Si la race du personnage existe
                                 if ($raceRow >= 1) 
                                 {
+                                    //Hash du mot de passe une seule fois après validation
+                                    $accountPasswordHash = PasswordManager::hashPassword($accountPassword);
+                                    
                                     //Variables pour la création d'un compte
                                     $date = date('Y-m-d H:i:s');
                                     $ip = $_SERVER['REMOTE_ADDR'];
@@ -122,7 +125,7 @@ if (isset($_POST['accountPseudo'])
                                     :accountIp)");
                                     $addAccount->execute([
                                     'accountPseudo' => $accountPseudo,
-                                    'accountPassword' => $accountPassword,
+                                    'accountPassword' => $accountPasswordHash,
                                     'accountEmail' => $accountEmail,
                                     'accountLastAction' => $date,
                                     'accountLastConnection' => $date,

@@ -16,7 +16,7 @@ if (isset($_POST['accountPseudo'])
         
         //Récupération des valeurs des champs
         $accountPseudo = htmlspecialchars(addslashes($_POST['accountPseudo']));
-        $inputPassword = $_POST['accountPassword'];
+        $accountPassword = $_POST['accountPassword'];
     
         //On fait une requête pour récupérer les informations du compte
         $accountQuery = $bdd->prepare("SELECT * FROM car_accounts 
@@ -34,7 +34,7 @@ if (isset($_POST['accountPseudo'])
             $storedPassword = $account['accountPassword'];
             
             //Vérification du mot de passe avec bcrypt
-            if (PasswordManager::verifyPassword($inputPassword, $storedPassword))
+            if (PasswordManager::verifyPassword($accountPassword, $storedPassword))
             {
                 //On récupère les informations du compte comme l'id et les accès (joueur, modérateur, administrateur)
                 $accountId = stripslashes($account['accountId']);

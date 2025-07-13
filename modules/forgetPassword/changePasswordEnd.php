@@ -20,11 +20,11 @@ if (isset($_POST['accountCode'])
 
         //On récupère les valeurs du formulaire dans une variable
         $accountCode = htmlspecialchars(addslashes($_POST['accountCode']));
-        $accountPassword = PasswordManager::hashPassword($_POST['accountPassword']);
-        $accountPasswordConfirm = PasswordManager::hashPassword($_POST['accountPasswordConfirm']);
+        $accountPassword = $_POST['accountPassword'];
+        $accountPasswordConfirm = $_POST['accountPasswordConfirm'];
 
         //On vérifie si les deux mots de passes sont identiques (avant hash)
-        if ($_POST['accountPassword'] == $_POST['accountPasswordConfirm']) 
+        if ($accountPassword == $accountPasswordConfirm) 
         {
             //On fait une requête pour vérifier si une demande de vérification est en cours
             $accountForgetPasswordQuery = $bdd->prepare("SELECT * FROM car_forgets_passwords 
@@ -44,6 +44,9 @@ if (isset($_POST['accountCode'])
                     $accountForgetPasswordEmailAdress = stripslashes($accountForgetPassword['accountForgetPasswordEmailAdress']);
                 }
 
+                //Hash du nouveau mot de passe une seule fois après validation
+                $accountPasswordHash = PasswordManager::hashPassword($accountPassword);
+                
                 //On supprime la demande de réinitialisation du mot de passe
                 $deleteForgetPasswordQuery = $bdd->prepare("DELETE FROM car_forgets_passwords
                 WHERE accountForgetPasswordId = :accountForgetPasswordId");
@@ -56,7 +59,7 @@ if (isset($_POST['accountCode'])
                 SET accountPassword = :accountPassword
                 WHERE accountId = :accountForgetPasswordAccountId");
                 $updateAccount->execute(array(
-                'accountPassword' => $accountPassword,
+                'accountPassword' => $accountPasswordHash,
                 'accountForgetPasswordAccountId' => $accountForgetPasswordAccountId));
                 $updateAccount->closeCursor();
                 ?>

@@ -23,12 +23,12 @@ if (isset($_POST['oldPassword'])
 		$_SESSION['token'] = NULL;
 		
         //On récupère les valeurs du formulaire dans une variable
-        $inputOldPassword = $_POST['oldPassword'];
-        $newPassword = $_POST['newPassword'];
-        $confirmNewPassword = $_POST['confirmNewPassword'];
+        $accountOldPassword = $_POST['oldPassword'];
+        $accountNewPassword = $_POST['newPassword'];
+        $accountConfirmNewPassword = $_POST['confirmNewPassword'];
     
         //On vérifie si les deux nouveaux mots de passes sont identiques
-        if ($newPassword == $confirmNewPassword) 
+        if ($accountNewPassword == $accountConfirmNewPassword) 
         {
             //On récupère le hash actuel de l'utilisateur
             $accountQuery = $bdd->prepare("SELECT accountPassword FROM car_accounts 
@@ -41,17 +41,17 @@ if (isset($_POST['oldPassword'])
                 $storedPassword = $account['accountPassword'];
                 
                 //Vérifier l'ancien mot de passe
-                if (PasswordManager::verifyPassword($inputOldPassword, $storedPassword))
+                if (PasswordManager::verifyPassword($accountOldPassword, $storedPassword))
                 {
                     //Hash du nouveau mot de passe avec bcrypt
-                    $newPasswordHash = PasswordManager::hashPassword($newPassword);
+                    $accountNewPasswordHash = PasswordManager::hashPassword($accountNewPassword);
                     
                     //On met à jour le mot de passe dans la base de donnée
                     $updateAccount = $bdd->prepare("UPDATE car_accounts 
                     SET accountPassword = :newPassword
                     WHERE accountId = :accountId");
                     $updateAccount->execute(array(
-                    'newPassword' => $newPasswordHash,
+                    'newPassword' => $accountNewPasswordHash,
                     'accountId' => $accountId));
                     $updateAccount->closeCursor();
                 ?>

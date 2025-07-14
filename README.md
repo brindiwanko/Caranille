@@ -8,7 +8,7 @@ Fonctions de Caranille :
 
 -Créer des monstres
 
--Créer des objets/équipements pouvant être obtenu sur des monstres ou acheté en boutique
+-Créer des objets/équipements pouvant être obtenu sur des monstres ou acheté en boutique !
 
 -Créer des magasins
 

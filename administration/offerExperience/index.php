@@ -24,8 +24,8 @@ require_once("../html/header.php");
         //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
         while ($character = $characterQuery->fetch())
         {
-            $adminCharacterId = stripslashes($character['characterId']);
-            $adminCharacterName =  stripslashes($character['characterName']);
+            $adminCharacterId = $character['characterId'];
+            $adminCharacterName =  $character['characterName'];
             ?>
             <option value="<?php echo $adminCharacterId ?>"><?php echo "$adminCharacterName"; ?></option>
             <?php

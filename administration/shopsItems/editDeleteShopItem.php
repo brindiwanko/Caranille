@@ -29,8 +29,8 @@ if (isset($_POST['token'])
         && $_POST['adminShopItemItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminShopItemShopId = htmlspecialchars(addslashes($_POST['adminShopItemShopId']));
-            $adminShopItemItemId = htmlspecialchars(addslashes($_POST['adminShopItemItemId']));
+            $adminShopItemShopId = htmlspecialchars($_POST['adminShopItemShopId']);
+            $adminShopItemItemId = htmlspecialchars($_POST['adminShopItemItemId']);
 
             //On fait une requête pour vérifier si le magasin choisit existe
             $shopQuery = $bdd->prepare("SELECT * FROM car_shops 
@@ -44,7 +44,7 @@ if (isset($_POST['token'])
                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                 while ($shop = $shopQuery->fetch())
                 {
-                    $adminShopItemShopName = stripslashes($shop['shopName']);
+                    $adminShopItemShopName = $shop['shopName'];
                 }
 
                 //On fait une requête pour vérifier si l'objet choisit existe
@@ -59,7 +59,7 @@ if (isset($_POST['token'])
                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                     while ($item = $itemQuery->fetch())
                     {
-                        $adminShopItemItemName = stripslashes($item['itemName']);
+                        $adminShopItemItemName = $item['itemName'];
                     }
 
                     //On fait une requête pour vérifier si l'objet n'est pas déjà dans ce magasin
@@ -78,7 +78,7 @@ if (isset($_POST['token'])
                             //On récupère le taux de réduction de l'équipement/objet
                             while ($shopItem = $shopItemQuery->fetch())
                             {
-                                $adminShopItemDiscount = stripslashes($shopItem['shopItemDiscount']);
+                                $adminShopItemDiscount = $shopItem['shopItemDiscount'];
                             }
                             ?>
                             

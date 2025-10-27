@@ -27,7 +27,7 @@ if (isset($_POST['adminRaceId'])
         && $_POST['adminRaceId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminRaceId = htmlspecialchars(addslashes($_POST['adminRaceId']));
+            $adminRaceId = htmlspecialchars($_POST['adminRaceId']);
 
             //On fait une requête pour vérifier si le compte choisit existe
             $raceQuery = $bdd->prepare("SELECT * FROM car_races 
@@ -42,7 +42,7 @@ if (isset($_POST['adminRaceId'])
                 while ($race = $raceQuery->fetch())
                 {
                     //On récupère les informations de la classe
-                    $adminRaceName = stripslashes($race['raceName']);
+                    $adminRaceName = $race['raceName'];
                 }
                 ?>
                 

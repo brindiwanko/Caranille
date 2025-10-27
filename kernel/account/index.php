@@ -10,17 +10,17 @@ $accountQuery->execute([$accountId]);
 while ($account = $accountQuery->fetch())
 {
     //On récupère les informations du compte
-    $accountId = stripslashes($account['accountId']);
-    $accountPseudo = stripslashes($account['accountPseudo']);
-    $accountEmail = stripslashes($account['accountEmail']);
-    $accountSecretQuestion = stripslashes($account['accountSecretQuestion']);
-    $accountSecretAnswer = stripslashes($account['accountSecretAnswer']);
-    $accountAccess = stripslashes($account['accountAccess']);
-    $accountStatus = stripslashes($account['accountStatus']);
-    $accountReason = stripslashes($account['accountReason']);
-    $accountLastAction = stripslashes($account['accountLastAction']);  
-    $accountLastConnection = stripslashes($account['accountLastConnection']);        
-    $accountLastIp = stripslashes($account['accountLastIp']);
+    $accountId = $account['accountId'];
+    $accountPseudo = $account['accountPseudo'];
+    $accountEmail = $account['accountEmail'];
+    $accountSecretQuestion = $account['accountSecretQuestion'];
+    $accountSecretAnswer = $account['accountSecretAnswer'];
+    $accountAccess = $account['accountAccess'];
+    $accountStatus = $account['accountStatus'];
+    $accountReason = $account['accountReason'];
+    $accountLastAction = $account['accountLastAction'];  
+    $accountLastConnection = $account['accountLastConnection'];        
+    $accountLastIp = $account['accountLastIp'];
 }
 $accountQuery->closeCursor();
 

@@ -20,11 +20,11 @@ if (isset($_POST['databaseName'])
         && $_POST['databasePort'] >= 0)
         {
 			//On récupère les valeurs du formulaire dans une variable
-		    $databaseName = htmlspecialchars(addslashes($_POST['databaseName']));
-		    $databaseHost = htmlspecialchars(addslashes($_POST['databaseHost']));
-		    $databaseUser = htmlspecialchars(addslashes($_POST['databaseUser']));
-		    $databasePassword = htmlspecialchars(addslashes($_POST['databasePassword']));
-		    $databasePort = htmlspecialchars(addslashes($_POST['databasePort']));
+		    $databaseName = htmlspecialchars($_POST['databaseName']);
+		    $databaseHost = htmlspecialchars($_POST['databaseHost']);
+		    $databaseUser = htmlspecialchars($_POST['databaseUser']);
+		    $databasePassword = htmlspecialchars($_POST['databasePassword']);
+		    $databasePort = htmlspecialchars($_POST['databasePort']);
 		
 		    //On créer le fichier config.php et on y écrit dedans les informations de connexion SQL
 		    $openSql = fopen('../../config.php', 'w');

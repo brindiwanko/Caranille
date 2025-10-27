@@ -28,10 +28,10 @@ if ($parchmentRow > 0)
             while ($parchment = $parchmentQuery->fetch())
             {
                 //On récupère les informations du parchemin
-                $adminItemId = stripslashes($parchment['itemId']);
-                $adminItemName = stripslashes($parchment['itemName']);
-                $adminItemTypeName = stripslashes($parchment['itemTypeName']);
-                $adminItemTypeNameShow = stripslashes($parchment['itemTypeNameShow']);
+                $adminItemId = $parchment['itemId'];
+                $adminItemName = $parchment['itemName'];
+                $adminItemTypeName = $parchment['itemTypeName'];
+                $adminItemTypeNameShow = $parchment['itemTypeNameShow'];
                 ?>
                 <option value="<?php echo $adminItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminItemName"; ?></option>
                 <?php

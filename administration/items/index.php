@@ -26,10 +26,10 @@ if ($itemRow > 0)
             while ($item = $itemQuery->fetch())
             {
                 //On récupère les informations de l'objet
-                $adminItemId = stripslashes($item['itemId']);
-                $adminItemName = stripslashes($item['itemName']);
-                $adminItemTypeName = stripslashes($item['itemTypeName']);
-                $adminItemTypeNameShow = stripslashes($item['itemTypeNameShow']);
+                $adminItemId = $item['itemId'];
+                $adminItemName = $item['itemName'];
+                $adminItemTypeName = $item['itemTypeName'];
+                $adminItemTypeNameShow = $item['itemTypeNameShow'];
                 ?>
                 <option value="<?php echo $adminItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminItemName"; ?></option>
                 <?php

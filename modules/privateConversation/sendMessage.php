@@ -28,8 +28,8 @@ if (isset($_POST['privateConversationMessage'])
         && $_POST['privateConversationId'] >= 0)
         {
             //On récupère les informations du formulaire
-            $privateConversationId = htmlspecialchars(addslashes($_POST['privateConversationId']));
-            $privateConversationMessage = htmlspecialchars(addslashes($_POST['privateConversationMessage']));
+            $privateConversationId = htmlspecialchars($_POST['privateConversationId']);
+            $privateConversationMessage = htmlspecialchars($_POST['privateConversationMessage']);
             
             //On vérifie si le joueur est bien dans cette conversation
             $privateConversationQuery = $bdd->prepare("SELECT * FROM car_private_conversation

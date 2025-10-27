@@ -29,8 +29,8 @@ if (isset($_POST['adminMonsterDropMonsterId'])
         && $_POST['adminMonsterDropItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterDropMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterDropMonsterId']));
-            $adminMonsterDropItemId = htmlspecialchars(addslashes($_POST['adminMonsterDropItemId']));
+            $adminMonsterDropMonsterId = htmlspecialchars($_POST['adminMonsterDropMonsterId']);
+            $adminMonsterDropItemId = htmlspecialchars($_POST['adminMonsterDropItemId']);
 
             //On fait une requête pour vérifier si le monstre choisit existe
             $monsterQuery = $bdd->prepare("SELECT * FROM car_monsters 
@@ -44,7 +44,7 @@ if (isset($_POST['adminMonsterDropMonsterId'])
                 //On fait une boucle sur tous les résultats
                 while ($monster = $monsterQuery->fetch())
                 {
-                    $adminMonsterDropMonsterName = stripslashes($monster['monsterName']);
+                    $adminMonsterDropMonsterName = $monster['monsterName'];
                 }
 
                 //On fait une requête pour vérifier si l'objet choisit existe
@@ -59,7 +59,7 @@ if (isset($_POST['adminMonsterDropMonsterId'])
                     //On fait une boucle sur tous les résultats
                     while ($item = $itemQuery->fetch())
                     {
-                        $adminMonsterDropItemName = stripslashes($item['itemName']);
+                        $adminMonsterDropItemName = $item['itemName'];
                     }
 
                     //On fait une requête pour vérifier si l'objet est sur ce monstre
@@ -79,9 +79,9 @@ if (isset($_POST['adminMonsterDropMonsterId'])
                             while ($monsterDrop = $monsterDropQuery->fetch())
                             {
                                 //On récupère les informations des objets du monstre
-                                $adminMonsterDropItemVisible = stripslashes($monsterDrop['monsterDropItemVisible']);
-                                $adminMonsterDropRate = stripslashes($monsterDrop['monsterDropRate']);
-                                $adminMonsterDropRateVisible = stripslashes($monsterDrop['monsterDropRateVisible']);
+                                $adminMonsterDropItemVisible = $monsterDrop['monsterDropItemVisible'];
+                                $adminMonsterDropRate = $monsterDrop['monsterDropRate'];
+                                $adminMonsterDropRateVisible = $monsterDrop['monsterDropRateVisible'];
                             }
                             ?>
                             

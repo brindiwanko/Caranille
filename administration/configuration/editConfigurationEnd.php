@@ -41,15 +41,15 @@ if (isset($_POST['adminGameName'])
         && $_POST['adminGameDropBonus'] >= 0)
         {
             //On récupère les informations du formulaire
-            $adminGameName = htmlspecialchars(addslashes($_POST['adminGameName']));
-            $adminGamePresentation = htmlspecialchars(addslashes($_POST['adminGamePresentation']));
-            $adminGameMaxLevel = htmlspecialchars(addslashes($_POST['adminGameMaxLevel']));
-            $adminGameExperience = htmlspecialchars(addslashes($_POST['adminGameExperience']));
-            $adminGameSkillPoint = htmlspecialchars(addslashes($_POST['adminGameSkillPoint']));
-            $adminGameExperienceBonus = htmlspecialchars(addslashes($_POST['adminGameExperienceBonus']));
-            $adminGameGoldBonus = htmlspecialchars(addslashes($_POST['adminGameGoldBonus']));
-            $adminGameDropBonus = htmlspecialchars(addslashes($_POST['adminGameDropBonus']));
-            $adminGameAccess = htmlspecialchars(addslashes($_POST['adminGameAccess']));
+            $adminGameName = htmlspecialchars($_POST['adminGameName']);
+            $adminGamePresentation = htmlspecialchars($_POST['adminGamePresentation']);
+            $adminGameMaxLevel = htmlspecialchars($_POST['adminGameMaxLevel']);
+            $adminGameExperience = htmlspecialchars($_POST['adminGameExperience']);
+            $adminGameSkillPoint = htmlspecialchars($_POST['adminGameSkillPoint']);
+            $adminGameExperienceBonus = htmlspecialchars($_POST['adminGameExperienceBonus']);
+            $adminGameGoldBonus = htmlspecialchars($_POST['adminGameGoldBonus']);
+            $adminGameDropBonus = htmlspecialchars($_POST['adminGameDropBonus']);
+            $adminGameAccess = htmlspecialchars($_POST['adminGameAccess']);
 
             //On fait une requête dans la base de donnée pour récupérer les informations du jeu
             $configurationQuery = $bdd->query("SELECT * FROM car_configuration");
@@ -58,15 +58,15 @@ if (isset($_POST['adminGameName'])
             while ($configuration = $configurationQuery->fetch())
             {
                 //On récupère les informations du jeu
-                $adminGameId = stripslashes($configuration['configurationId']);
-                $adminOldGameName = stripslashes($configuration['configurationGameName']);
-                $adminOldGamePresentation = stripslashes($configuration['configurationPresentation']);   
-                $adminOldGameExperience = stripslashes($configuration['configurationExperience']);
-                $adminOldGameSkillPoint = stripslashes($configuration['configurationSkillPoint']);
-                $adminOldGameExperienceBonus = stripslashes($configuration['configurationExperienceBonus']);
-                $adminOldGameGoldBonus = stripslashes($configuration['configurationGoldBonus']);
-                $adminOldGameDropBonus = stripslashes($configuration['configurationDropBonus']);
-                $adminOldGameAccess = stripslashes($configuration['configurationAccess']);
+                $adminGameId = $configuration['configurationId'];
+                $adminOldGameName = $configuration['configurationGameName'];
+                $adminOldGamePresentation = $configuration['configurationPresentation'];   
+                $adminOldGameExperience = $configuration['configurationExperience'];
+                $adminOldGameSkillPoint = $configuration['configurationSkillPoint'];
+                $adminOldGameExperienceBonus = $configuration['configurationExperienceBonus'];
+                $adminOldGameGoldBonus = $configuration['configurationGoldBonus'];
+                $adminOldGameDropBonus = $configuration['configurationDropBonus'];
+                $adminOldGameAccess = $configuration['configurationAccess'];
             }
             $configurationQuery->closeCursor();
 
@@ -82,8 +82,8 @@ if (isset($_POST['adminGameName'])
                 while ($character = $characterQuery->fetch())
                 {
                     //On récupère les informations du personnage
-                    $adminCharacterId = stripslashes($character['characterId']);
-                    $adminCharacterName = stripslashes($character['characterName']);
+                    $adminCharacterId = $character['characterId'];
+                    $adminCharacterName = $character['characterName'];
 
                     //On remet les stats du joueurs à zéro
                     $updateCharacter = $bdd->prepare("UPDATE car_characters SET
@@ -160,7 +160,7 @@ if (isset($_POST['adminGameName'])
                 while ($inventory = $inventoryQuery->fetch())
                 {
                     //On récupère les informations de l'inventaire
-                    $adminInventoryId = stripslashes($inventory['inventoryId']);
+                    $adminInventoryId = $inventory['inventoryId'];
 
                     //On va rendre l'équipement non équipé
                     $updateInventory = $bdd->prepare("UPDATE car_inventory SET

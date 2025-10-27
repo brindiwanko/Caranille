@@ -9,7 +9,7 @@ $accountQuery->execute();
 //On fait une boucle pour récupérer les résultats
 while ($account = $accountQuery->fetch())
 {
-    $accountEmail = stripslashes($account['accountEmail']);
+    $accountEmail = $account['accountEmail'];
 }
 ?>
 

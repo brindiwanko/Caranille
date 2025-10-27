@@ -21,9 +21,9 @@ ORDER by characterName");
         //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
         while ($account = $accountQuery->fetch())
         {
-            $adminAccountId = stripslashes($account['accountId']);
-            $adminAccountPseudo = stripslashes($account['accountPseudo']);
-            $adminAccountCharacterName =  stripslashes($account['characterName']);
+            $adminAccountId = $account['accountId'];
+            $adminAccountPseudo = $account['accountPseudo'];
+            $adminAccountCharacterName =  $account['characterName'];
             ?>
             <option value="<?php echo $adminAccountId ?>"><?php echo "$adminAccountCharacterName ($adminAccountPseudo)"; ?></option>
             <?php

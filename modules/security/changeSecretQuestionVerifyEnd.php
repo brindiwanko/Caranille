@@ -21,8 +21,8 @@ if (isset($_POST['secretQuestion'])
         $_SESSION['token'] = NULL;
 
         //On récupère les valeurs du formulaire dans une variable
-        $secretQuestion = htmlspecialchars(addslashes($_POST['secretQuestion']));
-        $secretAnswer = htmlspecialchars(addslashes($_POST['secretAnswer']));
+        $secretQuestion = htmlspecialchars($_POST['secretQuestion']);
+        $secretAnswer = htmlspecialchars($_POST['secretAnswer']);
 
         //On vérifie si le joueur à jamais crée sa question secrête
         if ($accountSecretQuestion != "" && $accountSecretAnswer != "")

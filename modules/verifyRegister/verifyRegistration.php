@@ -11,8 +11,8 @@ if (isset($_POST['accountEmail'])
     && $_POST['codeAccountVerification'] >= 0)
     {
         //On récupère les valeurs du formulaire dans une variable
-        $accountEmail = htmlspecialchars(addslashes($_POST['accountEmail']));
-        $codeAccountVerification = htmlspecialchars(addslashes($_POST['codeAccountVerification']));
+        $accountEmail = htmlspecialchars($_POST['accountEmail']);
+        $codeAccountVerification = htmlspecialchars($_POST['codeAccountVerification']);
 
         //On fait une requête pour vérifier si une demande de vérification est en cours
         $accountVerificationQuery = $bdd->prepare("SELECT * FROM car_accounts_verifications 
@@ -28,8 +28,8 @@ if (isset($_POST['accountEmail'])
             while ($accountVerification = $accountVerificationQuery->fetch())
             {
                 //On récupère les informations de la demande de vérification
-                $accountVerificationId = stripslashes($accountVerification['accountVerificationId']);
-                $accountVerificationAccountId = stripslashes($accountVerification['accountVerificationAccountId']);
+                $accountVerificationId = $accountVerification['accountVerificationId'];
+                $accountVerificationAccountId = $accountVerification['accountVerificationAccountId'];
             }
 
             //On supprime la demande de vérification du compte

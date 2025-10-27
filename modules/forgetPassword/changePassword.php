@@ -16,7 +16,7 @@ if (isset($_POST['accountCode'])
         $_SESSION['token'] = uniqid();
         
         //On récupère les valeurs du formulaire dans une variable
-        $accountCode = htmlspecialchars(addslashes($_POST['accountCode']));
+        $accountCode = htmlspecialchars($_POST['accountCode']);
 
         //On fait une requête pour vérifier si une demande de vérification est en cours
         $accountForgetPasswordQuery = $bdd->prepare("SELECT * FROM car_forgets_passwords 

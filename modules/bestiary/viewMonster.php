@@ -24,7 +24,7 @@ if (isset($_POST['token'])
         && $_POST['monsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $monsterId = htmlspecialchars(addslashes($_POST['monsterId']));
+            $monsterId = htmlspecialchars($_POST['monsterId']);
             
             //On fait une requête pour vérifier si le monstre entré est bien dans le bestiaire du joueur
             $monsterBestiaryQuery = $bdd->prepare("SELECT * FROM car_monsters, car_bestiary
@@ -41,7 +41,7 @@ if (isset($_POST['token'])
                 while ($monsterBestiary = $monsterBestiaryQuery->fetch())
                 {
                     //On récupère les informations du monstre
-                    $monsterDefeateQuantity = stripslashes($monsterBestiary['bestiaryMonsterQuantity']);
+                    $monsterDefeateQuantity = $monsterBestiary['bestiaryMonsterQuantity'];
                 }
                 
                 //On fait une requête pour vérifier si le monstre entré existe
@@ -58,23 +58,23 @@ if (isset($_POST['token'])
                     while ($monster = $monsterQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $monsterId = stripslashes($monster['monsterId']);
-                        $monsterCategoryId = stripslashes($monster['monsterCategoryId']);
-				        $monsterCategoryName = stripslashes($monster['monsterCategoryName']);
-				        $monsterCategoryNameShow = stripslashes($monster['monsterCategoryNameShow']);
-                        $monsterPicture = stripslashes($monster['monsterPicture']);
-                        $monsterName = stripslashes($monster['monsterName']);
-                        $monsterDescription = stripslashes($monster['monsterDescription']);
-                        $monsterLevel = stripslashes($monster['monsterLevel']);
-                        $monsterHp = stripslashes($monster['monsterHp']);
-                        $monsterMp = stripslashes($monster['monsterMp']);
-                        $monsterStrength = stripslashes($monster['monsterStrength']);
-                        $monsterMagic = stripslashes($monster['monsterMagic']);
-                        $monsterAgility = stripslashes($monster['monsterAgility']);
-                        $monsterDefense = stripslashes($monster['monsterDefense']);
-                        $monsterDefenseMagic = stripslashes($monster['monsterDefenseMagic']);
-                        $monsterGold = stripslashes($monster['monsterGold']);
-                        $monsterExperience = stripslashes($monster['monsterExperience']);
+                        $monsterId = $monster['monsterId'];
+                        $monsterCategoryId = $monster['monsterCategoryId'];
+				        $monsterCategoryName = $monster['monsterCategoryName'];
+				        $monsterCategoryNameShow = $monster['monsterCategoryNameShow'];
+                        $monsterPicture = $monster['monsterPicture'];
+                        $monsterName = $monster['monsterName'];
+                        $monsterDescription = $monster['monsterDescription'];
+                        $monsterLevel = $monster['monsterLevel'];
+                        $monsterHp = $monster['monsterHp'];
+                        $monsterMp = $monster['monsterMp'];
+                        $monsterStrength = $monster['monsterStrength'];
+                        $monsterMagic = $monster['monsterMagic'];
+                        $monsterAgility = $monster['monsterAgility'];
+                        $monsterDefense = $monster['monsterDefense'];
+                        $monsterDefenseMagic = $monster['monsterDefenseMagic'];
+                        $monsterGold = $monster['monsterGold'];
+                        $monsterExperience = $monster['monsterExperience'];
                     }
                     ?>
                     
@@ -242,8 +242,8 @@ if (isset($_POST['token'])
                                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                                     while ($monsterPlace = $monsterPlaceQuery->fetch())
                                     {
-                                        $monsterplaceName = stripslashes($monsterPlace['placeName']);
-                                        $monsterplaceChapter = stripslashes($monsterPlace['placeChapter']);
+                                        $monsterplaceName = $monsterPlace['placeName'];
+                                        $monsterplaceChapter = $monsterPlace['placeChapter'];
                                         
                                         //Si le joueur à accès à cette lieu on l'affiche
                                         if ($monsterplaceChapter <= $characterChapter)
@@ -291,17 +291,17 @@ if (isset($_POST['token'])
                                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                                     while ($monsterDrop = $monsterDropQuery->fetch())
                                     {
-                                        $monsterDropItemId = stripslashes($monsterDrop['itemId']);
-                                        $monsterDropItemTypeName = stripslashes($monsterDrop['itemTypeName']);
-                                        $monsterDropItemTypeNameShow = stripslashes($monsterDrop['itemTypeNameShow']);
+                                        $monsterDropItemId = $monsterDrop['itemId'];
+                                        $monsterDropItemTypeName = $monsterDrop['itemTypeName'];
+                                        $monsterDropItemTypeNameShow = $monsterDrop['itemTypeNameShow'];
                                         
-                                        $monsterDropItemVisible = stripslashes($monsterDrop['monsterDropItemVisible']);
-                                        $monsterDropRateVisible = stripslashes($monsterDrop['monsterDropRateVisible']);
+                                        $monsterDropItemVisible = $monsterDrop['monsterDropItemVisible'];
+                                        $monsterDropRateVisible = $monsterDrop['monsterDropRateVisible'];
                                         
                                         //Si l'objet est caché
                                         if ($monsterDropItemVisible == "Yes")
                                         {
-                                            $monsterDropItemName = stripslashes($monsterDrop['itemName']);
+                                            $monsterDropItemName = $monsterDrop['itemName'];
                                         }
                                         else
                                         {
@@ -312,7 +312,7 @@ if (isset($_POST['token'])
                                         //Si le taux d'obtention est caché
                                         if ($monsterDropRateVisible == "Yes")
                                         {
-                                            $monsterDropRate = stripslashes($monsterDrop['monsterDropRate']);
+                                            $monsterDropRate = $monsterDrop['monsterDropRate'];
                                         }
                                         else
                                         {

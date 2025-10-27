@@ -26,7 +26,7 @@ if (isset($_POST['adminAccountId'])
         && $_POST['adminAccountId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminAccountId = htmlspecialchars(addslashes($_POST['adminAccountId']));
+            $adminAccountId = htmlspecialchars($_POST['adminAccountId']);
 
             //On fait une requête pour vérifier si le compte choisit existe
             $accountQuery = $bdd->prepare("SELECT * FROM car_accounts 
@@ -39,8 +39,8 @@ if (isset($_POST['adminAccountId'])
             if ($account == 1) 
             {
                 //On récupère les informations du formulaire
-                $adminAccountId = htmlspecialchars(addslashes($_POST['adminAccountId']));
-                $adminAccountAccess =  htmlspecialchars(addslashes($_POST['adminAccountAccess']));
+                $adminAccountId = htmlspecialchars($_POST['adminAccountId']);
+                $adminAccountAccess =  htmlspecialchars($_POST['adminAccountAccess']);
 
                 //On met à jour le compte dans la base de donnée
                 $updateAccount = $bdd->prepare("UPDATE car_accounts 

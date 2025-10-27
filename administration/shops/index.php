@@ -25,8 +25,8 @@ if ($shopRow > 0)
             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
             while ($shop = $shopQuery->fetch())
             {
-                $adminShopId = stripslashes($shop['shopId']);
-                $adminShopName = stripslashes($shop['shopName']);
+                $adminShopId = $shop['shopId'];
+                $adminShopName = $shop['shopName'];
                 ?>
                 <option value="<?php echo $adminShopId ?>"><?php echo "$adminShopName"; ?></option>
                 <?php

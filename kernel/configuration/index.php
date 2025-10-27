@@ -6,16 +6,16 @@ $configurationQuery = $bdd->query("SELECT * FROM car_configuration");
 while ($configuration = $configurationQuery->fetch())
 {
     //On récupère les informations du jeu
-    $gameId = stripslashes($configuration['configurationId']);
-    $gameName = stripslashes($configuration['configurationGameName']);
-    $gamePresentation = stripslashes(nl2br($configuration['configurationPresentation']));
-    $gameMaxLevel = stripslashes($configuration['configurationMaxLevel']); 
-    $gameExperience = stripslashes($configuration['configurationExperience']);
-    $gameSkillPoint = stripslashes($configuration['configurationSkillPoint']);
-    $gameExperienceBonus = stripslashes($configuration['configurationExperienceBonus']);
-    $gameGoldBonus = stripslashes($configuration['configurationGoldBonus']);
-    $gameDropBonus = stripslashes($configuration['configurationDropBonus']);
-    $gameAccess = stripslashes($configuration['configurationAccess']);
+    $gameId = $configuration['configurationId'];
+    $gameName = $configuration['configurationGameName'];
+    $gamePresentation = nl2br(htmlspecialchars($configuration['configurationPresentation']));
+    $gameMaxLevel = $configuration['configurationMaxLevel']; 
+    $gameExperience = $configuration['configurationExperience'];
+    $gameSkillPoint = $configuration['configurationSkillPoint'];
+    $gameExperienceBonus = $configuration['configurationExperienceBonus'];
+    $gameGoldBonus = $configuration['configurationGoldBonus'];
+    $gameDropBonus = $configuration['configurationDropBonus'];
+    $gameAccess = $configuration['configurationAccess'];
 }
 $configurationQuery->closeCursor();
 ?>

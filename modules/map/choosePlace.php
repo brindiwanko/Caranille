@@ -24,7 +24,7 @@ if (isset($_POST['placeId'])
         && $_POST['placeId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $placeId = htmlspecialchars(addslashes($_POST['placeId']));
+            $placeId = htmlspecialchars($_POST['placeId']);
 
             //On fait une requête pour vérifier si le joueur peut accèder à le lieu choisie
             $placeQuery = $bdd->prepare("SELECT * FROM car_places
@@ -39,10 +39,10 @@ if (isset($_POST['placeId'])
             	while ($placeList = $placeQuery->fetch())
             	{
 	                //on récupère les valeurs de chaque lieux qu'on va ensuite mettre dans le menu déroulant
-	                $placeId = stripslashes($placeList['placeId']); 
-	                $placeName = stripslashes($placeList['placeName']);
-	                $placeChapter = stripslashes($placeList['placeChapter']);
-	                $placeAccess = stripslashes($placeList['placeAccess']);
+	                $placeId = $placeList['placeId']; 
+	                $placeName = $placeList['placeName'];
+	                $placeChapter = $placeList['placeChapter'];
+	                $placeAccess = $placeList['placeAccess'];
             	}
             	//On vérifie si le lieu est accessible
             	if ($placeAccess == "Yes")

@@ -61,9 +61,9 @@ if ($itemRow > 0)
             while ($item = $itemQuery->fetch())
             {
                 //On récupère les informations de l'objet
-                $itemId = stripslashes($item['itemId']); 
-                $itemName = stripslashes($item['itemName']);
-                $itemQuantity = stripslashes($item['inventoryQuantity']);
+                $itemId = $item['itemId']; 
+                $itemName = $item['itemName'];
+                $itemQuantity = $item['inventoryQuantity'];
                 ?>
                 <option value="<?php echo $itemId ?>"><?php echo "$itemName ($itemQuantity disponible)"; ?></option>
                 <?php

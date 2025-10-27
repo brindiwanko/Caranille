@@ -39,10 +39,10 @@ if ($notificationRow > 0)
         while ($notification = $notificationQuery->fetch())
         {
             //On récupère les informations de la notification
-            $notificationId = stripslashes($notification['notificationId']);
-            $notificationDateTime = stripslashes($notification['notificationDateTime']);
-            $notificationMessage = stripslashes($notification['notificationMessage']);
-            $notificationRead = stripslashes($notification['notificationRead']);
+            $notificationId = $notification['notificationId'];
+            $notificationDateTime = $notification['notificationDateTime'];
+            $notificationMessage = $notification['notificationMessage'];
+            $notificationRead = $notification['notificationRead'];
             
             //Si la notification n'est pas lue
             if ($notificationRead == "No")

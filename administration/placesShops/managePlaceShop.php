@@ -27,7 +27,7 @@ if (isset($_POST['adminplaceShopPlaceId'])
         && $_POST['adminplaceShopPlaceId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminplaceShopPlaceId = htmlspecialchars(addslashes($_POST['adminplaceShopPlaceId']));
+            $adminplaceShopPlaceId = htmlspecialchars($_POST['adminplaceShopPlaceId']);
 
             //On fait une requête pour vérifier si le lieu choisit existe
             $placeQuery = $bdd->prepare("SELECT * FROM car_places 
@@ -60,8 +60,8 @@ if (isset($_POST['adminplaceShopPlaceId'])
                             while ($placeShop = $placeShopQuery->fetch())
                             {
                                 //On récupère les informations du magasin
-                                $adminPlaceShopShopId = stripslashes($placeShop['shopId']);
-                                $adminPlaceShopShopName = stripslashes($placeShop['shopName']);
+                                $adminPlaceShopShopId = $placeShop['shopId'];
+                                $adminPlaceShopShopName = $placeShop['shopName'];
                                 ?>
                                 <option value="<?php echo $adminPlaceShopShopId ?>"><?php echo "$adminPlaceShopShopName"; ?></option>
                                 <?php
@@ -102,8 +102,8 @@ if (isset($_POST['adminplaceShopPlaceId'])
                                 while ($shop = $shopQuery->fetch())
                                 {
                                     //On récupère les informations du magasin
-                                    $adminPlaceShopShopId = stripslashes($shop['shopId']);
-                                    $adminPlaceShopShopName = stripslashes($shop['shopName']);
+                                    $adminPlaceShopShopId = $shop['shopId'];
+                                    $adminPlaceShopShopName = $shop['shopName'];
                                     ?>
                                     <option value="<?php echo $adminPlaceShopShopId ?>"><?php echo "$adminPlaceShopShopName"; ?></option>
                                     <?php

@@ -29,11 +29,11 @@ if ($battleInvitationRow > 0)
             while ($battleInvitation = $battleInvitationQuery->fetch())
             {
                 //On récupère les informations de l'invitation de combat
-                $battleInvitationId = stripslashes($battleInvitation['battleInvitationId']);
-                $battleInvitationName = stripslashes($battleInvitation['battleInvitationName']);
-                $battleInvitationMonsterName = stripslashes($battleInvitation['monsterName']);
-                $battleInvitationMonsterLevel = stripslashes($battleInvitation['monsterLevel']);
-                $battleInvitationCharacterId = stripslashes($battleInvitation['battleInvitationCharacterId']);
+                $battleInvitationId = $battleInvitation['battleInvitationId'];
+                $battleInvitationName = $battleInvitation['battleInvitationName'];
+                $battleInvitationMonsterName = $battleInvitation['monsterName'];
+                $battleInvitationMonsterLevel = $battleInvitation['monsterLevel'];
+                $battleInvitationCharacterId = $battleInvitation['battleInvitationCharacterId'];
                 ?>
                 <option value="<?php echo $battleInvitationCharacterId ?>"><?php echo "$battleInvitationName (Monstre : $battleInvitationMonsterName - Niveau : $battleInvitationMonsterLevel)"; ?></option>
                 <?php

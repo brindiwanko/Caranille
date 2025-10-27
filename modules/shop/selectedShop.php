@@ -28,7 +28,7 @@ if (isset($_POST['token'])
         && $_POST['shopId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $shopId = htmlspecialchars(addslashes($_POST['shopId']));
+            $shopId = htmlspecialchars($_POST['shopId']);
 
             //On fait une requête pour vérifier si le magasin est bien disponible dans le lieu du joueur
             $shopQueryList = $bdd->prepare("SELECT * FROM car_shops, car_places, car_places_shops
@@ -45,9 +45,9 @@ if (isset($_POST['token'])
                 while ($shop = $shopQueryList->fetch())
                 {
                     //On récupère les informations du magasin
-                    $shopPicture = stripslashes($shop['shopPicture']);
-                    $shopName = stripslashes($shop['shopName']);
-                    $shopDescription = stripslashes($shop['shopDescription']);
+                    $shopPicture = $shop['shopPicture'];
+                    $shopName = $shop['shopName'];
+                    $shopDescription = $shop['shopDescription'];
                 }
 
                 //On cherche à savoir S'il y a un ou plusieurs objets en vente
@@ -80,12 +80,12 @@ if (isset($_POST['token'])
                         while ($placeShop = $placeShopQuery->fetch())
                         {
                             //On récupère les informations de l'objet
-                            $itemId = stripslashes($placeShop['itemId']);
-                            $itemName = stripslashes($placeShop['itemName']);
-                            $itemPurchasePrice = stripslashes($placeShop['itemPurchasePrice']);
-                            $itemDiscount = stripslashes($placeShop['shopItemDiscount']);
-                            $itemTypeName = stripslashes($placeShop['itemTypeName']);
-                            $itemTypeNameShow = stripslashes($placeShop['itemTypeNameShow']);
+                            $itemId = $placeShop['itemId'];
+                            $itemName = $placeShop['itemName'];
+                            $itemPurchasePrice = $placeShop['itemPurchasePrice'];
+                            $itemDiscount = $placeShop['shopItemDiscount'];
+                            $itemTypeName = $placeShop['itemTypeName'];
+                            $itemTypeNameShow = $placeShop['itemTypeNameShow'];
 
                             //On calcule la réduction de l'équipement/objet
                             $discount = $itemPurchasePrice * $itemDiscount / 100;

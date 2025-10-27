@@ -24,7 +24,7 @@ if (isset($_POST['chapterId'])
         && $_POST['chapterId'] >= 1)
         {
             //On récupère les valeurs du formulaire dans une variable
-            $chapterId = htmlspecialchars(addslashes($_POST['chapterId']));
+            $chapterId = htmlspecialchars($_POST['chapterId']);
             
             //On fait une requête pour vérifier si le chapitre entré est bien dans le carnet de voyage du joueur
             $chapterQuery = $bdd->prepare("SELECT * FROM car_chapters
@@ -40,10 +40,10 @@ if (isset($_POST['chapterId'])
                 while ($chapter = $chapterQuery->fetch())
                 {
                     //On récupère les informations du monstre
-                    $chapterId = stripslashes($chapter['chapterId']); 
-                    $chapterTitle = stripslashes($chapter['chapterTitle']);
-                    $chapterOpening = stripslashes(nl2br($chapter['chapterOpening']));
-                    $chapterEnding = stripslashes(nl2br($chapter['chapterEnding']));
+                    $chapterId = $chapter['chapterId']; 
+                    $chapterTitle = $chapter['chapterTitle'];
+                    $chapterOpening = nl2br(htmlspecialchars($chapter['chapterOpening']));
+                    $chapterEnding = nl2br(htmlspecialchars($chapter['chapterEnding']));
                 }
                 ?>
 

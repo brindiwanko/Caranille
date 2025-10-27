@@ -34,11 +34,11 @@ if (isset($_POST['adminMonsterDropMonsterId'])
         && $_POST['adminMonsterDropItemId'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterDropMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterDropMonsterId']));
-            $adminMonsterDropItemId = htmlspecialchars(addslashes($_POST['adminMonsterDropItemId']));
-            $adminMonsterDropItemVisible = htmlspecialchars(addslashes($_POST['adminMonsterDropItemVisible']));
-            $adminMonsterDropRate = htmlspecialchars(addslashes($_POST['adminMonsterDropRate']));
-            $adminMonsterDropRateVisible = htmlspecialchars(addslashes($_POST['adminMonsterDropRateVisible']));
+            $adminMonsterDropMonsterId = htmlspecialchars($_POST['adminMonsterDropMonsterId']);
+            $adminMonsterDropItemId = htmlspecialchars($_POST['adminMonsterDropItemId']);
+            $adminMonsterDropItemVisible = htmlspecialchars($_POST['adminMonsterDropItemVisible']);
+            $adminMonsterDropRate = htmlspecialchars($_POST['adminMonsterDropRate']);
+            $adminMonsterDropRateVisible = htmlspecialchars($_POST['adminMonsterDropRateVisible']);
 
             //Si le taux d'obtention est entre 0 et 1000 on ajoute l'objet
             if ($adminMonsterDropRate >= 0 && $adminMonsterDropRate <= 1000)
@@ -56,8 +56,8 @@ if (isset($_POST['adminMonsterDropMonsterId'])
                     while ($monster = $monsterQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $adminMonsterDropMonsterPicture = stripslashes($monster['monsterPicture']);
-                        $adminMonsterDropMonsterName = stripslashes($monster['monsterName']);
+                        $adminMonsterDropMonsterPicture = $monster['monsterPicture'];
+                        $adminMonsterDropMonsterName = $monster['monsterName'];
                     }
                     $monsterQuery->closeCursor();
 
@@ -74,8 +74,8 @@ if (isset($_POST['adminMonsterDropMonsterId'])
                         while ($item = $itemQuery->fetch())
                         {
                             ///On récupère les informations de l'objet
-                            $adminMonsterDropItemPicture = stripslashes($item['itemPicture']);
-                            $adminMonsterDropItemName = stripslashes($item['itemName']);
+                            $adminMonsterDropItemPicture = $item['itemPicture'];
+                            $adminMonsterDropItemName = $item['itemName'];
                         }
                         $itemQuery->closeCursor();
 

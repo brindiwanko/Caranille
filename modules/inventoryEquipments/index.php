@@ -48,11 +48,11 @@ if (isset($_POST['token']))
                     while ($equipmentEquipped = $equipmentEquippedQuery->fetch())
                     {
                         //On récupère les informations de l'équippement
-                        $equipmentId = stripslashes($equipmentEquipped['itemId']); 
-                        $equipmentName = stripslashes($equipmentEquipped['itemName']);
-                        $equipmentQuantity = stripslashes($equipmentEquipped['inventoryQuantity']);
-                        $equipmentTypeName = stripslashes($equipmentEquipped['itemTypeName']);
-                        $equipmentTypeNameShow = stripslashes($equipmentEquipped['itemTypeNameShow']);
+                        $equipmentId = $equipmentEquipped['itemId']; 
+                        $equipmentName = $equipmentEquipped['itemName'];
+                        $equipmentQuantity = $equipmentEquipped['inventoryQuantity'];
+                        $equipmentTypeName = $equipmentEquipped['itemTypeName'];
+                        $equipmentTypeNameShow = $equipmentEquipped['itemTypeNameShow'];
                         ?>
                         <option value="<?php echo $equipmentId ?>"><?php echo "[$equipmentTypeNameShow] - $equipmentName (Quantité: $equipmentQuantity)" ?></option>
                         <?php
@@ -103,11 +103,11 @@ if (isset($_POST['token']))
                     while ($equipmentNoEquipped = $equipmentNoEquippedQuery->fetch())
                     {
                         //On récupère les informations de l'équippement
-                        $equipmentId = stripslashes($equipmentNoEquipped['itemId']); 
-                        $equipmentName = stripslashes($equipmentNoEquipped['itemName']);
-                        $equipmentQuantity = stripslashes($equipmentNoEquipped['inventoryQuantity']);
-                        $equipmentTypeName = stripslashes($equipmentNoEquipped['itemTypeName']);
-                        $equipmentTypeNameShow = stripslashes($equipmentNoEquipped['itemTypeNameShow']);
+                        $equipmentId = $equipmentNoEquipped['itemId']; 
+                        $equipmentName = $equipmentNoEquipped['itemName'];
+                        $equipmentQuantity = $equipmentNoEquipped['inventoryQuantity'];
+                        $equipmentTypeName = $equipmentNoEquipped['itemTypeName'];
+                        $equipmentTypeNameShow = $equipmentNoEquipped['itemTypeNameShow'];
                         ?>
                         <option value="<?php echo $equipmentId ?>"><?php echo "[$equipmentTypeNameShow] - $equipmentName (Quantité: $equipmentQuantity)" ?></option>
                         <?php

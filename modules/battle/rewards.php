@@ -128,9 +128,9 @@ if ($battleOpponentHpRemaining <= 0 && $characterHpMin > 0)
             while ($opponentDrop = $opponentDropQuery->fetch())
             {
                 //On récupère les informations de l'objet
-                $opponentDropItemId = stripslashes($opponentDrop['itemId']);
-                $opponentDropItemName = stripslashes($opponentDrop['itemName']);
-                $opponentDropRate = stripslashes($opponentDrop['monsterDropRate']);
+                $opponentDropItemId = $opponentDrop['itemId'];
+                $opponentDropItemName = $opponentDrop['itemName'];
+                $opponentDropRate = $opponentDrop['monsterDropRate'];
                 
                 //On calcul le bonus de drop en fonction de la prospection du joueur
                 $prospectingDropRateBonus = round($characterProspectingTotal * $characterProspectingTotal / 100);
@@ -162,9 +162,9 @@ if ($battleOpponentHpRemaining <= 0 && $characterHpMin > 0)
                         while ($item = $itemQuery->fetch())
                         {
                             //On récupère les informations de l'inventaire
-                            $inventoryId = stripslashes($item['inventoryId']);
-                            $itemQuantity = stripslashes($item['inventoryQuantity']);
-                            $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                            $inventoryId = $item['inventoryId'];
+                            $itemQuantity = $item['inventoryQuantity'];
+                            $inventoryEquipped = $item['inventoryEquipped'];
                         }
 
                         //On met l'inventaire à jour
@@ -222,7 +222,7 @@ if ($battleOpponentHpRemaining <= 0 && $characterHpMin > 0)
             	while ($chapter = $chapterQuery->fetch())
             	{
             	    //On récupère les informations du chapitre
-            		$chapterEnding = stripslashes(nl2br($chapter['chapterEnding']));
+            		$chapterEnding = nl2br(htmlspecialchars($chapter['chapterEnding']));
             	}
             	$chapterQuery->closeCursor();
             	
@@ -288,7 +288,7 @@ if ($battleOpponentHpRemaining <= 0 && $characterHpMin > 0)
         	while ($bestiary = $bestiaryQuery->fetch())
         	{
         	    //On récupère les informations du bestiaire
-        		$bestiaryId = stripslashes($bestiary['bestiaryId']);
+        		$bestiaryId = $bestiary['bestiaryId'];
         	}
             //On met à jour le bestiaire du joueur
             $updateBestiary = $bdd->prepare("UPDATE car_bestiary 

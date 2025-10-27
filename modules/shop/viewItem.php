@@ -32,8 +32,8 @@ if (isset($_POST['shopId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $shopId = htmlspecialchars(addslashes($_POST['shopId']));
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $shopId = htmlspecialchars($_POST['shopId']);
+            $itemId = htmlspecialchars($_POST['itemId']);
 
             //On fait une requête pour vérifier si le magasin choisit existe
             $shopQuery = $bdd->prepare("SELECT * FROM car_shops 
@@ -58,25 +58,25 @@ if (isset($_POST['shopId'])
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $itemRaceId = stripslashes($item['itemRaceId']);
-                        $itemTypeName = stripslashes($item['itemTypeName']);
-                        $itemTypeNameShow = stripslashes($item['itemTypeNameShow']);
-                        $itemPicture = stripslashes($item['itemPicture']);
-                        $itemLevel = stripslashes($item['itemLevel']);
-                        $itemLevelRequired = stripslashes($item['itemLevelRequired']);
-                        $itemName = stripslashes($item['itemName']);
-                        $itemDescription = stripslashes($item['itemDescription']);
-                        $itemHpEffect = stripslashes($item['itemHpEffect']);
-                        $itemMpEffect = stripslashes($item['itemMpEffect']);
-                        $itemStrengthEffect = stripslashes($item['itemStrengthEffect']);
-                        $itemMagicEffect = stripslashes($item['itemMagicEffect']);
-                        $itemAgilityEffect = stripslashes($item['itemAgilityEffect']);
-                        $itemDefenseEffect = stripslashes($item['itemDefenseEffect']);
-                        $itemDefenseMagicEffect = stripslashes($item['itemDefenseMagicEffect']);
-                        $itemWisdomEffect = stripslashes($item['itemWisdomEffect']);
-                        $itemProspectingEffect = stripslashes($item['itemProspectingEffect']);
-                        $itemSalePrice = stripslashes($item['itemSalePrice']);
-                        $itemPurchasePrice = stripslashes($item['itemPurchasePrice']);
+                        $itemRaceId = $item['itemRaceId'];
+                        $itemTypeName = $item['itemTypeName'];
+                        $itemTypeNameShow = $item['itemTypeNameShow'];
+                        $itemPicture = $item['itemPicture'];
+                        $itemLevel = $item['itemLevel'];
+                        $itemLevelRequired = $item['itemLevelRequired'];
+                        $itemName = $item['itemName'];
+                        $itemDescription = $item['itemDescription'];
+                        $itemHpEffect = $item['itemHpEffect'];
+                        $itemMpEffect = $item['itemMpEffect'];
+                        $itemStrengthEffect = $item['itemStrengthEffect'];
+                        $itemMagicEffect = $item['itemMagicEffect'];
+                        $itemAgilityEffect = $item['itemAgilityEffect'];
+                        $itemDefenseEffect = $item['itemDefenseEffect'];
+                        $itemDefenseMagicEffect = $item['itemDefenseMagicEffect'];
+                        $itemWisdomEffect = $item['itemWisdomEffect'];
+                        $itemProspectingEffect = $item['itemProspectingEffect'];
+                        $itemSalePrice = $item['itemSalePrice'];
+                        $itemPurchasePrice = $item['itemPurchasePrice'];
                     }
                     //Si la race de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
                     if ($itemRaceId >= 1)
@@ -89,7 +89,7 @@ if (isset($_POST['shopId'])
                         while ($race = $raceQuery->fetch())
                         {
                             //On récupère le nom de la classe
-                            $itemRaceName = stripslashes($race['raceName']);
+                            $itemRaceName = $race['raceName'];
                         }
                         $raceQuery->closeCursor(); 
                     }
@@ -110,7 +110,7 @@ if (isset($_POST['shopId'])
                     while ($shopItem = $shopItemQuery->fetch())
                     {
                         //On récupère les informations du magasin
-                        $itemDiscount = stripslashes($shopItem['shopItemDiscount']);
+                        $itemDiscount = $shopItem['shopItemDiscount'];
                     }
                     
                     //On calcule le prix final de l'obet par rapport à la réduction

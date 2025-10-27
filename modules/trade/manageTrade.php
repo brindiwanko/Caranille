@@ -27,7 +27,7 @@ if (isset($_POST['tradeId'])
         && $_POST['tradeId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $tradeId = htmlspecialchars(addslashes($_POST['tradeId']));
+            $tradeId = htmlspecialchars($_POST['tradeId']);
             
             //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
             $tradeQuery = $bdd->prepare("SELECT * FROM car_trades
@@ -44,11 +44,11 @@ if (isset($_POST['tradeId'])
                 while ($trade = $tradeQuery->fetch())
                 {
                     //On récupère les valeurs de la demande d'échange
-                    $tradeId = stripslashes($trade['tradeId']);
-                    $tradeCharacterOneId = stripslashes($trade['tradeCharacterOneId']);
-                    $tradeCharacterTwoId = stripslashes($trade['tradeCharacterTwoId']);
-                    $tradeMessage = stripslashes($trade['tradeMessage']);
-                    $tradeLastUpdate = stripslashes($trade['tradeLastUpdate']);
+                    $tradeId = $trade['tradeId'];
+                    $tradeCharacterOneId = $trade['tradeCharacterOneId'];
+                    $tradeCharacterTwoId = $trade['tradeCharacterTwoId'];
+                    $tradeMessage = $trade['tradeMessage'];
+                    $tradeLastUpdate = $trade['tradeLastUpdate'];
                 }
                 
                 //Si la première personne de l'échange est le joueur on cherche à savoir qui est l'autre personnage
@@ -64,8 +64,8 @@ if (isset($_POST['tradeId'])
                     while ($character = $characterQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $tradeCharacterId = stripslashes($character['characterId']);
-                        $tradeCharacterName = stripslashes($character['characterName']);
+                        $tradeCharacterId = $character['characterId'];
+                        $tradeCharacterName = $character['characterName'];
                     }
                     $characterQuery->closeCursor(); 
                 }
@@ -82,8 +82,8 @@ if (isset($_POST['tradeId'])
                     while ($character = $characterQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $tradeCharacterId = stripslashes($character['characterId']);
-                        $tradeCharacterName = stripslashes($character['characterName']);
+                        $tradeCharacterId = $character['characterId'];
+                        $tradeCharacterName = $character['characterName'];
                     }
                     $characterQuery->closeCursor();
                 }
@@ -113,9 +113,9 @@ if (isset($_POST['tradeId'])
                             while ($tradeItem = $tradeItemQuery->fetch())
                             {
                                 //on récupère les valeurs de chaque objets qu'on va ensuite mettre dans le menu déroulant
-                                $tradeItemId = stripslashes($tradeItem['itemId']);
-                                $tradeItemName = stripslashes($tradeItem['itemName']);
-                                $tradeItemQuantity = stripslashes($tradeItem['tradeItemItemQuantity']);
+                                $tradeItemId = $tradeItem['itemId'];
+                                $tradeItemName = $tradeItem['itemName'];
+                                $tradeItemQuantity = $tradeItem['tradeItemItemQuantity'];
                                 ?>
                                 <option value="<?php echo $tradeItemId ?>"><?php echo "$tradeItemName ($tradeItemQuantity)" ?></option>
                                 <?php
@@ -147,7 +147,7 @@ if (isset($_POST['tradeId'])
                     while ($tradeGold = $tradeGoldQuery->fetch())
                     {
                         //on récupère les valeurs de chaque magasins qu'on va ensuite mettre dans le menu déroulant
-                        $tradeGoldQuantity = stripslashes($tradeGold['tradeGoldQuantity']);
+                        $tradeGoldQuantity = $tradeGold['tradeGoldQuantity'];
                     }
                 }
                 ?>
@@ -179,9 +179,9 @@ if (isset($_POST['tradeId'])
                             while ($tradeItem = $tradeItemQuery->fetch())
                             {
                                 //on récupère les valeurs de chaque objets qu'on va ensuite mettre dans le menu déroulant
-                                $tradeItemId = stripslashes($tradeItem['itemId']);
-                                $tradeItemName = stripslashes($tradeItem['itemName']);
-                                $tradeItemQuantity = stripslashes($tradeItem['tradeItemItemQuantity']);
+                                $tradeItemId = $tradeItem['itemId'];
+                                $tradeItemName = $tradeItem['itemName'];
+                                $tradeItemQuantity = $tradeItem['tradeItemItemQuantity'];
                                 ?>
                                 <option value="<?php echo $tradeItemId ?>"><?php echo "$tradeItemName ($tradeItemQuantity)" ?></option>
                                 <?php
@@ -216,7 +216,7 @@ if (isset($_POST['tradeId'])
                     while ($tradeGold = $tradeGoldQuery->fetch())
                     {
                         //on récupère les valeurs de chaque magasins qu'on va ensuite mettre dans le menu déroulant
-                        $tradeGoldQuantity = stripslashes($tradeGold['tradeGoldQuantity']);
+                        $tradeGoldQuantity = $tradeGold['tradeGoldQuantity'];
                     }
                 }
                 ?>

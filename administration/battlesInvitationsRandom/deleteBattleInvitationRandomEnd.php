@@ -24,7 +24,7 @@ if (isset($_POST['adminBattleInvitationId'])
         && $_POST['adminBattleInvitationId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminBattleInvitationId = htmlspecialchars(addslashes($_POST['adminBattleInvitationId']));
+            $adminBattleInvitationId = htmlspecialchars($_POST['adminBattleInvitationId']);
 
             //On fait une requête pour vérifier si l'invitation de combat choisit existe
             $battleInvitationQuery = $bdd->prepare("SELECT * FROM car_battles_invitations 
@@ -39,8 +39,8 @@ if (isset($_POST['adminBattleInvitationId'])
                 while ($battleInvitation = $battleInvitationQuery->fetch())
                 {
                     //On récupère les informations de l'invitation
-                    $adminBattleInvitationId = stripslashes($battleInvitation['battleInvitationId']);
-                    $adminBattleInvitationMonsterId = stripslashes($battleInvitation['battleInvitationMonsterId']);
+                    $adminBattleInvitationId = $battleInvitation['battleInvitationId'];
+                    $adminBattleInvitationMonsterId = $battleInvitation['battleInvitationMonsterId'];
                 }
                 
                 //On fait une requête pour vérifier si le monstre choisit existe
@@ -55,7 +55,7 @@ if (isset($_POST['adminBattleInvitationId'])
                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                     while ($monster = $monsterQuery->fetch())
                     {
-                        $adminBattleInvitationMonsterName = stripslashes($monster['monsterName']);
+                        $adminBattleInvitationMonsterName = $monster['monsterName'];
                     }
                 }
                 
@@ -68,7 +68,7 @@ if (isset($_POST['adminBattleInvitationId'])
                 //On fait une recherche dans la base de donnée de toutes les lieux
                 while ($battleInvitationCharacter = $battleInvitationCharacterQuery->fetch())
                 {
-                    $adminCharacterId = stripslashes($battleInvitationCharacter['characterId']);
+                    $adminCharacterId = $battleInvitationCharacter['characterId'];
                     
                     $notificationDate = date('Y-m-d H:i:s');
                     $notificationMessage = "ATTENTION : L'invitation de combat contre $adminBattleInvitationMonsterName a été annulée.";

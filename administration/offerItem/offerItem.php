@@ -33,9 +33,9 @@ if (isset($_POST['adminCharacterId'])
         && $_POST['adminItemQuantity'] >= 0)
         {
             //On récupère les informations du formulaire précédent
-            $adminCharacterId = htmlspecialchars(addslashes($_POST['adminCharacterId']));
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
-            $adminItemQuantity = htmlspecialchars(addslashes($_POST['adminItemQuantity']));
+            $adminCharacterId = htmlspecialchars($_POST['adminCharacterId']);
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
+            $adminItemQuantity = htmlspecialchars($_POST['adminItemQuantity']);
             
             //Si l'objet à offrir est pour tous les joueurs
             if ($adminCharacterId == 0)
@@ -53,8 +53,8 @@ if (isset($_POST['adminCharacterId'])
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $adminItemId = stripslashes($item['itemId']);
-                        $adminItemName = stripslashes($item['itemName']);
+                        $adminItemId = $item['itemId'];
+                        $adminItemName = $item['itemName'];
                     }
                     ?>
                     
@@ -102,7 +102,7 @@ if (isset($_POST['adminCharacterId'])
                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                     while ($character = $characterQuery->fetch())
                     {
-                        $adminCharacterName = stripslashes($character['characterName']);
+                        $adminCharacterName = $character['characterName'];
                     }
 
                     //On fait une requête pour vérifier si l'objet choisit existe
@@ -118,8 +118,8 @@ if (isset($_POST['adminCharacterId'])
                         while ($item = $itemQuery->fetch())
                         {
                             //On récupère les informations de l'objet
-                            $adminItemId = stripslashes($item['itemId']);
-                            $adminItemName = stripslashes($item['itemName']);
+                            $adminItemId = $item['itemId'];
+                            $adminItemName = $item['itemName'];
                         }
                         ?>
                         

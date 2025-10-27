@@ -14,7 +14,7 @@ if (isset($_POST['installationType'])
         //Comme il y a un nouveau formulaire on régénère un nouveau token
         $_SESSION['token'] = uniqid();
 
-        $installationType = htmlspecialchars(addslashes($_POST['installationType']));
+        $installationType = htmlspecialchars($_POST['installationType']);
 
         //Si le type d'installation est soit complète ou minimal
         if ($installationType == "fullInstall" || $installationType == "minInstall" || $installationType == "retry")
@@ -54,8 +54,8 @@ if (isset($_POST['installationType'])
                         while ($raceList = $raceListQuery->fetch())
                         {
                             //On récupère les informations de la classe
-                            $raceId = stripslashes($raceList['raceId']); 
-                            $raceName = stripslashes($raceList['raceName']);
+                            $raceId = $raceList['raceId']; 
+                            $raceName = $raceList['raceName'];
                             ?>
                             <option value="<?php echo $raceId ?>"><?php echo $raceName ?></option>
                             <?php

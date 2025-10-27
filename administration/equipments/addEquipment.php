@@ -40,8 +40,8 @@ if (isset($_POST['token'])
                     while ($raceList = $raceListQuery->fetch())
                     {
                         //On récupère les informations de la classe
-                        $raceId = stripslashes($raceList['raceId']); 
-                        $raceName = stripslashes($raceList['raceName']);
+                        $raceId = $raceList['raceId']; 
+                        $raceName = $raceList['raceName'];
                         ?>
                         <option value="<?php echo $raceId ?>"><?php echo $raceName ?></option>
                         <?php
@@ -64,9 +64,9 @@ if (isset($_POST['token'])
                 while ($itemType = $itemTypeQuery->fetch())
                 {
                     //On récupère les informations de la classe
-                    $adminItemTypeId = stripslashes($itemType['itemTypeId']);
-                    $adminItemTypeName = stripslashes($itemType['itemTypeName']);
-                    $adminItemTypeNameShow = stripslashes($itemType['itemTypeNameShow']);
+                    $adminItemTypeId = $itemType['itemTypeId'];
+                    $adminItemTypeName = $itemType['itemTypeName'];
+                    $adminItemTypeNameShow = $itemType['itemTypeNameShow'];
                     ?>
                     <option value="<?php echo $adminItemTypeId ?>"><?php echo $adminItemTypeNameShow ?></option>
                     <?php

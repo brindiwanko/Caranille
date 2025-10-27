@@ -30,10 +30,10 @@ if ($placeRow >= 1)
             while ($placeList = $placeQuery->fetch())
             {
                 //on récupère les valeurs de chaque lieux qu'on va ensuite mettre dans le menu déroulant
-                $placeId = stripslashes($placeList['placeId']); 
-                $placeName = stripslashes($placeList['placeName']);
-                $placeChapter = stripslashes($placeList['placeChapter']);
-                $placeAccess = stripslashes($placeList['placeAccess']);
+                $placeId = $placeList['placeId']; 
+                $placeName = $placeList['placeName'];
+                $placeChapter = $placeList['placeChapter'];
+                $placeAccess = $placeList['placeAccess'];
                 
                 if ($placeAccess == "Yes")
                 {

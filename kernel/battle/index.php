@@ -12,11 +12,11 @@ if ($battleRow == 1)
     while ($battle = $battleQuery->fetch())
     {
         //On récupère les informations du combat
-        $battleId = stripslashes($battle['battleId']);
-        $battleOpponentId = stripslashes($battle['battleOpponentId']);
-        $battleType = stripslashes($battle['battleType']);
-        $battleOpponentHpRemaining = stripslashes($battle['battleOpponentHpRemaining']);
-        $battleOpponentMpRemaining = stripslashes($battle['battleOpponentMpRemaining']);
+        $battleId = $battle['battleId'];
+        $battleOpponentId = $battle['battleOpponentId'];
+        $battleType = $battle['battleType'];
+        $battleOpponentHpRemaining = $battle['battleOpponentHpRemaining'];
+        $battleOpponentMpRemaining = $battle['battleOpponentMpRemaining'];
     }
     $battleQuery->closeCursor();
     
@@ -35,19 +35,19 @@ if ($battleRow == 1)
         while ($opponent = $opponentQuery->fetch())
         {
             //On récupère les informations de l'opposant
-            $opponentId = stripslashes($opponent['monsterId']);
-            $opponentPicture = stripslashes($opponent['monsterPicture']);
-            $opponentName = stripslashes($opponent['monsterName']);
-            $opponentLevel = stripslashes($opponent['monsterLevel']);
-            $opponentHp = stripslashes($opponent['monsterHp']);
-            $opponentMp = stripslashes($opponent['monsterMp']);
-            $opponentStrength = stripslashes($opponent['monsterStrength']);
-            $opponentMagic = stripslashes($opponent['monsterMagic']);
-            $opponentAgility = stripslashes($opponent['monsterAgility']);
-            $opponentDefense = stripslashes($opponent['monsterDefense']);
-            $opponentDefenseMagic = stripslashes($opponent['monsterDefenseMagic']);
-            $opponentGold = stripslashes($opponent['monsterGold']);
-            $opponentExperience = stripslashes($opponent['monsterExperience']);
+            $opponentId = $opponent['monsterId'];
+            $opponentPicture = $opponent['monsterPicture'];
+            $opponentName = $opponent['monsterName'];
+            $opponentLevel = $opponent['monsterLevel'];
+            $opponentHp = $opponent['monsterHp'];
+            $opponentMp = $opponent['monsterMp'];
+            $opponentStrength = $opponent['monsterStrength'];
+            $opponentMagic = $opponent['monsterMagic'];
+            $opponentAgility = $opponent['monsterAgility'];
+            $opponentDefense = $opponent['monsterDefense'];
+            $opponentDefenseMagic = $opponent['monsterDefenseMagic'];
+            $opponentGold = $opponent['monsterGold'];
+            $opponentExperience = $opponent['monsterExperience'];
         }
         $opponentQuery->closeCursor();
     }
@@ -63,17 +63,17 @@ if ($battleRow == 1)
         while ($opponent = $opponentQuery->fetch())
         {
             //On récupère les informations de l'opposant
-            $opponentId = stripslashes($opponent['characterId']);
-            $opponentPicture = stripslashes($opponent['characterPicture']);
-            $opponentName = stripslashes($opponent['characterName']);
-            $opponentLevel = stripslashes($opponent['characterLevel']);
-            $opponentHp = stripslashes($opponent['characterHpTotal']);
-            $opponentMp = stripslashes($opponent['characterMpTotal']);
-            $opponentStrength = stripslashes($opponent['characterStrengthTotal']);
-            $opponentMagic = stripslashes($opponent['characterMagicTotal']);
-            $opponentAgility = stripslashes($opponent['characterAgilityTotal']);
-            $opponentDefense = stripslashes($opponent['characterDefenseTotal']);
-            $opponentDefenseMagic = stripslashes($opponent['characterDefenseMagicTotal']);
+            $opponentId = $opponent['characterId'];
+            $opponentPicture = $opponent['characterPicture'];
+            $opponentName = $opponent['characterName'];
+            $opponentLevel = $opponent['characterLevel'];
+            $opponentHp = $opponent['characterHpTotal'];
+            $opponentMp = $opponent['characterMpTotal'];
+            $opponentStrength = $opponent['characterStrengthTotal'];
+            $opponentMagic = $opponent['characterMagicTotal'];
+            $opponentAgility = $opponent['characterAgilityTotal'];
+            $opponentDefense = $opponent['characterDefenseTotal'];
+            $opponentDefenseMagic = $opponent['characterDefenseMagicTotal'];
         }
         $opponentQuery->closeCursor();
     }

@@ -60,7 +60,7 @@ if (isset($_POST['adminItemId'])
         && $_POST['adminItemSalePrice'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
             
             //On fait une requête pour vérifier si le parchemin choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -72,21 +72,21 @@ if (isset($_POST['adminItemId'])
             if ($itemRow == 1) 
             {
                 //On récupère les informations du formulaire
-                $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
-                $adminItemPicture = htmlspecialchars(addslashes($_POST['adminItemPicture']));
-                $adminItemName = htmlspecialchars(addslashes($_POST['adminItemName']));
-                $adminItemDescription = htmlspecialchars(addslashes($_POST['adminItemDescription']));
-                $adminItemHpEffects = htmlspecialchars(addslashes($_POST['adminItemHpEffects']));
-                $adminItemMpEffect = htmlspecialchars(addslashes($_POST['adminItemMpEffect']));
-                $adminItemStrengthEffect = htmlspecialchars(addslashes($_POST['adminItemStrengthEffect']));
-                $adminItemMagicEffect = htmlspecialchars(addslashes($_POST['adminItemMagicEffect']));
-                $adminItemAgilityEffect = htmlspecialchars(addslashes($_POST['adminItemAgilityEffect']));
-                $adminItemDefenseEffect = htmlspecialchars(addslashes($_POST['adminItemDefenseEffect']));
-                $adminItemDefenseMagicEffect = htmlspecialchars(addslashes($_POST['adminItemDefenseMagicEffect']));
-                $adminItemWisdomEffect = htmlspecialchars(addslashes($_POST['adminItemWisdomEffect']));
-                $adminItemProspectingEffect = htmlspecialchars(addslashes($_POST['adminItemProspectingEffect']));
-                $adminItemPurchasePrice = htmlspecialchars(addslashes($_POST['adminItemPurchasePrice']));
-                $adminItemSalePrice = htmlspecialchars(addslashes($_POST['adminItemSalePrice']));
+                $adminItemId = htmlspecialchars($_POST['adminItemId']);
+                $adminItemPicture = htmlspecialchars($_POST['adminItemPicture']);
+                $adminItemName = htmlspecialchars($_POST['adminItemName']);
+                $adminItemDescription = htmlspecialchars($_POST['adminItemDescription']);
+                $adminItemHpEffects = htmlspecialchars($_POST['adminItemHpEffects']);
+                $adminItemMpEffect = htmlspecialchars($_POST['adminItemMpEffect']);
+                $adminItemStrengthEffect = htmlspecialchars($_POST['adminItemStrengthEffect']);
+                $adminItemMagicEffect = htmlspecialchars($_POST['adminItemMagicEffect']);
+                $adminItemAgilityEffect = htmlspecialchars($_POST['adminItemAgilityEffect']);
+                $adminItemDefenseEffect = htmlspecialchars($_POST['adminItemDefenseEffect']);
+                $adminItemDefenseMagicEffect = htmlspecialchars($_POST['adminItemDefenseMagicEffect']);
+                $adminItemWisdomEffect = htmlspecialchars($_POST['adminItemWisdomEffect']);
+                $adminItemProspectingEffect = htmlspecialchars($_POST['adminItemProspectingEffect']);
+                $adminItemPurchasePrice = htmlspecialchars($_POST['adminItemPurchasePrice']);
+                $adminItemSalePrice = htmlspecialchars($_POST['adminItemSalePrice']);
         
                 //On met à jour le parchemin dans la base de donnée
                 $updateItems = $bdd->prepare("UPDATE car_items 

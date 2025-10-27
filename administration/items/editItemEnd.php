@@ -39,14 +39,14 @@ if (isset($_POST['adminItemId'])
         && $_POST['adminItemSalePrice'] >= 0)
         {
             //On récupère les informations du formulaire
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
-            $adminItemPicture = htmlspecialchars(addslashes($_POST['adminItemPicture']));
-            $adminItemName = htmlspecialchars(addslashes($_POST['adminItemName']));
-            $adminItemDescription = htmlspecialchars(addslashes($_POST['adminItemDescription']));
-            $adminItemHpEffects = htmlspecialchars(addslashes($_POST['adminItemHpEffects']));
-            $adminItemMpEffect = htmlspecialchars(addslashes($_POST['adminItemMpEffect']));
-            $adminItemPurchasePrice = htmlspecialchars(addslashes($_POST['adminItemPurchasePrice']));
-            $adminItemSalePrice = htmlspecialchars(addslashes($_POST['adminItemSalePrice']));
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
+            $adminItemPicture = htmlspecialchars($_POST['adminItemPicture']);
+            $adminItemName = htmlspecialchars($_POST['adminItemName']);
+            $adminItemDescription = htmlspecialchars($_POST['adminItemDescription']);
+            $adminItemHpEffects = htmlspecialchars($_POST['adminItemHpEffects']);
+            $adminItemMpEffect = htmlspecialchars($_POST['adminItemMpEffect']);
+            $adminItemPurchasePrice = htmlspecialchars($_POST['adminItemPurchasePrice']);
+            $adminItemSalePrice = htmlspecialchars($_POST['adminItemSalePrice']);
 
             //On fait une requête pour vérifier si l'objet choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 

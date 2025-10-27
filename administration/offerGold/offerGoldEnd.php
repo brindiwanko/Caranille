@@ -26,8 +26,8 @@ if (isset($_POST['adminCharacterId'])
         && $_POST['adminOfferGold'] >= 0)
         {
             //On récupère les informations du formulaire précédent
-            $adminCharacterId = htmlspecialchars(addslashes($_POST['adminCharacterId']));
-            $adminOfferGold = htmlspecialchars(addslashes($_POST['adminOfferGold']));
+            $adminCharacterId = htmlspecialchars($_POST['adminCharacterId']);
+            $adminOfferGold = htmlspecialchars($_POST['adminOfferGold']);
             
             //Si l'experience à offrir est pour tous les joueurs
             if ($adminCharacterId == 0)
@@ -40,8 +40,8 @@ if (isset($_POST['adminCharacterId'])
                 while ($character = $characterQuery->fetch())
                 {
                     //On récupère l'id et le nom du personnage
-                    $adminCharacterId = stripslashes($character['characterId']);
-                    $adminCharacterName =  stripslashes($character['characterName']);
+                    $adminCharacterId = $character['characterId'];
+                    $adminCharacterName =  $character['characterName'];
                     
                     //On ajoute les pièces d'or au personnage
                     $updateCharacter = $bdd->prepare("UPDATE car_characters SET
@@ -80,7 +80,7 @@ if (isset($_POST['adminCharacterId'])
                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                     while ($character = $characterQuery->fetch())
                     {
-                        $adminCharacterName = stripslashes($character['characterName']);
+                        $adminCharacterName = $character['characterName'];
                     }
                     
                     //On ajoute les pièces d'or au personnage

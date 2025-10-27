@@ -34,9 +34,9 @@ if (isset($_POST['buyQuantity'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $buyQuantity = htmlspecialchars(addslashes($_POST['buyQuantity']));
-            $shopId = htmlspecialchars(addslashes($_POST['shopId']));
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $buyQuantity = htmlspecialchars($_POST['buyQuantity']);
+            $shopId = htmlspecialchars($_POST['shopId']);
+            $itemId = htmlspecialchars($_POST['itemId']);
 
             //On fait une requête pour vérifier si le magasin choisit existe
             $shopQuery = $bdd->prepare("SELECT * FROM car_shops 
@@ -60,8 +60,8 @@ if (isset($_POST['buyQuantity'])
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $itemName = stripslashes($item['itemName']);
-                        $itemPurchasePrice = stripslashes($item['itemPurchasePrice']);
+                        $itemName = $item['itemName'];
+                        $itemPurchasePrice = $item['itemPurchasePrice'];
                     }
                     
                     //On fait une requête pour récupérer les informations de l'objet du magasin
@@ -75,7 +75,7 @@ if (isset($_POST['buyQuantity'])
                     while ($shopItem = $shopItemQuery->fetch())
                     {
                         //On récupère les informations du magasin
-                        $itemDiscount = stripslashes($shopItem['shopItemDiscount']);
+                        $itemDiscount = $shopItem['shopItemDiscount'];
                     }
                     $shopItemQuery->closeCursor();
 

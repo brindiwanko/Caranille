@@ -15,7 +15,7 @@ if (isset($_POST['accountPseudo'])
         $_SESSION['token'] = NULL;
         
         //Récupération des valeurs des champs
-        $accountPseudo = htmlspecialchars(addslashes($_POST['accountPseudo']));
+        $accountPseudo = htmlspecialchars($_POST['accountPseudo']);
         $accountPassword = $_POST['accountPassword'];
     
         //On fait une requête pour récupérer les informations du compte
@@ -37,10 +37,10 @@ if (isset($_POST['accountPseudo'])
             if (PasswordManager::verifyPassword($accountPassword, $storedPassword))
             {
                 //On récupère les informations du compte comme l'id et les accès (joueur, modérateur, administrateur)
-                $accountId = stripslashes($account['accountId']);
-                $accountAccess = stripslashes($account['accountAccess']);
-                $accountStatus = stripslashes($account['accountStatus']);
-                $accountReason = stripslashes($account['accountReason']);
+                $accountId = $account['accountId'];
+                $accountAccess = $account['accountAccess'];
+                $accountStatus = $account['accountStatus'];
+                $accountReason = $account['accountReason'];
 
                 //Si le joueur peut se connecter
                 if ($accountStatus == 0)
@@ -52,7 +52,7 @@ if (isset($_POST['accountPseudo'])
                         $date = date('Y-m-d H:i:s');
                         
                         //On créer une session qui ne contiendra que l'id du compte
-                        $_SESSION['account']['id'] = stripslashes($account['accountId']);
+                        $_SESSION['account']['id'] = $account['accountId'];
                         $accountId = $_SESSION['account']['id'];
                         
                         //On met la date de connexion à jour
@@ -76,7 +76,7 @@ if (isset($_POST['accountPseudo'])
                             $date = date('Y-m-d H:i:s');
                             
                             //On créer une session qui ne contiendra que l'id du compte
-                            $_SESSION['account']['id'] = stripslashes($account['accountId']);
+                            $_SESSION['account']['id'] = $account['accountId'];
                             $accountId = $_SESSION['account']['id'];
                             
                             //On met la date de connexion à jour

@@ -57,10 +57,10 @@ if ($chatRow > 0)
         while ($chat = $chatQuery->fetch())
         {
             //On récupère les informations du chat
-            $chatMessageId = stripslashes($chat['chatMessageId']);
-            $chatCharacterName = stripslashes($chat['characterName']);
-            $chatDateTime = stripslashes($chat['chatDateTime']);
-            $chatMessage = stripslashes($chat['chatMessage']);
+            $chatMessageId = $chat['chatMessageId'];
+            $chatCharacterName = $chat['characterName'];
+            $chatDateTime = $chat['chatDateTime'];
+            $chatMessage = $chat['chatMessage'];
             ?>
             
             <tr>

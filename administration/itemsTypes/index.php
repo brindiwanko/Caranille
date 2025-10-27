@@ -20,9 +20,9 @@ $equipmentTypeQuery = $bdd->query("SELECT * FROM car_items_types");
         while ($equipmentType = $equipmentTypeQuery->fetch())
         {
             //On récupère les informations du chapitre
-            $adminItemTypeId = stripslashes($equipmentType['itemTypeId']);
-            $adminItemTypeName = stripslashes($equipmentType['itemTypeName']);
-            $adminItemTypeNameShow = stripslashes($equipmentType['itemTypeNameShow']);
+            $adminItemTypeId = $equipmentType['itemTypeId'];
+            $adminItemTypeName = $equipmentType['itemTypeName'];
+            $adminItemTypeNameShow = $equipmentType['itemTypeNameShow'];
             ?>
             <option value="<?php echo $adminItemTypeId ?>"><?php echo $adminItemTypeNameShow ?></option>
             <?php

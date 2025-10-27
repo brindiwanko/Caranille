@@ -52,8 +52,8 @@ if (isset($_POST['token']))
                     while ($characterTrade = $characterTradeQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $tradeCharacterId = stripslashes($characterTrade['characterId']);
-                        $tradeCharacterName = stripslashes($characterTrade['characterName']);
+                        $tradeCharacterId = $characterTrade['characterId'];
+                        $tradeCharacterName = $characterTrade['characterName'];
                         
                         ?>
                         <option value="<?php echo $tradeCharacterId ?>"><?php echo $tradeCharacterName ?></option>

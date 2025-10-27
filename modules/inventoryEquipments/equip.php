@@ -27,7 +27,7 @@ if (isset($_POST['itemId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
     
             //On cherche à savoir si l'équipement que l'on va équipper appartient bien au joueur
             $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_inventory 
@@ -44,10 +44,10 @@ if (isset($_POST['itemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'équippement
-                    $inventoryId = stripslashes($item['inventoryId']);
-                    $itemRaceId = stripslashes($item['itemRaceId']);
-                    $itemType = stripslashes($item['itemItemTypeId']);
-                    $itemName = stripslashes($item['itemName']);
+                    $inventoryId = $item['inventoryId'];
+                    $itemRaceId = $item['itemRaceId'];
+                    $itemType = $item['itemItemTypeId'];
+                    $itemName = $item['itemName'];
                 }
                 $itemQuery->closeCursor();
     

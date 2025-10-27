@@ -30,8 +30,8 @@ if (isset($_POST['adminplaceShopPlaceId'])
         && $_POST['adminPlaceShopShopId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminplaceShopPlaceId = htmlspecialchars(addslashes($_POST['adminplaceShopPlaceId']));
-            $adminPlaceShopShopId = htmlspecialchars(addslashes($_POST['adminPlaceShopShopId']));
+            $adminplaceShopPlaceId = htmlspecialchars($_POST['adminplaceShopPlaceId']);
+            $adminPlaceShopShopId = htmlspecialchars($_POST['adminPlaceShopShopId']);
 
             //On fait une requête pour vérifier si le lieu choisie existe
             $placeQuery = $bdd->prepare("SELECT * FROM car_places 
@@ -46,8 +46,8 @@ if (isset($_POST['adminplaceShopPlaceId'])
                 while ($place = $placeQuery->fetch())
                 {
                     //On récupère les informations du lieu
-                    $adminPlaceShopplacePicture = stripslashes($place['placePicture']);
-                    $adminPlaceShopplaceName = stripslashes($place['placeName']);
+                    $adminPlaceShopplacePicture = $place['placePicture'];
+                    $adminPlaceShopplaceName = $place['placeName'];
                 }
                 $placeQuery->closeCursor();
 
@@ -64,8 +64,8 @@ if (isset($_POST['adminplaceShopPlaceId'])
                     while ($shop = $shopQuery->fetch())
                     {
                         //On récupère les informations du magasin
-                        $adminPlaceShopShopPicture = stripslashes($shop['shopPicture']);
-                        $adminPlaceShopShopName = stripslashes($shop['shopName']);
+                        $adminPlaceShopShopPicture = $shop['shopPicture'];
+                        $adminPlaceShopShopName = $shop['shopName'];
                     }
 
                     //On fait une requête pour vérifier si le magasin n'est pas déjà dans cette lieu

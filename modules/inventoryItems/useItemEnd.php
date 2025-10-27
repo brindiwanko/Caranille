@@ -27,7 +27,7 @@ if (isset($_POST['itemId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
     
             //On cherche à savoir si l'objet qui va se vendre appartient bien au joueur
             $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_inventory 
@@ -44,11 +44,11 @@ if (isset($_POST['itemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'objet
-                    $inventoryId = stripslashes($item['inventoryId']);
-                    $itemQuantity = stripslashes($item['inventoryQuantity']);
-                    $itemName = stripslashes($item['itemName']);
-                    $itemHpEffect = stripslashes($item['itemHpEffect']);
-                    $itemMpEffect = stripslashes($item['itemMpEffect']);
+                    $inventoryId = $item['inventoryId'];
+                    $itemQuantity = $item['inventoryQuantity'];
+                    $itemName = $item['itemName'];
+                    $itemHpEffect = $item['itemHpEffect'];
+                    $itemMpEffect = $item['itemMpEffect'];
                 }
                 
                 //On applique les ajouts de l'objet sur les stats du joueur

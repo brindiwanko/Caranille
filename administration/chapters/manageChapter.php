@@ -27,7 +27,7 @@ if (isset($_POST['adminChapterId'])
         && $_POST['adminChapterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminChapterId = htmlspecialchars(addslashes($_POST['adminChapterId']));
+            $adminChapterId = htmlspecialchars($_POST['adminChapterId']);
 
             //On fait une requête pour vérifier si le chapitre choisit existe
             $chapterQuery = $bdd->prepare("SELECT * FROM car_chapters 
@@ -43,8 +43,8 @@ if (isset($_POST['adminChapterId'])
                 while ($chapter = $chapterQuery->fetch())
                 {
                     //On récupère les informations du chapitre
-                    $adminChapterId = stripslashes($chapter['chapterId']);
-                    $adminChapterTitle = stripslashes($chapter['chapterTitle']);
+                    $adminChapterId = $chapter['chapterId'];
+                    $adminChapterTitle = $chapter['chapterTitle'];
                 }
                 ?>
 

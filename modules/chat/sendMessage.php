@@ -18,7 +18,7 @@ if (isset($_POST['chatMessage'])
         $_SESSION['token'] = NULL;
         
 	    //On récupère les informations du formulaire
-	    $chatMessage = htmlspecialchars(addslashes($_POST['chatMessage']));
+	    $chatMessage = htmlspecialchars($_POST['chatMessage']);
 	    
 	    //On définit une date pour le message
 	    $date = date('Y-m-d H:i:s');

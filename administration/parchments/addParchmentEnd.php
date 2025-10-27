@@ -57,20 +57,20 @@ if (isset($_POST['adminItemPicture'])
         && $_POST['adminItemSalePrice'] >= 0)
         {        
             //On récupère les informations du formulaire
-            $adminItemPicture = htmlspecialchars(addslashes($_POST['adminItemPicture']));
-            $adminItemName = htmlspecialchars(addslashes($_POST['adminItemName']));
-            $adminItemDescription = htmlspecialchars(addslashes($_POST['adminItemDescription']));
-            $adminItemHpEffects = htmlspecialchars(addslashes($_POST['adminItemHpEffects']));
-            $adminItemMpEffect = htmlspecialchars(addslashes($_POST['adminItemMpEffect']));
-            $adminItemStrengthEffect = htmlspecialchars(addslashes($_POST['adminItemStrengthEffect']));
-            $adminItemMagicEffect = htmlspecialchars(addslashes($_POST['adminItemMagicEffect']));
-            $adminItemAgilityEffect = htmlspecialchars(addslashes($_POST['adminItemAgilityEffect']));
-            $adminItemDefenseEffect = htmlspecialchars(addslashes($_POST['adminItemDefenseEffect']));
-            $adminItemDefenseMagicEffect = htmlspecialchars(addslashes($_POST['adminItemDefenseMagicEffect']));
-            $adminItemWisdomEffect = htmlspecialchars(addslashes($_POST['adminItemWisdomEffect']));
-            $adminItemProspectingEffect = htmlspecialchars(addslashes($_POST['adminItemProspectingEffect']));
-            $adminItemPurchasePrice = htmlspecialchars(addslashes($_POST['adminItemPurchasePrice']));
-            $adminItemSalePrice = htmlspecialchars(addslashes($_POST['adminItemSalePrice']));
+            $adminItemPicture = htmlspecialchars($_POST['adminItemPicture']);
+            $adminItemName = htmlspecialchars($_POST['adminItemName']);
+            $adminItemDescription = htmlspecialchars($_POST['adminItemDescription']);
+            $adminItemHpEffects = htmlspecialchars($_POST['adminItemHpEffects']);
+            $adminItemMpEffect = htmlspecialchars($_POST['adminItemMpEffect']);
+            $adminItemStrengthEffect = htmlspecialchars($_POST['adminItemStrengthEffect']);
+            $adminItemMagicEffect = htmlspecialchars($_POST['adminItemMagicEffect']);
+            $adminItemAgilityEffect = htmlspecialchars($_POST['adminItemAgilityEffect']);
+            $adminItemDefenseEffect = htmlspecialchars($_POST['adminItemDefenseEffect']);
+            $adminItemDefenseMagicEffect = htmlspecialchars($_POST['adminItemDefenseMagicEffect']);
+            $adminItemWisdomEffect = htmlspecialchars($_POST['adminItemWisdomEffect']);
+            $adminItemProspectingEffect = htmlspecialchars($_POST['adminItemProspectingEffect']);
+            $adminItemPurchasePrice = htmlspecialchars($_POST['adminItemPurchasePrice']);
+            $adminItemSalePrice = htmlspecialchars($_POST['adminItemSalePrice']);
 
             //On ajoute l'équipement dans la base de donnée
             $addItem = $bdd->prepare("INSERT INTO car_items VALUES(

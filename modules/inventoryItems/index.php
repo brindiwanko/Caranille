@@ -43,11 +43,11 @@ if (isset($_POST['token']))
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $itemId = stripslashes($item['itemId']); 
-                        $itemName = stripslashes($item['itemName']);
-                        $itemQuantity = stripslashes($item['inventoryQuantity']);
-                        $itemTypeName = stripslashes($item['itemTypeName']);
-                        $itemTypeNameShow = stripslashes($item['itemTypeNameShow']);
+                        $itemId = $item['itemId']; 
+                        $itemName = $item['itemName'];
+                        $itemQuantity = $item['inventoryQuantity'];
+                        $itemTypeName = $item['itemTypeName'];
+                        $itemTypeNameShow = $item['itemTypeNameShow'];
                         ?>
                         <option value="<?php echo $itemId ?>"><?php echo "[$itemTypeNameShow] - $itemName (Quantité: $itemQuantity)" ?></option>
                         <?php

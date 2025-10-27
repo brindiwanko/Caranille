@@ -33,12 +33,12 @@ if (isset($_POST['adminBattleInvitationMonsterId'])
         && $_POST['adminBattleInvitationeRateNew'] >= 0)
         {
             //On récupère les informations du formulaire
-            $adminBattleInvitationMonsterId = htmlspecialchars(addslashes($_POST['adminBattleInvitationMonsterId']));
-            $adminBattleInvitationPicture = htmlspecialchars(addslashes($_POST['adminBattleInvitationPicture']));
-            $adminBattleInvitationeName = htmlspecialchars(addslashes($_POST['adminBattleInvitationeName']));
-            $adminBattleInvitationDescription = htmlspecialchars(addslashes($_POST['adminBattleInvitationDescription']));
-            $adminBattleInvitationeRateOld = htmlspecialchars(addslashes($_POST['adminBattleInvitationeRateOld']));
-            $adminBattleInvitationeRateNew = htmlspecialchars(addslashes($_POST['adminBattleInvitationeRateNew']));
+            $adminBattleInvitationMonsterId = htmlspecialchars($_POST['adminBattleInvitationMonsterId']);
+            $adminBattleInvitationPicture = htmlspecialchars($_POST['adminBattleInvitationPicture']);
+            $adminBattleInvitationeName = htmlspecialchars($_POST['adminBattleInvitationeName']);
+            $adminBattleInvitationDescription = htmlspecialchars($_POST['adminBattleInvitationDescription']);
+            $adminBattleInvitationeRateOld = htmlspecialchars($_POST['adminBattleInvitationeRateOld']);
+            $adminBattleInvitationeRateNew = htmlspecialchars($_POST['adminBattleInvitationeRateNew']);
             $date = date('Y-m-d H:i:s');
             
             //On ajoute l'invitation de combat dans la base de donnée
@@ -68,7 +68,7 @@ if (isset($_POST['adminBattleInvitationMonsterId'])
             while ($battleInvitation = $battleInvitationQuery->fetch())
             {
                 //On récupère les informations de l'invitation
-                $adminBattleInvitationId = stripslashes($battleInvitation['battleInvitationId']);
+                $adminBattleInvitationId = $battleInvitation['battleInvitationId'];
             }
             
             //On fait une requête pour vérifier si le monstre choisit existe
@@ -83,7 +83,7 @@ if (isset($_POST['adminBattleInvitationMonsterId'])
                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                 while ($monster = $monsterQuery->fetch())
                 {
-                    $adminBattleInvitationMonsterName = stripslashes($monster['monsterName']);
+                    $adminBattleInvitationMonsterName = $monster['monsterName'];
                 }
             }
             
@@ -95,8 +95,8 @@ if (isset($_POST['adminBattleInvitationMonsterId'])
             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
             while ($character = $characterQuery->fetch())
             {
-                $adminCharacterId = stripslashes($character['characterId']);
-                $adminCharacterName =  stripslashes($character['characterName']);
+                $adminCharacterId = $character['characterId'];
+                $adminCharacterName =  $character['characterName'];
                 
                 //On fait une requête pour vérifier si le joueur à déjà vaincu le monstre
                 $characterBestiaryQuery = $bdd->prepare("SELECT * FROM car_characters, car_bestiary

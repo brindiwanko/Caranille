@@ -27,7 +27,7 @@ if (isset($_POST['tradeId'])
         && $_POST['tradeId'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $tradeId = htmlspecialchars(addslashes($_POST['tradeId']));
+            $tradeId = htmlspecialchars($_POST['tradeId']);
             
             //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
             $tradeQuery = $bdd->prepare("SELECT * FROM car_trades
@@ -61,9 +61,9 @@ if (isset($_POST['tradeId'])
                             while ($item = $itemQuery->fetch())
                             {
                                 //On récupère les informations des objets
-                                $tradeItemId = stripslashes($item['itemId']);
-                                $tradeItemName = stripslashes($item['itemName']);
-                                $tradeItemQuantity = stripslashes($item['inventoryQuantity']);
+                                $tradeItemId = $item['itemId'];
+                                $tradeItemName = $item['itemName'];
+                                $tradeItemQuantity = $item['inventoryQuantity'];
                                 ?>
                                 <option value="<?php echo $tradeItemId ?>"><?php echo "$tradeItemName (Quantité: $tradeItemQuantity)"; ?></option>
                                 <?php

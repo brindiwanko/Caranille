@@ -30,9 +30,9 @@ if (isset($_POST['tradeId'])
         && $_POST['tradeItemQuantity'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $tradeId = htmlspecialchars(addslashes($_POST['tradeId']));
-            $tradeItemId = htmlspecialchars(addslashes($_POST['tradeItemId']));
-            $tradeItemQuantity = htmlspecialchars(addslashes($_POST['tradeItemQuantity']));
+            $tradeId = htmlspecialchars($_POST['tradeId']);
+            $tradeItemId = htmlspecialchars($_POST['tradeItemId']);
+            $tradeItemQuantity = htmlspecialchars($_POST['tradeItemQuantity']);
             
             //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
             $tradeQuery = $bdd->prepare("SELECT * FROM car_trades
@@ -69,11 +69,11 @@ if (isset($_POST['tradeId'])
                         while ($inventory = $inventoryQuery->fetch())
                         {
                             //On récupère les informations de l'objet
-                            $inventoryId = stripslashes($inventory['inventoryId']);
-                            $itemQuantity = stripslashes($inventory['inventoryQuantity']);
-                            $itemName = stripslashes($inventory['itemName']);
-                            $itemSalePrice = stripslashes($inventory['itemSalePrice']);
-                            $inventoryEquipped = stripslashes($inventory['inventoryEquipped']);
+                            $inventoryId = $inventory['inventoryId'];
+                            $itemQuantity = $inventory['inventoryQuantity'];
+                            $itemName = $inventory['itemName'];
+                            $itemSalePrice = $inventory['itemSalePrice'];
+                            $inventoryEquipped = $inventory['inventoryEquipped'];
                         }
                         
                         //Si la quantité d'objet dans l'inventaire du joueur est supérieur ou égal au nombre à mettre en échange
@@ -143,15 +143,15 @@ if (isset($_POST['tradeId'])
                                     while ($equipment = $equipmentEquipedQuery->fetch())
                                     {
                                         //On récupère les informations de l'équippement
-                                        $hpBonus = $hpBonus + stripslashes($equipment['itemHpEffect']);
-                                        $mpBonus = $mpBonus + stripslashes($equipment['itemMpEffect']);
-                                        $strengthBonus = $strengthBonus + stripslashes($equipment['itemStrengthEffect']);
-                                        $magicBonus = $magicBonus + stripslashes($equipment['itemMagicEffect']);
-                                        $agilityBonus = $agilityBonus + stripslashes($equipment['itemAgilityEffect']);
-                                        $defenseBonus = $defenseBonus + stripslashes($equipment['itemDefenseEffect']);
-                                        $defenseMagicBonus = $defenseMagicBonus + stripslashes($equipment['itemDefenseMagicEffect']);
-                                        $wisdomBonus = $wisdomBonus + stripslashes($equipment['itemWisdomEffect']);
-                                        $prospectingBonus = $prospectingBonus + stripslashes($equipment['itemProspectingEffect']);
+                                        $hpBonus = $hpBonus + $equipment['itemHpEffect'];
+                                        $mpBonus = $mpBonus + $equipment['itemMpEffect'];
+                                        $strengthBonus = $strengthBonus + $equipment['itemStrengthEffect'];
+                                        $magicBonus = $magicBonus + $equipment['itemMagicEffect'];
+                                        $agilityBonus = $agilityBonus + $equipment['itemAgilityEffect'];
+                                        $defenseBonus = $defenseBonus + $equipment['itemDefenseEffect'];
+                                        $defenseMagicBonus = $defenseMagicBonus + $equipment['itemDefenseMagicEffect'];
+                                        $wisdomBonus = $wisdomBonus + $equipment['itemWisdomEffect'];
+                                        $prospectingBonus = $prospectingBonus + $equipment['itemProspectingEffect'];
                                     }
                                     $equipmentEquipedQuery->closeCursor();
             

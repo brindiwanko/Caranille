@@ -28,9 +28,9 @@ if ($marketRow > 0)
             while ($market = $marketQuery->fetch())
             {
                 //On récupère les valeurs de chaque objets
-                $itemId = stripslashes($market['itemId']);
-                $itemTypeName = stripslashes($market['itemTypeName']);
-                $itemTypeNameShow = stripslashes($market['itemTypeNameShow']);
+                $itemId = $market['itemId'];
+                $itemTypeName = $market['itemTypeName'];
+                $itemTypeNameShow = $market['itemTypeNameShow'];
 
                 //On fait un requête pour savoir combien d'offres il y a sur cet objet
                 $marketItemQuantityQuery = $bdd->prepare("SELECT * FROM car_market
@@ -42,8 +42,8 @@ if ($marketRow > 0)
                 if ($marketItemQuantityRow > 0)
                 {
                     //On récupère les informations de l'objet
-                    $itemId = stripslashes($market['itemId']);
-                    $itemName = stripslashes($market['itemName']);
+                    $itemId = $market['itemId'];
+                    $itemName = $market['itemName'];
                     ?>
                     <option value="<?php echo $itemId ?>"><?php echo "[$itemTypeNameShow] - $itemName ($marketItemQuantityRow offres)" ?></option>
                     <?php

@@ -27,10 +27,10 @@ if (isset($_POST['adminNewsId'])
         && $_POST['adminNewsId'] >= 1)
         {
             //On récupère les informations du formulaire
-            $adminNewsId = htmlspecialchars(addslashes($_POST['adminNewsId']));
-            $adminNewsPicture = htmlspecialchars(addslashes($_POST['adminNewsPicture']));
-            $adminNewsTitle = htmlspecialchars(addslashes($_POST['adminNewsTitle']));
-            $adminNewsMessage = htmlspecialchars(addslashes($_POST['adminNewsMessage']));
+            $adminNewsId = htmlspecialchars($_POST['adminNewsId']);
+            $adminNewsPicture = htmlspecialchars($_POST['adminNewsPicture']);
+            $adminNewsTitle = htmlspecialchars($_POST['adminNewsTitle']);
+            $adminNewsMessage = htmlspecialchars($_POST['adminNewsMessage']);
 
             //On fait une requête pour vérifier si la news choisie existe
             $newsQuery = $bdd->prepare("SELECT * FROM car_news 

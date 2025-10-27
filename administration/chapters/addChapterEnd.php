@@ -26,10 +26,10 @@ if (isset($_POST['adminChapterMonsterId'])
         && $_POST['adminChapterMonsterId'] >= 1)
         {
             //On récupère les informations du formulaire
-            $adminChapterMonsterId = htmlspecialchars(addslashes($_POST['adminChapterMonsterId']));
-            $adminChapterTitle = htmlspecialchars(addslashes($_POST['adminChapterTitle']));
-            $adminChapterOpening = htmlspecialchars(addslashes($_POST['adminChapterOpening']));
-            $adminChapterEnding = htmlspecialchars(addslashes($_POST['adminChapterEnding']));
+            $adminChapterMonsterId = htmlspecialchars($_POST['adminChapterMonsterId']);
+            $adminChapterTitle = htmlspecialchars($_POST['adminChapterTitle']);
+            $adminChapterOpening = htmlspecialchars($_POST['adminChapterOpening']);
+            $adminChapterEnding = htmlspecialchars($_POST['adminChapterEnding']);
             
             //On ajoute le chapitre dans la base de donnée
             $addChapter = $bdd->prepare("INSERT INTO car_chapters VALUES(

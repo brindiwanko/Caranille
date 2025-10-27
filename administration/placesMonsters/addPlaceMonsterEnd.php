@@ -30,8 +30,8 @@ if (isset($_POST['adminplaceMonsterPlaceId'])
         && $_POST['adminplaceMonsterMonsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminplaceMonsterPlaceId = htmlspecialchars(addslashes($_POST['adminplaceMonsterPlaceId']));
-            $adminplaceMonsterMonsterId = htmlspecialchars(addslashes($_POST['adminplaceMonsterMonsterId']));
+            $adminplaceMonsterPlaceId = htmlspecialchars($_POST['adminplaceMonsterPlaceId']);
+            $adminplaceMonsterMonsterId = htmlspecialchars($_POST['adminplaceMonsterMonsterId']);
 
             //On fait une requête pour vérifier si le lieu choisie existe
             $placeQuery = $bdd->prepare("SELECT * FROM car_places 

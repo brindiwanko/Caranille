@@ -43,11 +43,11 @@ if (isset($_POST['token'])
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations des objets
-                        $marketItemId = stripslashes($item['itemId']);
-                        $marketItemName = stripslashes($item['itemName']);
-                        $marketItemQuantity = stripslashes($item['inventoryQuantity']);
-                        $marketItemTypeName = stripslashes($item['itemTypeName']);
-                        $marketItemTypeNameShow = stripslashes($item['itemTypeNameShow']);
+                        $marketItemId = $item['itemId'];
+                        $marketItemName = $item['itemName'];
+                        $marketItemQuantity = $item['inventoryQuantity'];
+                        $marketItemTypeName = $item['itemTypeName'];
+                        $marketItemTypeNameShow = $item['itemTypeNameShow'];
                         ?>
                         <option value="<?php echo $marketItemId ?>"><?php echo "[$marketItemTypeNameShow] - $marketItemName (Quantité: $marketItemQuantity)"; ?></option>
                         <?php

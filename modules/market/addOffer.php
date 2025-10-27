@@ -30,8 +30,8 @@ if (isset($_POST['marketItemId'])
         && $_POST['marketSalePrice'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $marketItemId = htmlspecialchars(addslashes($_POST['marketItemId']));
-            $marketSalePrice = htmlspecialchars(addslashes($_POST['marketSalePrice']));
+            $marketItemId = htmlspecialchars($_POST['marketItemId']);
+            $marketSalePrice = htmlspecialchars($_POST['marketSalePrice']);
 
             //On fait une requête pour vérifier si l'objet ou équippement choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -46,7 +46,7 @@ if (isset($_POST['marketItemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'équipement
-                    $marketItemName = stripslashes($item['itemName']);
+                    $marketItemName = $item['itemName'];
                 }
 
                 //On vérifit si le joueur possède bien cet objet ou équipement

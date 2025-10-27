@@ -27,7 +27,7 @@ if (isset($_POST['adminMonsterId'])
         && $_POST['adminMonsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterId']));
+            $adminMonsterId = htmlspecialchars($_POST['adminMonsterId']);
 
             //On fait une requête pour vérifier si le monstre choisit existe
             $monsterQuery = $bdd->prepare("SELECT * FROM car_monsters 
@@ -42,7 +42,7 @@ if (isset($_POST['adminMonsterId'])
                 while ($monster = $monsterQuery->fetch())
                 {
                     //On récupère les informations du formulaire
-                    $adminMonsterName = stripslashes($monster['monsterName']);
+                    $adminMonsterName = $monster['monsterName'];
                 }
                 ?>
                 

@@ -28,9 +28,9 @@ if ($privateConversationRow > 0)
             while ($privateConversation = $privateConversationQuery->fetch())
             {
                 //On récupère les informations de la conversation
-                $privateConversationId = stripslashes($privateConversation['privateConversationId']);
-                $privateConversationCharacterOneId = stripslashes($privateConversation['privateConversationCharacterOneId']);
-                $privateConversationCharacterTwoId = stripslashes($privateConversation['privateConversationCharacterTwoId']);
+                $privateConversationId = $privateConversation['privateConversationId'];
+                $privateConversationCharacterOneId = $privateConversation['privateConversationCharacterOneId'];
+                $privateConversationCharacterTwoId = $privateConversation['privateConversationCharacterTwoId'];
                 
                 //Si la première personne de la conversation est le joueur on cherche à savoir qui est l'autre personne
                 if ($privateConversationCharacterOneId == $characterId)
@@ -44,7 +44,7 @@ if ($privateConversationRow > 0)
                     while ($character = $characterQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $privateConversationCharacterName = stripslashes($character['characterName']);
+                        $privateConversationCharacterName = $character['characterName'];
                     }
                     $characterQuery->closeCursor();
                 }
@@ -60,7 +60,7 @@ if ($privateConversationRow > 0)
                     while ($character = $characterQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $privateConversationCharacterName = stripslashes($character['characterName']);
+                        $privateConversationCharacterName = $character['characterName'];
                     }
                     $characterQuery->closeCursor();
                 }
@@ -114,8 +114,8 @@ if ($characterRow > 0)
             while ($character = $characterQuery->fetch())
             {
                 //On récupère les informations du personnage
-                $privateConversationCharacterId = stripslashes($character['characterId']);
-                $privateConversationCharacterName = stripslashes($character['characterName']);
+                $privateConversationCharacterId = $character['characterId'];
+                $privateConversationCharacterName = $character['characterName'];
                 ?>
                 <option value="<?php echo $privateConversationCharacterId ?>"><?php echo "$privateConversationCharacterName"; ?></option>
                 <?php

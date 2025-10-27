@@ -29,11 +29,11 @@ if (isset($_POST['adminBattleInvitationCharacterId'])
         && $_POST['adminBattleInvitationMonsterId'] >= 0)
         {
             //On récupère les informations du formulaire
-            $adminBattleInvitationCharacterId = htmlspecialchars(addslashes($_POST['adminBattleInvitationCharacterId']));
-            $adminBattleInvitationMonsterId = htmlspecialchars(addslashes($_POST['adminBattleInvitationMonsterId']));
-            $adminBattleInvitationPicture = htmlspecialchars(addslashes($_POST['adminBattleInvitationPicture']));
-            $adminBattleInvitationeName = htmlspecialchars(addslashes($_POST['adminBattleInvitationeName']));
-            $adminBattleInvitationDescription = htmlspecialchars(addslashes($_POST['adminBattleInvitationDescription']));
+            $adminBattleInvitationCharacterId = htmlspecialchars($_POST['adminBattleInvitationCharacterId']);
+            $adminBattleInvitationMonsterId = htmlspecialchars($_POST['adminBattleInvitationMonsterId']);
+            $adminBattleInvitationPicture = htmlspecialchars($_POST['adminBattleInvitationPicture']);
+            $adminBattleInvitationeName = htmlspecialchars($_POST['adminBattleInvitationeName']);
+            $adminBattleInvitationDescription = htmlspecialchars($_POST['adminBattleInvitationDescription']);
             $date = date('Y-m-d H:i:s');
             
             //On ajoute l'invitation de combat dans la base de donnée
@@ -63,7 +63,7 @@ if (isset($_POST['adminBattleInvitationCharacterId'])
             while ($battleInvitation = $battleInvitationQuery->fetch())
             {
                 //On récupère les informations de l'invitation
-                $adminBattleInvitationId = stripslashes($battleInvitation['battleInvitationId']);
+                $adminBattleInvitationId = $battleInvitation['battleInvitationId'];
             }
             
             //On fait une requête pour vérifier si le monstre choisit existe
@@ -79,7 +79,7 @@ if (isset($_POST['adminBattleInvitationCharacterId'])
                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                 while ($monster = $monsterQuery->fetch())
                 {
-                    $adminBattleInvitationMonsterName = stripslashes($monster['monsterName']);
+                    $adminBattleInvitationMonsterName = $monster['monsterName'];
                 }
             }
             

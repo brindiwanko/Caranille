@@ -40,8 +40,8 @@ if (isset($_POST['token'])
                     while ($monster = $monsterQuery->fetch())
                     {
                         //on récupère les valeurs de chaque monstres qu'on va ensuite mettre dans le menu déroulant
-                        $adminMonsterId = stripslashes($monster['monsterId']); 
-                        $adminMonsterName = stripslashes($monster['monsterName']);
+                        $adminMonsterId = $monster['monsterId']; 
+                        $adminMonsterName = $monster['monsterName'];
                         ?>
                         <option value="<?php echo $adminMonsterId ?>"><?php echo "N°$adminMonsterId - $adminMonsterName" ?></option>
                         <?php

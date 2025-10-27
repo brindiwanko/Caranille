@@ -27,7 +27,7 @@ if (isset($_POST['adminPlaceId'])
         && $_POST['adminPlaceId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminPlaceId = htmlspecialchars(addslashes($_POST['adminPlaceId']));
+            $adminPlaceId = htmlspecialchars($_POST['adminPlaceId']);
 
             //On fait une requête pour vérifier si l'objet choisit existe
             $placeQuery = $bdd->prepare("SELECT * FROM car_places 
@@ -41,7 +41,7 @@ if (isset($_POST['adminPlaceId'])
                 //On fait une recherche dans la base de donnée de toutes les lieux
                 while ($place = $placeQuery->fetch())
                 {
-                    $adminplaceName = stripslashes($place['placeName']);
+                    $adminplaceName = $place['placeName'];
                 }
                 ?>
                 

@@ -27,7 +27,7 @@ if (isset($_POST['adminBattleInvitationId'])
         && $_POST['adminBattleInvitationId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminBattleInvitationId = htmlspecialchars(addslashes($_POST['adminBattleInvitationId']));
+            $adminBattleInvitationId = htmlspecialchars($_POST['adminBattleInvitationId']);
 
             //On fait une requête pour vérifier si l'invitation de combat choisit existe
             $battleInvitationQuery = $bdd->prepare("SELECT * FROM car_battles_invitations 
@@ -42,7 +42,7 @@ if (isset($_POST['adminBattleInvitationId'])
                 while ($battleInvitation = $battleInvitationQuery->fetch())
                 {
                     //On récupère les informations du compte
-                    $adminBattleInvitationName = stripslashes($battleInvitation['battleInvitationName']);
+                    $adminBattleInvitationName = $battleInvitation['battleInvitationName'];
                 }
                 ?>
                 

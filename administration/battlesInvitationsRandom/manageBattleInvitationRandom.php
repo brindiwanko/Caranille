@@ -27,7 +27,7 @@ if (isset($_POST['battleInvitationId'])
         && $_POST['battleInvitationId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminBattleInvitationId = htmlspecialchars(addslashes($_POST['battleInvitationId']));
+            $adminBattleInvitationId = htmlspecialchars($_POST['battleInvitationId']);
 
             //On fait une requête pour vérifier si l'objet choisit existe
             $battleInvitationQuery = $bdd->prepare("SELECT * FROM car_battles_invitations
@@ -41,8 +41,8 @@ if (isset($_POST['battleInvitationId'])
                 //On fait une recherche dans la base de donnée de toutes les lieux
                 while ($battleInvitation = $battleInvitationQuery->fetch())
                 {
-                    $adminBattleInvitationName = stripslashes($battleInvitation['battleInvitationName']);
-                    $adminBattleInvitationDescription = stripslashes($battleInvitation['battleInvitationDescription']);
+                    $adminBattleInvitationName = $battleInvitation['battleInvitationName'];
+                    $adminBattleInvitationDescription = $battleInvitation['battleInvitationDescription'];
                 }
                 
                 ?>
@@ -64,8 +64,8 @@ if (isset($_POST['battleInvitationId'])
                 //On fait une recherche dans la base de donnée de toutes les lieux
                 while ($battleInvitationCharacter = $battleInvitationCharacterQuery->fetch())
                 {
-                    $battleInvitationCharacterId = stripslashes($battleInvitationCharacter['characterId']);
-                    $battleInvitationCharacterName = stripslashes($battleInvitationCharacter['characterName']);
+                    $battleInvitationCharacterId = $battleInvitationCharacter['characterId'];
+                    $battleInvitationCharacterName = $battleInvitationCharacter['characterName'];
                     
                     echo "$battleInvitationCharacterName est invité <br />";
                 }

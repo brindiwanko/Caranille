@@ -27,7 +27,7 @@ if (isset($_POST['itemId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
 
             //On fait une jointure entre les 3 tables car_market, car_characters, car_items pour récupérer les offres du marché
             $marketQuery = $bdd->prepare("SELECT * FROM car_market, car_characters, car_items
@@ -50,10 +50,10 @@ if (isset($_POST['itemId'])
                         while ($market = $marketQuery->fetch())
                         {
                             //on récupère les valeurs de chaque magasins qu'on va ensuite mettre dans le menu déroulant
-                            $marketId = stripslashes($market['marketId']);
-                            $marketCharacterName = stripslashes($market['characterName']);
-                            $marketItemName = stripslashes($market['itemName']);
-                            $marketSalePrice = stripslashes($market['marketSalePrice']);
+                            $marketId = $market['marketId'];
+                            $marketCharacterName = $market['characterName'];
+                            $marketItemName = $market['itemName'];
+                            $marketSalePrice = $market['marketSalePrice'];
                             ?>
                             <option value="<?php echo $marketId ?>"><?php echo "$marketItemName (Prix $marketSalePrice - Vendeur $marketCharacterName)" ?></option>
                             <?php

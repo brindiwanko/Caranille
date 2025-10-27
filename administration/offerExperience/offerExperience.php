@@ -30,8 +30,8 @@ if (isset($_POST['adminCharacterId'])
         && $_POST['adminOfferExperience'] >= 0)
         {
             //On récupère les informations du formulaire précédent
-            $adminCharacterId = htmlspecialchars(addslashes($_POST['adminCharacterId']));
-            $adminOfferExperience = htmlspecialchars(addslashes($_POST['adminOfferExperience']));
+            $adminCharacterId = htmlspecialchars($_POST['adminCharacterId']);
+            $adminOfferExperience = htmlspecialchars($_POST['adminOfferExperience']);
             
             //Si l'experience à offrir est pour tous les joueurs
             if ($adminCharacterId == 0)
@@ -75,7 +75,7 @@ if (isset($_POST['adminCharacterId'])
                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                     while ($character = $characterQuery->fetch())
                     {
-                        $adminCharacterName = stripslashes($character['characterName']);
+                        $adminCharacterName = $character['characterName'];
                     }
                     ?>
                     

@@ -31,8 +31,8 @@ if ($shopRow > 0)
             while ($shop = $shopQuery->fetch())
             {
                 //On récupère les informations du magasin
-                $shopId = stripslashes($shop['shopId']); 
-                $shopName = stripslashes($shop['shopName']);
+                $shopId = $shop['shopId']; 
+                $shopName = $shop['shopName'];
                 ?>
                 <option value="<?php echo $shopId ?>"><?php echo $shopName ?></option>
                 <?php

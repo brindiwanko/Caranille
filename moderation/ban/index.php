@@ -27,9 +27,9 @@ if ($accountUnBanRow > 0)
                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                 while ($accountUnBan = $accountUnBanQuery->fetch())
                 {
-                    $modoAccountId = stripslashes($accountUnBan['accountId']);
-                    $modoAccountPseudo = stripslashes($accountUnBan['accountPseudo']);
-                    $modoAccountCharacterName =  stripslashes($accountUnBan['characterName']);
+                    $modoAccountId = $accountUnBan['accountId'];
+                    $modoAccountPseudo = $accountUnBan['accountPseudo'];
+                    $modoAccountCharacterName =  $accountUnBan['characterName'];
                     ?>
                     <option value="<?php echo $modoAccountId ?>"><?php echo "$modoAccountCharacterName ($modoAccountPseudo)"; ?></option>
                     <?php
@@ -71,10 +71,10 @@ if ($accountBanRow > 0)
             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
             while ($accountBan = $accountBanQuery->fetch())
             {
-                $modoAccountId = stripslashes($accountBan['accountId']);
-                $modoAccountPseudo = stripslashes($accountBan['accountPseudo']);
-                $modoAccountCharacterName = stripslashes($accountBan['characterName']);
-                $modoAccountCharacterReason = stripslashes($accountBan['accountReason']);
+                $modoAccountId = $accountBan['accountId'];
+                $modoAccountPseudo = $accountBan['accountPseudo'];
+                $modoAccountCharacterName = $accountBan['characterName'];
+                $modoAccountCharacterReason = $accountBan['accountReason'];
                 ?>
                 <option value="<?php echo $modoAccountId ?>"><?php echo "$modoAccountCharacterName ($modoAccountPseudo) - ($modoAccountCharacterReason)"; ?></option>
                 <?php

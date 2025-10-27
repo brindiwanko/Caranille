@@ -19,7 +19,7 @@ if (isset($_POST['accountCode'])
         $_SESSION['token'] = uniqid();
 
         //On récupère les valeurs du formulaire dans une variable
-        $accountCode = htmlspecialchars(addslashes($_POST['accountCode']));
+        $accountCode = htmlspecialchars($_POST['accountCode']);
         $accountPassword = $_POST['accountPassword'];
         $accountPasswordConfirm = $_POST['accountPasswordConfirm'];
 
@@ -39,9 +39,9 @@ if (isset($_POST['accountCode'])
                 while ($accountForgetPassword = $accountForgetPasswordQuery->fetch())
                 {
                     //On récupère les informations de la demande de vérification
-                    $accountForgetPasswordId = stripslashes($accountForgetPassword['accountForgetPasswordId']);
-                    $accountForgetPasswordAccountId = stripslashes($accountForgetPassword['accountForgetPasswordAccountId']);
-                    $accountForgetPasswordEmailAdress = stripslashes($accountForgetPassword['accountForgetPasswordEmailAdress']);
+                    $accountForgetPasswordId = $accountForgetPassword['accountForgetPasswordId'];
+                    $accountForgetPasswordAccountId = $accountForgetPassword['accountForgetPasswordAccountId'];
+                    $accountForgetPasswordEmailAdress = $accountForgetPassword['accountForgetPasswordEmailAdress'];
                 }
 
                 //Hash du nouveau mot de passe une seule fois après validation

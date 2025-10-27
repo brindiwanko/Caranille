@@ -27,7 +27,7 @@ if (isset($_POST['adminItemId'])
         && $_POST['adminItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
 
             //On fait une requête pour vérifier si le parchemin choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_items_types
@@ -43,23 +43,23 @@ if (isset($_POST['adminItemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations du parchemin
-                    $adminItemId = stripslashes($item['itemId']);
-                    $adminItemPicture = stripslashes($item['itemPicture']);
-                    $adminItemItemTypeName = stripslashes($item['itemTypeName']);
-                    $adminItemItemTypeNameShow = stripslashes($item['itemTypeNameShow']);
-                    $adminItemName = stripslashes($item['itemName']);
-                    $adminItemDescription = stripslashes($item['itemDescription']);
-                    $adminItemHpEffects = stripslashes($item['itemHpEffect']);
-                    $adminItemMpEffect = stripslashes($item['itemMpEffect']);
-                    $adminItemStrengthEffect = stripslashes($item['itemStrengthEffect']);
-                    $adminItemMagicEffect = stripslashes($item['itemMagicEffect']);
-                    $adminItemAgilityEffect = stripslashes($item['itemAgilityEffect']);
-                    $adminItemDefenseEffect = stripslashes($item['itemDefenseEffect']);
-                    $adminItemDefenseMagicEffect = stripslashes($item['itemDefenseMagicEffect']);
-                    $adminItemWisdomEffect = stripslashes($item['itemWisdomEffect']);
-                    $adminItemProspectingEffect = stripslashes($item['itemProspectingEffect']);
-                    $adminItemPurchasePrice = stripslashes($item['itemPurchasePrice']);
-                    $adminItemSalePrice = stripslashes($item['itemSalePrice']);
+                    $adminItemId = $item['itemId'];
+                    $adminItemPicture = $item['itemPicture'];
+                    $adminItemItemTypeName = $item['itemTypeName'];
+                    $adminItemItemTypeNameShow = $item['itemTypeNameShow'];
+                    $adminItemName = $item['itemName'];
+                    $adminItemDescription = $item['itemDescription'];
+                    $adminItemHpEffects = $item['itemHpEffect'];
+                    $adminItemMpEffect = $item['itemMpEffect'];
+                    $adminItemStrengthEffect = $item['itemStrengthEffect'];
+                    $adminItemMagicEffect = $item['itemMagicEffect'];
+                    $adminItemAgilityEffect = $item['itemAgilityEffect'];
+                    $adminItemDefenseEffect = $item['itemDefenseEffect'];
+                    $adminItemDefenseMagicEffect = $item['itemDefenseMagicEffect'];
+                    $adminItemWisdomEffect = $item['itemWisdomEffect'];
+                    $adminItemProspectingEffect = $item['itemProspectingEffect'];
+                    $adminItemPurchasePrice = $item['itemPurchasePrice'];
+                    $adminItemSalePrice = $item['itemSalePrice'];
                 }
                 ?>
 

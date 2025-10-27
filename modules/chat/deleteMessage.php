@@ -24,7 +24,7 @@ if (isset($_POST['chatMessageId'])
 	    && $_POST['chatMessageId'] >= 1)
 	    {
 	        //On récupère l'id du formulaire précédent
-	        $chatMessageId = htmlspecialchars(addslashes($_POST['chatMessageId']));
+	        $chatMessageId = htmlspecialchars($_POST['chatMessageId']);
 	        
 	        //On fait une requête pour vérifier si le message choisit existe
 	        $chatQuery = $bdd->prepare("SELECT * FROM car_chat

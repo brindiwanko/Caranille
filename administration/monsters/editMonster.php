@@ -27,7 +27,7 @@ if (isset($_POST['adminMonsterId'])
         && $_POST['adminMonsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterId']));
+            $adminMonsterId = htmlspecialchars($_POST['adminMonsterId']);
 
             //On fait une requête pour vérifier si le monstre choisit existe
             $monsterQuery = $bdd->prepare("SELECT * FROM car_monsters, car_monsters_categories
@@ -43,30 +43,30 @@ if (isset($_POST['adminMonsterId'])
                 while ($monster = $monsterQuery->fetch())
                 {
                     //On récupère les informations du monstre
-                    $adminMonsterId = stripslashes($monster['monsterId']);
-                    $adminMonsterCategoryId = stripslashes($monster['monsterCategoryId']);
-                    $adminMonsterCategoryName = stripslashes($monster['monsterCategoryName']);
-                    $adminMonsterCategoryNameShow = stripslashes($monster['monsterCategoryNameShow']);
-                    $adminMonsterPicture = stripslashes($monster['monsterPicture']);
-                    $adminMonsterName = stripslashes($monster['monsterName']);
-                    $adminMonsterLevel = stripslashes($monster['monsterLevel']);
-                    $adminMonsterDescription = stripslashes($monster['monsterDescription']);
-                    $adminMonsterHp = stripslashes($monster['monsterHp']);
-                    $adminMonsterMp = stripslashes($monster['monsterMp']);
-                    $adminMonsterStrength = stripslashes($monster['monsterStrength']);
-                    $adminMonsterMagic = stripslashes($monster['monsterMagic']);
-                    $adminMonsterAgility = stripslashes($monster['monsterAgility']);
-                    $adminMonsterDefense = stripslashes($monster['monsterDefense']);
-                    $adminMonsterDefenseMagic = stripslashes($monster['monsterDefenseMagic']);
-                    $adminMonsterExperience = stripslashes($monster['monsterExperience']);              
-                    $adminMonsterGold = stripslashes($monster['monsterGold']);
-                    $adminMonsterLimited = stripslashes($monster['monsterLimited']);
-                    $adminMonsterQuantity = stripslashes($monster['monsterQuantity']);
-                    $adminMonsterQuantityBattle = stripslashes($monster['monsterQuantityBattle']);
-                    $adminMonsterQuantityEscaped = stripslashes($monster['monsterQuantityEscaped']);
-                    $adminMonsterQuantityVictory = stripslashes($monster['monsterQuantityVictory']);
-                    $adminMonsterQuantityDefeated = stripslashes($monster['monsterQuantityDefeated']);
-                    $adminMonsterQuantityDraw = stripslashes($monster['monsterQuantityDraw']);
+                    $adminMonsterId = $monster['monsterId'];
+                    $adminMonsterCategoryId = $monster['monsterCategoryId'];
+                    $adminMonsterCategoryName = $monster['monsterCategoryName'];
+                    $adminMonsterCategoryNameShow = $monster['monsterCategoryNameShow'];
+                    $adminMonsterPicture = $monster['monsterPicture'];
+                    $adminMonsterName = $monster['monsterName'];
+                    $adminMonsterLevel = $monster['monsterLevel'];
+                    $adminMonsterDescription = $monster['monsterDescription'];
+                    $adminMonsterHp = $monster['monsterHp'];
+                    $adminMonsterMp = $monster['monsterMp'];
+                    $adminMonsterStrength = $monster['monsterStrength'];
+                    $adminMonsterMagic = $monster['monsterMagic'];
+                    $adminMonsterAgility = $monster['monsterAgility'];
+                    $adminMonsterDefense = $monster['monsterDefense'];
+                    $adminMonsterDefenseMagic = $monster['monsterDefenseMagic'];
+                    $adminMonsterExperience = $monster['monsterExperience'];              
+                    $adminMonsterGold = $monster['monsterGold'];
+                    $adminMonsterLimited = $monster['monsterLimited'];
+                    $adminMonsterQuantity = $monster['monsterQuantity'];
+                    $adminMonsterQuantityBattle = $monster['monsterQuantityBattle'];
+                    $adminMonsterQuantityEscaped = $monster['monsterQuantityEscaped'];
+                    $adminMonsterQuantityVictory = $monster['monsterQuantityVictory'];
+                    $adminMonsterQuantityDefeated = $monster['monsterQuantityDefeated'];
+                    $adminMonsterQuantityDraw = $monster['monsterQuantityDraw'];
                 }
                 ?>
 
@@ -88,9 +88,9 @@ if (isset($_POST['adminMonsterId'])
                         while ($monsterCategory = $monsterCategoryQuery->fetch())
                         {
                             //On récupère les informations de la classe
-                            $adminMonsterCategoryIdSql = stripslashes($monsterCategory['monsterCategoryId']);
-                            $adminMonsterCategoryName = stripslashes($monsterCategory['monsterCategoryName']);
-                            $adminMonsterCategoryNameShow = stripslashes($monsterCategory['monsterCategoryNameShow']);
+                            $adminMonsterCategoryIdSql = $monsterCategory['monsterCategoryId'];
+                            $adminMonsterCategoryName = $monsterCategory['monsterCategoryName'];
+                            $adminMonsterCategoryNameShow = $monsterCategory['monsterCategoryNameShow'];
                             
                             if ($adminMonsterCategoryIdSql == $adminMonsterCategoryId)
                             {

@@ -30,8 +30,8 @@ if (isset($_POST['itemId'])
         && $_POST['saleQuantity'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
-            $saleQuantity = htmlspecialchars(addslashes($_POST['saleQuantity']));
+            $itemId = htmlspecialchars($_POST['itemId']);
+            $saleQuantity = htmlspecialchars($_POST['saleQuantity']);
     
             //On cherche à savoir si l'objet qui va se vendre appartient bien au joueur
             $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_inventory 
@@ -48,11 +48,11 @@ if (isset($_POST['itemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'objet
-                    $inventoryId = stripslashes($item['inventoryId']);
-                    $itemQuantity = stripslashes($item['inventoryQuantity']);
-                    $itemName = stripslashes($item['itemName']);
-                    $itemSalePrice = stripslashes($item['itemSalePrice']);
-                    $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                    $inventoryId = $item['inventoryId'];
+                    $itemQuantity = $item['inventoryQuantity'];
+                    $itemName = $item['itemName'];
+                    $itemSalePrice = $item['itemSalePrice'];
+                    $inventoryEquipped = $item['inventoryEquipped'];
                 }
 
                 //On vérifie si le joueur a suffisament de quantité que ce qu'il souhaite vendre

@@ -26,8 +26,8 @@ if (isset($_POST['tradeId'])
         && $_POST['tradeId'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $tradeId = htmlspecialchars(addslashes($_POST['tradeId']));
-            $tradeGold = htmlspecialchars(addslashes($_POST['tradeGold']));
+            $tradeId = htmlspecialchars($_POST['tradeId']);
+            $tradeGold = htmlspecialchars($_POST['tradeGold']);
             
             //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
             $tradeQuery = $bdd->prepare("SELECT * FROM car_trades

@@ -27,7 +27,7 @@ if (isset($_POST['marketId'])
         && $_POST['marketId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $marketId = htmlspecialchars(addslashes($_POST['marketId']));
+            $marketId = htmlspecialchars($_POST['marketId']);
 
             //On fait une requête pour vérifier si l'offre choisit existe
             $marketQuery = $bdd->prepare("SELECT * FROM car_market, car_characters, car_items
@@ -44,24 +44,24 @@ if (isset($_POST['marketId'])
                 while ($market = $marketQuery->fetch())
                 {
                     //On récupère toutes les informations de l'offre
-                    $marketId = stripslashes($market['marketId']);
-                    $marketCharacterName = stripslashes($market['characterName']);
-                    $marketItemId = stripslashes($market['itemId']);
-                    $marketItemName = stripslashes($market['itemName']);
-                    $marketSalePrice = stripslashes($market['marketSalePrice']);
-                    $marketItemRaceId = stripslashes($market['itemRaceId']);
-                    $marketItemLevel = stripslashes($market['itemLevel']);
-                    $marketItemLevelRequired = stripslashes($market['itemLevelRequired']);
-                    $marketItemName = stripslashes($market['itemName']);
-                    $marketItemDescription = stripslashes($market['itemDescription']);
-                    $marketItemHpEffect = stripslashes($market['itemHpEffect']);
-                    $marketItemMpEffect = stripslashes($market['itemMpEffect']);
-                    $marketItemStrengthEffect = stripslashes($market['itemStrengthEffect']);
-                    $marketItemMagicEffect = stripslashes($market['itemMagicEffect']);
-                    $marketItemAgilityEffect = stripslashes($market['itemAgilityEffect']);
-                    $marketItemDefenseEffect = stripslashes($market['itemDefenseEffect']);
-                    $marketItemDefenseMagicEffect = stripslashes($market['itemDefenseMagicEffect']);
-                    $marketItemWisdomEffect = stripslashes($market['itemWisdomEffect']);
+                    $marketId = $market['marketId'];
+                    $marketCharacterName = $market['characterName'];
+                    $marketItemId = $market['itemId'];
+                    $marketItemName = $market['itemName'];
+                    $marketSalePrice = $market['marketSalePrice'];
+                    $marketItemRaceId = $market['itemRaceId'];
+                    $marketItemLevel = $market['itemLevel'];
+                    $marketItemLevelRequired = $market['itemLevelRequired'];
+                    $marketItemName = $market['itemName'];
+                    $marketItemDescription = $market['itemDescription'];
+                    $marketItemHpEffect = $market['itemHpEffect'];
+                    $marketItemMpEffect = $market['itemMpEffect'];
+                    $marketItemStrengthEffect = $market['itemStrengthEffect'];
+                    $marketItemMagicEffect = $market['itemMagicEffect'];
+                    $marketItemAgilityEffect = $market['itemAgilityEffect'];
+                    $marketItemDefenseEffect = $market['itemDefenseEffect'];
+                    $marketItemDefenseMagicEffect = $market['itemDefenseMagicEffect'];
+                    $marketItemWisdomEffect = $market['itemWisdomEffect'];
                 }
                 ?>
                 

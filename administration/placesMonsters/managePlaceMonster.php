@@ -27,7 +27,7 @@ if (isset($_POST['adminplaceMonsterPlaceId'])
         && $_POST['adminplaceMonsterPlaceId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminplaceMonsterPlaceId = htmlspecialchars(addslashes($_POST['adminplaceMonsterPlaceId']));
+            $adminplaceMonsterPlaceId = htmlspecialchars($_POST['adminplaceMonsterPlaceId']);
 
             //On fait une requête pour vérifier si le lieu choisit existe
             $placeQuery = $bdd->prepare("SELECT * FROM car_places 
@@ -59,8 +59,8 @@ if (isset($_POST['adminplaceMonsterPlaceId'])
                             while ($placeMonster = $placeMonsterQuery->fetch())
                             {
                                 //On récupère les informations du monstre
-                                $adminplaceMonsterMonsterId = stripslashes($placeMonster['monsterId']);
-                                $adminPlaceMonsterMonsterName = stripslashes($placeMonster['monsterName']);
+                                $adminplaceMonsterMonsterId = $placeMonster['monsterId'];
+                                $adminPlaceMonsterMonsterName = $placeMonster['monsterName'];
                                 ?>
                                 <option value="<?php echo $adminplaceMonsterMonsterId ?>"><?php echo "N°$adminplaceMonsterMonsterId - $adminPlaceMonsterMonsterName"; ?></option>
                                 <?php
@@ -100,8 +100,8 @@ if (isset($_POST['adminplaceMonsterPlaceId'])
                             while ($monster = $monsterQuery->fetch())
                             {
                                 //On récupère les informations du monstre
-                                $adminplaceMonsterMonsterId = stripslashes($monster['monsterId']);
-                                $adminPlaceMonsterMonsterName = stripslashes($monster['monsterName']);
+                                $adminplaceMonsterMonsterId = $monster['monsterId'];
+                                $adminPlaceMonsterMonsterName = $monster['monsterName'];
                                 ?>
                                 <option value="<?php echo $adminplaceMonsterMonsterId ?>"><?php echo "N°$adminplaceMonsterMonsterId - $adminPlaceMonsterMonsterName"; ?></option>
                                 <?php

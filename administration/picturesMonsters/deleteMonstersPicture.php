@@ -19,7 +19,7 @@ if (isset($_POST['token'])
         $_SESSION['token'] = NULL;
 
         //On récupère le nom de l'image du formulaire précédent
-        $adminFile = htmlspecialchars(addslashes($_POST['pictureFile']));
+        $adminFile = htmlspecialchars($_POST['pictureFile']);
 
         if ($adminFile != "default.png")
         {

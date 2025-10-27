@@ -28,10 +28,10 @@ if ($tradeRow > 0)
             while ($trade = $tradeQuery->fetch())
             {
                 //On récupère les valeurs de la demande d'échange
-                $tradeId = stripslashes($trade['tradeId']);
-                $tradeCharacterOneId = stripslashes($trade['tradeCharacterOneId']);
-                $tradeCharacterTwoId = stripslashes($trade['tradeCharacterTwoId']);
-                $tradeMessage = stripslashes($trade['tradeMessage']);
+                $tradeId = $trade['tradeId'];
+                $tradeCharacterOneId = $trade['tradeCharacterOneId'];
+                $tradeCharacterTwoId = $trade['tradeCharacterTwoId'];
+                $tradeMessage = $trade['tradeMessage'];
                 
                 //Si la première personne de l'échange est le joueur on cherche à savoir qui est l'autre personnage
                 if ($tradeCharacterOneId == $characterId)
@@ -46,7 +46,7 @@ if ($tradeRow > 0)
                     while ($character = $characterQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $tradeCharacterName = stripslashes($character['characterName']);
+                        $tradeCharacterName = $character['characterName'];
                     }
                     $characterQuery->closeCursor(); 
                 }
@@ -63,7 +63,7 @@ if ($tradeRow > 0)
                     while ($character = $characterQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $tradeCharacterName = stripslashes($character['characterName']);
+                        $tradeCharacterName = $character['characterName'];
                     }
                     $characterQuery->closeCursor();  
                 }

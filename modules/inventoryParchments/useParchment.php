@@ -27,7 +27,7 @@ if (isset($_POST['itemId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
     
             //On cherche à savoir si l'objet qui va se vendre appartient bien au joueur
             $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_inventory 
@@ -44,22 +44,22 @@ if (isset($_POST['itemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations du parchemin
-                    $inventoryId = stripslashes($item['inventoryId']);
-                    $itemId = stripslashes($item['itemId']);
-                    $itemPicture = stripslashes($item['itemPicture']);
-                    $itemName = stripslashes($item['itemName']);
-                    $itemDescription = stripslashes($item['itemDescription']);
-                    $itemQuantity = stripslashes($item['inventoryQuantity']);
-                    $itemHpEffect = stripslashes($item['itemHpEffect']);
-                    $itemMpEffect = stripslashes($item['itemMpEffect']);
-                    $itemStrengthEffect = stripslashes($item['itemStrengthEffect']);
-                    $itemMagicEffect = stripslashes($item['itemMagicEffect']);
-                    $itemAgilityEffect = stripslashes($item['itemAgilityEffect']);
-                    $itemDefenseEffect = stripslashes($item['itemDefenseEffect']);
-                    $itemDefenseMagicEffect = stripslashes($item['itemDefenseMagicEffect']);
-                    $itemWisdomEffect = stripslashes($item['itemWisdomEffect']);
-                    $itemProspectingEffect = stripslashes($item['itemProspectingEffect']);
-                    $itemSalePrice = stripslashes($item['itemSalePrice']);
+                    $inventoryId = $item['inventoryId'];
+                    $itemId = $item['itemId'];
+                    $itemPicture = $item['itemPicture'];
+                    $itemName = $item['itemName'];
+                    $itemDescription = $item['itemDescription'];
+                    $itemQuantity = $item['inventoryQuantity'];
+                    $itemHpEffect = $item['itemHpEffect'];
+                    $itemMpEffect = $item['itemMpEffect'];
+                    $itemStrengthEffect = $item['itemStrengthEffect'];
+                    $itemMagicEffect = $item['itemMagicEffect'];
+                    $itemAgilityEffect = $item['itemAgilityEffect'];
+                    $itemDefenseEffect = $item['itemDefenseEffect'];
+                    $itemDefenseMagicEffect = $item['itemDefenseMagicEffect'];
+                    $itemWisdomEffect = $item['itemWisdomEffect'];
+                    $itemProspectingEffect = $item['itemProspectingEffect'];
+                    $itemSalePrice = $item['itemSalePrice'];
                 }
                 ?>
     

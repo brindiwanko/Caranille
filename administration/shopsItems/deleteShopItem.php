@@ -30,8 +30,8 @@ if (isset($_POST['adminShopItemShopId'])
         && $_POST['adminShopItemItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminShopItemShopId = htmlspecialchars(addslashes($_POST['adminShopItemShopId']));
-            $adminShopItemItemId = htmlspecialchars(addslashes($_POST['adminShopItemItemId']));
+            $adminShopItemShopId = htmlspecialchars($_POST['adminShopItemShopId']);
+            $adminShopItemItemId = htmlspecialchars($_POST['adminShopItemItemId']);
 
             //On fait une requête pour vérifier si le magasin choisit existe
             $shopQuery = $bdd->prepare("SELECT * FROM car_shops 

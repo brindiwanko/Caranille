@@ -33,9 +33,9 @@ if ($monsterLimitedQueryRow > 0)
             while ($monsterLimited = $monsterLimitedQueryList->fetch())
             {
                 //On récupère les informations du monstre
-                $monsterLimitedId = stripslashes($monsterLimited['monsterId']); 
-                $monsterLimitedName = stripslashes($monsterLimited['monsterName']);
-                $monsterLimitedLevel = stripslashes($monsterLimited['monsterLevel']);
+                $monsterLimitedId = $monsterLimited['monsterId']; 
+                $monsterLimitedName = $monsterLimited['monsterName'];
+                $monsterLimitedLevel = $monsterLimited['monsterLevel'];
                 ?>
                 <option value="<?php echo $monsterLimitedId ?>"><?php echo "Niveau $monsterLimitedLevel - $monsterLimitedName" ?></option>
                 <?php
@@ -75,9 +75,9 @@ if ($monsterClassicQueryRow > 0)
             while ($monsterClassic = $monsterClassicQueryList->fetch())
             {
                 //On récupère les informations du monstre
-                $monsterClassicId = stripslashes($monsterClassic['monsterId']); 
-                $monsterClassicName = stripslashes($monsterClassic['monsterName']);
-                $monsterClassicLevel = stripslashes($monsterClassic['monsterLevel']);
+                $monsterClassicId = $monsterClassic['monsterId']; 
+                $monsterClassicName = $monsterClassic['monsterName'];
+                $monsterClassicLevel = $monsterClassic['monsterLevel'];
                 ?>
                 <option value="<?php echo $monsterClassicId ?>"><?php echo "Niveau $monsterClassicLevel - $monsterClassicName" ?></option>
                 <?php

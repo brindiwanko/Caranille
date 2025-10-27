@@ -27,7 +27,7 @@ if (isset($_POST['adminCharacterLevel'])
         && $_POST['adminCharacterLevel'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminCharacterLevel = htmlspecialchars(addslashes($_POST['adminCharacterLevel']));
+            $adminCharacterLevel = htmlspecialchars($_POST['adminCharacterLevel']);
             ?>
             
             <p>ATTENTION</p> 

@@ -23,7 +23,7 @@ if (isset($_POST['accountEmail'])
         $_SESSION['token'] = uniqid();
 
         //On récupère les valeurs du formulaire dans une variable
-        $accountEmail = htmlspecialchars(addslashes($_POST['accountEmail']));
+        $accountEmail = htmlspecialchars($_POST['accountEmail']);
 
         //On fait une requête pour vérifier si l'adresse email est déjà utilisé
         $emailQuery = $bdd->prepare("SELECT * FROM car_accounts 

@@ -25,8 +25,8 @@ if (isset($_POST['adminItemTypeId'])
         && $_POST['adminItemTypeId'] >= 1)
         {
             //On récupère les informations du formulaire
-            $adminItemTypeId = htmlspecialchars(addslashes($_POST['adminItemTypeId']));
-            $adminItemTypeNameShow = htmlspecialchars(addslashes($_POST['adminItemTypeNameShow']));
+            $adminItemTypeId = htmlspecialchars($_POST['adminItemTypeId']);
+            $adminItemTypeNameShow = htmlspecialchars($_POST['adminItemTypeNameShow']);
             
             //On fait une requête pour vérifier si le type d'objet choisit existe
             $itemTypeQuery = $bdd->prepare("SELECT * FROM car_items_types

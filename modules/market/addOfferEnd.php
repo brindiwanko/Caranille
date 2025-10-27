@@ -27,8 +27,8 @@ if (isset($_POST['marketItemId'])
         && $_POST['marketSalePrice'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $marketItemId = htmlspecialchars(addslashes($_POST['marketItemId']));
-            $marketSalePrice = htmlspecialchars(addslashes($_POST['marketSalePrice']));
+            $marketItemId = htmlspecialchars($_POST['marketItemId']);
+            $marketSalePrice = htmlspecialchars($_POST['marketSalePrice']);
 
             //On fait une requête pour vérifier si l'objet ou équippement choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -43,7 +43,7 @@ if (isset($_POST['marketItemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'équipement
-                    $marketItemName = stripslashes($item['itemName']);
+                    $marketItemName = $item['itemName'];
                 }
 
                 //On vérifit si le joueur possède bien cet objet ou équipement
@@ -61,11 +61,11 @@ if (isset($_POST['marketItemId'])
                     while ($inventory = $inventoryQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $inventoryId = stripslashes($inventory['inventoryId']);
-                        $itemQuantity = stripslashes($inventory['inventoryQuantity']);
-                        $itemName = stripslashes($inventory['itemName']);
-                        $itemSalePrice = stripslashes($inventory['itemSalePrice']);
-                        $inventoryEquipped = stripslashes($inventory['inventoryEquipped']);
+                        $inventoryId = $inventory['inventoryId'];
+                        $itemQuantity = $inventory['inventoryQuantity'];
+                        $itemName = $inventory['itemName'];
+                        $itemSalePrice = $inventory['itemSalePrice'];
+                        $inventoryEquipped = $inventory['inventoryEquipped'];
                     }
 
                     //Si le joueur possède plusieurs exemplaire de cet équipement/objet
@@ -131,15 +131,15 @@ if (isset($_POST['marketItemId'])
                             while ($equipment = $equipmentEquipedQuery->fetch())
                             {
                                 //On récupère les informations de l'équippement
-                                $hpBonus = $hpBonus + stripslashes($equipment['itemHpEffect']);
-                                $mpBonus = $mpBonus + stripslashes($equipment['itemMpEffect']);
-                                $strengthBonus = $strengthBonus + stripslashes($equipment['itemStrengthEffect']);
-                                $magicBonus = $magicBonus + stripslashes($equipment['itemMagicEffect']);
-                                $agilityBonus = $agilityBonus + stripslashes($equipment['itemAgilityEffect']);
-                                $defenseBonus = $defenseBonus + stripslashes($equipment['itemDefenseEffect']);
-                                $defenseMagicBonus = $defenseMagicBonus + stripslashes($equipment['itemDefenseMagicEffect']);
-                                $wisdomBonus = $wisdomBonus + stripslashes($equipment['itemWisdomEffect']);
-                                $prospectingBonus = $prospectingBonus + stripslashes($equipment['itemProspectingEffect']);
+                                $hpBonus = $hpBonus + $equipment['itemHpEffect'];
+                                $mpBonus = $mpBonus + $equipment['itemMpEffect'];
+                                $strengthBonus = $strengthBonus + $equipment['itemStrengthEffect'];
+                                $magicBonus = $magicBonus + $equipment['itemMagicEffect'];
+                                $agilityBonus = $agilityBonus + $equipment['itemAgilityEffect'];
+                                $defenseBonus = $defenseBonus + $equipment['itemDefenseEffect'];
+                                $defenseMagicBonus = $defenseMagicBonus + $equipment['itemDefenseMagicEffect'];
+                                $wisdomBonus = $wisdomBonus + $equipment['itemWisdomEffect'];
+                                $prospectingBonus = $prospectingBonus + $equipment['itemProspectingEffect'];
                             }
                             $equipmentEquipedQuery->closeCursor();
 

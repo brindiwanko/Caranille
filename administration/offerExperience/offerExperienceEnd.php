@@ -26,8 +26,8 @@ if (isset($_POST['adminCharacterId'])
         && $_POST['adminOfferExperience'] >= 0)
         {
             //On récupère les informations du formulaire précédent
-            $adminCharacterId = htmlspecialchars(addslashes($_POST['adminCharacterId']));
-            $adminOfferExperience = htmlspecialchars(addslashes($_POST['adminOfferExperience']));
+            $adminCharacterId = htmlspecialchars($_POST['adminCharacterId']);
+            $adminOfferExperience = htmlspecialchars($_POST['adminOfferExperience']);
             
             //Si l'experience à offrir est pour tous les joueurs
             if ($adminCharacterId == 0)
@@ -40,8 +40,8 @@ if (isset($_POST['adminCharacterId'])
                 while ($character = $characterQuery->fetch())
                 {
                     //On récupère l'id et le nom du personnage
-                    $adminCharacterId = stripslashes($character['characterId']);
-                    $adminCharacterName =  stripslashes($character['characterName']);
+                    $adminCharacterId = $character['characterId'];
+                    $adminCharacterName =  $character['characterName'];
                     
                     //On ajoute l'experience au personnage
                     $updateCharacter = $bdd->prepare("UPDATE car_characters SET
@@ -86,7 +86,7 @@ if (isset($_POST['adminCharacterId'])
                     while ($character = $characterQuery->fetch())
                     {
                         //On récupère les informations du personnage
-                        $adminCharacterName = stripslashes($character['characterName']);
+                        $adminCharacterName = $character['characterName'];
                     }
                     
                     //On ajoute l'experience au personnage

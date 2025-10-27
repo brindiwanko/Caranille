@@ -27,7 +27,7 @@ if (isset($_POST['adminShopItemShopId'])
         && $_POST['adminShopItemShopId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminShopItemShopId = htmlspecialchars(addslashes($_POST['adminShopItemShopId']));
+            $adminShopItemShopId = htmlspecialchars($_POST['adminShopItemShopId']);
 
             //On fait une requête pour vérifier si le magasin choisit existe
             $shopQuery = $bdd->prepare("SELECT * FROM car_shops 
@@ -61,11 +61,11 @@ if (isset($_POST['adminShopItemShopId'])
                             while ($placeShop = $placeShopQuery->fetch())
                             {
                                 //On récupère les informations des objets
-                                $adminShopItemItemId = stripslashes($placeShop['itemId']);
-                                $adminShopItemItemName = stripslashes($placeShop['itemName']);
-                                $adminShopItemDiscount = stripslashes($placeShop['shopItemDiscount']);
-                                $adminItemTypeName = stripslashes($placeShop['itemTypeName']);
-                                $adminItemTypeNameShow = stripslashes($placeShop['itemTypeNameShow']);
+                                $adminShopItemItemId = $placeShop['itemId'];
+                                $adminShopItemItemName = $placeShop['itemName'];
+                                $adminShopItemDiscount = $placeShop['shopItemDiscount'];
+                                $adminItemTypeName = $placeShop['itemTypeName'];
+                                $adminItemTypeNameShow = $placeShop['itemTypeNameShow'];
                                 ?>
                                 <option value="<?php echo $adminShopItemItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminShopItemItemName ($adminShopItemDiscount%)"; ?></option>
                                 <?php
@@ -107,10 +107,10 @@ if (isset($_POST['adminShopItemShopId'])
                             while ($item = $itemQuery->fetch())
                             {
                                 //On récupère les informations des objets
-                                $adminShopItemItemId = stripslashes($item['itemId']);
-                                $adminShopItemItemName = stripslashes($item['itemName']);
-                                $adminItemTypeName = stripslashes($item['itemTypeName']);
-                                $adminItemTypeNameShow = stripslashes($item['itemTypeNameShow']);
+                                $adminShopItemItemId = $item['itemId'];
+                                $adminShopItemItemName = $item['itemName'];
+                                $adminItemTypeName = $item['itemTypeName'];
+                                $adminItemTypeNameShow = $item['itemTypeNameShow'];
                                 ?>
                                 <option value="<?php echo $adminShopItemItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminShopItemItemName"; ?></option>
                                 <?php

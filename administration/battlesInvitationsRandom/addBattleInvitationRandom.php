@@ -43,8 +43,8 @@ if (isset($_POST['token'])
 					//On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
 					while ($monster = $monsterQuery->fetch())
 					{
-						$adminMonsterId = stripslashes($monster['monsterId']);
-						$adminMonsterName = stripslashes($monster['monsterName']);
+						$adminMonsterId = $monster['monsterId'];
+						$adminMonsterName = $monster['monsterName'];
 						?>
 						<option value="<?php echo $adminMonsterId ?>"><?php echo "N°$adminMonsterId - $adminMonsterName" ?></option>
 						<?php

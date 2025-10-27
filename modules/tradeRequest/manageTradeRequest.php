@@ -28,7 +28,7 @@ if (isset($_POST['cancelTradeRequest'])
             && $_POST['tradeRequestId'] >= 1)
             {
                 //On récupère l'id du formulaire précédent
-                $tradeRequestId = htmlspecialchars(addslashes($_POST['tradeRequestId']));
+                $tradeRequestId = htmlspecialchars($_POST['tradeRequestId']);
                 
                 //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
                 $tradeRequestQuery = $bdd->prepare("SELECT * FROM car_trades_requests
@@ -44,10 +44,10 @@ if (isset($_POST['cancelTradeRequest'])
                     while ($tradeRequest = $tradeRequestQuery->fetch())
                     {
                         //On récupère les valeurs de la demande d'échange
-                        $tradeRequestId = stripslashes($tradeRequest['tradeRequestId']);
-                        $tradeRequestCharacterOneId = stripslashes($tradeRequest['tradeRequestCharacterOneId']);
-                        $tradeRequestCharacterTwoId = stripslashes($tradeRequest['tradeRequestCharacterTwoId']);
-                        $tradeRequestMessage = stripslashes($tradeRequest['tradeRequestMessage']);
+                        $tradeRequestId = $tradeRequest['tradeRequestId'];
+                        $tradeRequestCharacterOneId = $tradeRequest['tradeRequestCharacterOneId'];
+                        $tradeRequestCharacterTwoId = $tradeRequest['tradeRequestCharacterTwoId'];
+                        $tradeRequestMessage = $tradeRequest['tradeRequestMessage'];
                     }
                     
                     //On supprime la demande d'échange
@@ -106,7 +106,7 @@ if (isset($_POST['cancelTradeRequest'])
             && $_POST['tradeRequestId'] >= 1)
             {
                 //On récupère l'id du formulaire précédent
-                $tradeRequestId = htmlspecialchars(addslashes($_POST['tradeRequestId']));
+                $tradeRequestId = htmlspecialchars($_POST['tradeRequestId']);
                 
                 //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
                 $tradeRequestQuery = $bdd->prepare("SELECT * FROM car_trades_requests
@@ -122,10 +122,10 @@ if (isset($_POST['cancelTradeRequest'])
                     while ($tradeRequest = $tradeRequestQuery->fetch())
                     {
                         //On récupère les valeurs de la demande d'échange
-                        $tradeRequestId = stripslashes($tradeRequest['tradeRequestId']);
-                        $tradeRequestCharacterOneId = stripslashes($tradeRequest['tradeRequestCharacterOneId']);
-                        $tradeRequestCharacterTwoId = stripslashes($tradeRequest['tradeRequestCharacterTwoId']);
-                        $tradeRequestMessage = stripslashes($tradeRequest['tradeRequestMessage']);
+                        $tradeRequestId = $tradeRequest['tradeRequestId'];
+                        $tradeRequestCharacterOneId = $tradeRequest['tradeRequestCharacterOneId'];
+                        $tradeRequestCharacterTwoId = $tradeRequest['tradeRequestCharacterTwoId'];
+                        $tradeRequestMessage = $tradeRequest['tradeRequestMessage'];
                     }
                     
                     //On crée une variable date
@@ -157,7 +157,7 @@ if (isset($_POST['cancelTradeRequest'])
                     while ($trade = $tradeQuery->fetch())
                     {
                         //On Stock l'id de l'échange
-                        $tradeId = stripslashes($trade['tradeId']);
+                        $tradeId = $trade['tradeId'];
                     }
                     $tradeQuery->closeCursor();
                     
@@ -239,7 +239,7 @@ if (isset($_POST['cancelTradeRequest'])
             && $_POST['tradeRequestId'] >= 1)
             {
                 //On récupère l'id du formulaire précédent
-                $tradeRequestId = htmlspecialchars(addslashes($_POST['tradeRequestId']));
+                $tradeRequestId = htmlspecialchars($_POST['tradeRequestId']);
                 
                 //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
                 $tradeRequestQuery = $bdd->prepare("SELECT * FROM car_trades_requests
@@ -255,10 +255,10 @@ if (isset($_POST['cancelTradeRequest'])
                     while ($tradeRequest = $tradeRequestQuery->fetch())
                     {
                         //On récupère les valeurs de la demande d'échange
-                        $tradeRequestId = stripslashes($tradeRequest['tradeRequestId']);
-                        $tradeRequestCharacterOneId = stripslashes($tradeRequest['tradeRequestCharacterOneId']);
-                        $tradeRequestCharacterTwoId = stripslashes($tradeRequest['tradeRequestCharacterTwoId']);
-                        $tradeRequestMessage = stripslashes($tradeRequest['tradeRequestMessage']);
+                        $tradeRequestId = $tradeRequest['tradeRequestId'];
+                        $tradeRequestCharacterOneId = $tradeRequest['tradeRequestCharacterOneId'];
+                        $tradeRequestCharacterTwoId = $tradeRequest['tradeRequestCharacterTwoId'];
+                        $tradeRequestMessage = $tradeRequest['tradeRequestMessage'];
                     }
                     
                     //On supprime la demande d'échange

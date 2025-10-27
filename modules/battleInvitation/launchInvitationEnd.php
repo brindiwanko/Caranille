@@ -15,7 +15,7 @@ if (isset($_POST['battleInvitationCharacterId'])
     && $_POST['battleInvitationCharacterId'] >= 1)
     {
         //On récupère l'id du formulaire précédent
-        $battleInvitationCharacterId = htmlspecialchars(addslashes($_POST['battleInvitationCharacterId']));
+        $battleInvitationCharacterId = htmlspecialchars($_POST['battleInvitationCharacterId']);
 
         //On fait une requête pour vérifier si l'invitation de combat choisit existe
         $battleInvitationQuery = $bdd->prepare("SELECT * FROM car_battles_invitations, car_battles_invitations_characters, car_monsters
@@ -33,10 +33,10 @@ if (isset($_POST['battleInvitationCharacterId'])
             while ($battleInvitation = $battleInvitationQuery->fetch())
             {
                 //On récupère les informations de l'invitation de combat
-            	$battleInvitationId = stripslashes($battleInvitation['battleInvitationId']);
-                $battleInvitationName = stripslashes($battleInvitation['battleInvitationName']);
-                $battleInvitationMonsterId = stripslashes($battleInvitation['monsterId']);
-                $battleInvitationMonsterName = stripslashes($battleInvitation['monsterName']);
+            	$battleInvitationId = $battleInvitation['battleInvitationId'];
+                $battleInvitationName = $battleInvitation['battleInvitationName'];
+                $battleInvitationMonsterId = $battleInvitation['monsterId'];
+                $battleInvitationMonsterName = $battleInvitation['monsterName'];
             }
     
             //On fait une requête pour vérifier si l'adversaire est bien disponible dans le lieu du joueur
@@ -52,10 +52,10 @@ if (isset($_POST['battleInvitationCharacterId'])
                 while ($opponent = $opponentQuery->fetch())
                 {
                     //On récupère les informations de l'adversaire
-                    $opponentHp = stripslashes($opponent['monsterHp']);
-                    $opponentMp = stripslashes($opponent['monsterMp']);
-                    $monsterLimited = stripslashes($opponent['monsterLimited']);
-                    $monsterQuantity = stripslashes($opponent['monsterQuantity']);
+                    $opponentHp = $opponent['monsterHp'];
+                    $opponentMp = $opponent['monsterMp'];
+                    $monsterLimited = $opponent['monsterLimited'];
+                    $monsterQuantity = $opponent['monsterQuantity'];
                 }
                 $opponentQuery->closeCursor();
 

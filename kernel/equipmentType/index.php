@@ -11,37 +11,37 @@ while ($item = $itemTypeNameQuery->fetch())
     {
         //S'il s'agit d'une armure
         case "Armor":
-            $itemArmorNameShow = stripslashes($item['itemTypeNameShow']);
+            $itemArmorNameShow = $item['itemTypeNameShow'];
         break;
     
         //S'il s'agit de bottes
         case "Boots":
-            $itemBootsNameShow = stripslashes($item['itemTypeNameShow']);
+            $itemBootsNameShow = $item['itemTypeNameShow'];
         break;
     
         //S'il s'agit de gants
         case "Gloves":
-            $itemGlovesNameShow = stripslashes($item['itemTypeNameShow']);
+            $itemGlovesNameShow = $item['itemTypeNameShow'];
         break;
     
         //S'il s'agit d'un casque
         case "Helmet":
-            $itemHelmetNameShow = stripslashes($item['itemTypeNameShow']);
+            $itemHelmetNameShow = $item['itemTypeNameShow'];
         break;
     
         //S'il s'agit d'une arme
         case "Weapon":
-            $itemWeaponNameShow = stripslashes($item['itemTypeNameShow']);
+            $itemWeaponNameShow = $item['itemTypeNameShow'];
         break;
         
         //S'il s'agit d'un objet
         case "Item":
-            $itemItemNameShow = stripslashes($item['itemTypeNameShow']);
+            $itemItemNameShow = $item['itemTypeNameShow'];
         break;
         
         //S'il s'agit d'un parchemin
         case "Parchment":
-            $itemParchmentNameShow = stripslashes($item['itemTypeNameShow']);
+            $itemParchmentNameShow = $item['itemTypeNameShow'];
         break;
     }
 }

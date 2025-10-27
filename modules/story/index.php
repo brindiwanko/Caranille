@@ -21,10 +21,10 @@ if ($chapterRow == 1)
 	while ($chapter = $chapterQuery->fetch())
 	{
 		//On récupère les informations du chapitre
-		$chapterId = stripslashes($chapter['chapterId']);
-		$chapterTitle = stripslashes($chapter['chapterTitle']);
-		$chapterOpening = stripslashes(nl2br($chapter['chapterOpening']));
-		$chapterEnding = stripslashes(nl2br($chapter['chapterEnding']));
+		$chapterId = $chapter['chapterId'];
+		$chapterTitle = $chapter['chapterTitle'];
+		$chapterOpening = nl2br(htmlspecialchars($chapter['chapterOpening']));
+		$chapterEnding = nl2br(htmlspecialchars($chapter['chapterEnding']));
 	}
 	?>
 	

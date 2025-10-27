@@ -34,13 +34,13 @@ if (isset($_POST['adminPlaceId'])
         && $_POST['adminplaceChapter'] >= 1)
         {
             //On récupère les informations du formulaire
-            $adminPlaceId = htmlspecialchars(addslashes($_POST['adminPlaceId']));
-            $adminplacePicture = htmlspecialchars(addslashes($_POST['adminplacePicture']));
-            $adminplaceName = htmlspecialchars(addslashes($_POST['adminplaceName']));
-            $adminItemDescription = htmlspecialchars(addslashes($_POST['adminplaceDescription']));
-            $adminplacePriceInn = htmlspecialchars(addslashes($_POST['adminplacePriceInn']));
-            $adminplaceChapter = htmlspecialchars(addslashes($_POST['adminplaceChapter']));
-            $adminplaceAccess = htmlspecialchars(addslashes($_POST['adminplaceAccess']));
+            $adminPlaceId = htmlspecialchars($_POST['adminPlaceId']);
+            $adminplacePicture = htmlspecialchars($_POST['adminplacePicture']);
+            $adminplaceName = htmlspecialchars($_POST['adminplaceName']);
+            $adminItemDescription = htmlspecialchars($_POST['adminplaceDescription']);
+            $adminplacePriceInn = htmlspecialchars($_POST['adminplacePriceInn']);
+            $adminplaceChapter = htmlspecialchars($_POST['adminplaceChapter']);
+            $adminplaceAccess = htmlspecialchars($_POST['adminplaceAccess']);
 
             //On fait une requête pour vérifier si le lieu choisit existe
             $placeQuery = $bdd->prepare("SELECT * FROM car_places 

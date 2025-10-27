@@ -72,9 +72,9 @@ if (isset($_POST['adminItemId'])
         && $_POST['adminItemSalePrice'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
-            $adminItemItemTypeId = htmlspecialchars(addslashes($_POST['adminItemItemTypeId']));
-            $adminItemRaceId = htmlspecialchars(addslashes($_POST['adminItemRaceId']));
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
+            $adminItemItemTypeId = htmlspecialchars($_POST['adminItemItemTypeId']);
+            $adminItemRaceId = htmlspecialchars($_POST['adminItemRaceId']);
             
             //On fait une requête pour vérifier si l'équipement choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -114,25 +114,25 @@ if (isset($_POST['adminItemId'])
                     if ($raceRow == 1) 
                     {
                         //On récupère les informations du formulaire
-                        $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
-                        $adminItemItemTypeId = htmlspecialchars(addslashes($_POST['adminItemItemTypeId']));
-                        $adminItemRaceId = htmlspecialchars(addslashes($_POST['adminItemRaceId']));
-                        $adminItemPicture = htmlspecialchars(addslashes($_POST['adminItemPicture']));
-                        $adminItemName = htmlspecialchars(addslashes($_POST['adminItemName']));
-                        $adminItemDescription = htmlspecialchars(addslashes($_POST['adminItemDescription']));
-                        $adminItemLevel = htmlspecialchars(addslashes($_POST['adminItemLevel']));
-                        $adminItemLevelRequired = htmlspecialchars(addslashes($_POST['adminItemLevelRequired']));
-                        $adminItemHpEffects = htmlspecialchars(addslashes($_POST['adminItemHpEffects']));
-                        $adminItemMpEffect = htmlspecialchars(addslashes($_POST['adminItemMpEffect']));
-                        $adminItemStrengthEffect = htmlspecialchars(addslashes($_POST['adminItemStrengthEffect']));
-                        $adminItemMagicEffect = htmlspecialchars(addslashes($_POST['adminItemMagicEffect']));
-                        $adminItemAgilityEffect = htmlspecialchars(addslashes($_POST['adminItemAgilityEffect']));
-                        $adminItemDefenseEffect = htmlspecialchars(addslashes($_POST['adminItemDefenseEffect']));
-                        $adminItemDefenseMagicEffect = htmlspecialchars(addslashes($_POST['adminItemDefenseMagicEffect']));
-                        $adminItemWisdomEffect = htmlspecialchars(addslashes($_POST['adminItemWisdomEffect']));
-                        $adminItemProspectingEffect = htmlspecialchars(addslashes($_POST['adminItemProspectingEffect']));
-                        $adminItemPurchasePrice = htmlspecialchars(addslashes($_POST['adminItemPurchasePrice']));
-                        $adminItemSalePrice = htmlspecialchars(addslashes($_POST['adminItemSalePrice']));
+                        $adminItemId = htmlspecialchars($_POST['adminItemId']);
+                        $adminItemItemTypeId = htmlspecialchars($_POST['adminItemItemTypeId']);
+                        $adminItemRaceId = htmlspecialchars($_POST['adminItemRaceId']);
+                        $adminItemPicture = htmlspecialchars($_POST['adminItemPicture']);
+                        $adminItemName = htmlspecialchars($_POST['adminItemName']);
+                        $adminItemDescription = htmlspecialchars($_POST['adminItemDescription']);
+                        $adminItemLevel = htmlspecialchars($_POST['adminItemLevel']);
+                        $adminItemLevelRequired = htmlspecialchars($_POST['adminItemLevelRequired']);
+                        $adminItemHpEffects = htmlspecialchars($_POST['adminItemHpEffects']);
+                        $adminItemMpEffect = htmlspecialchars($_POST['adminItemMpEffect']);
+                        $adminItemStrengthEffect = htmlspecialchars($_POST['adminItemStrengthEffect']);
+                        $adminItemMagicEffect = htmlspecialchars($_POST['adminItemMagicEffect']);
+                        $adminItemAgilityEffect = htmlspecialchars($_POST['adminItemAgilityEffect']);
+                        $adminItemDefenseEffect = htmlspecialchars($_POST['adminItemDefenseEffect']);
+                        $adminItemDefenseMagicEffect = htmlspecialchars($_POST['adminItemDefenseMagicEffect']);
+                        $adminItemWisdomEffect = htmlspecialchars($_POST['adminItemWisdomEffect']);
+                        $adminItemProspectingEffect = htmlspecialchars($_POST['adminItemProspectingEffect']);
+                        $adminItemPurchasePrice = htmlspecialchars($_POST['adminItemPurchasePrice']);
+                        $adminItemSalePrice = htmlspecialchars($_POST['adminItemSalePrice']);
         
                         //On met à jour l'équipement dans la base de donnée
                         $updateItems = $bdd->prepare("UPDATE car_items 
@@ -192,7 +192,7 @@ if (isset($_POST['adminItemId'])
                             while ($item = $itemQuery->fetch())
                             {   
                                 //On récupère les informations du personnage
-                                $adminCharacterId = stripslashes($item['inventoryCharacterId']);
+                                $adminCharacterId = $item['inventoryCharacterId'];
                                 
                                 //On remet les stats du joueurs à zéro pour recalculer ensuite le bonus de tous les équipements équipé
                                 $updateCharacter = $bdd->prepare("UPDATE car_characters SET
@@ -231,15 +231,15 @@ if (isset($_POST['adminItemId'])
                                 while ($equipment = $equipmentEquipedQuery->fetch())
                                 {
                                     //On récupère les informations de l'équippement
-                                    $hpBonus = $hpBonus + stripslashes($equipment['itemHpEffect']);
-                                    $mpBonus = $mpBonus + stripslashes($equipment['itemMpEffect']);
-                                    $strengthBonus = $strengthBonus + stripslashes($equipment['itemStrengthEffect']);
-                                    $magicBonus = $magicBonus + stripslashes($equipment['itemMagicEffect']);
-                                    $agilityBonus = $agilityBonus + stripslashes($equipment['itemAgilityEffect']);
-                                    $defenseBonus = $defenseBonus + stripslashes($equipment['itemDefenseEffect']);
-                                    $defenseMagicBonus = $defenseMagicBonus + stripslashes($equipment['itemDefenseMagicEffect']);
-                                    $wisdomBonus = $wisdomBonus + stripslashes($equipment['itemWisdomEffect']);
-                                    $prospectingBonus = $prospectingBonus + stripslashes($equipment['itemProspectingEffect']);
+                                    $hpBonus = $hpBonus + $equipment['itemHpEffect'];
+                                    $mpBonus = $mpBonus + $equipment['itemMpEffect'];
+                                    $strengthBonus = $strengthBonus + $equipment['itemStrengthEffect'];
+                                    $magicBonus = $magicBonus + $equipment['itemMagicEffect'];
+                                    $agilityBonus = $agilityBonus + $equipment['itemAgilityEffect'];
+                                    $defenseBonus = $defenseBonus + $equipment['itemDefenseEffect'];
+                                    $defenseMagicBonus = $defenseMagicBonus + $equipment['itemDefenseMagicEffect'];
+                                    $wisdomBonus = $wisdomBonus + $equipment['itemWisdomEffect'];
+                                    $prospectingBonus = $prospectingBonus + $equipment['itemProspectingEffect'];
                                 }
                                 $equipmentEquipedQuery->closeCursor();
                 

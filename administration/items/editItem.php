@@ -27,7 +27,7 @@ if (isset($_POST['adminItemId'])
         && $_POST['adminItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
 
             //On fait une requête pour vérifier si l'objet choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -42,14 +42,14 @@ if (isset($_POST['adminItemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'objet
-                    $adminItemId = stripslashes($item['itemId']);
-                    $adminItemPicture = stripslashes($item['itemPicture']);
-                    $adminItemName = stripslashes($item['itemName']);
-                    $adminItemDescription = stripslashes($item['itemDescription']);
-                    $adminItemHpEffects = stripslashes($item['itemHpEffect']);
-                    $adminItemMpEffect = stripslashes($item['itemMpEffect']);
-                    $adminItemPurchasePrice = stripslashes($item['itemPurchasePrice']);
-                    $adminItemSalePrice = stripslashes($item['itemSalePrice']);
+                    $adminItemId = $item['itemId'];
+                    $adminItemPicture = $item['itemPicture'];
+                    $adminItemName = $item['itemName'];
+                    $adminItemDescription = $item['itemDescription'];
+                    $adminItemHpEffects = $item['itemHpEffect'];
+                    $adminItemMpEffect = $item['itemMpEffect'];
+                    $adminItemPurchasePrice = $item['itemPurchasePrice'];
+                    $adminItemSalePrice = $item['itemSalePrice'];
                 }
                 ?>
 

@@ -27,7 +27,7 @@ if (isset($_POST['adminChapterId'])
         && $_POST['adminChapterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminChapterId = htmlspecialchars(addslashes($_POST['adminChapterId']));
+            $adminChapterId = htmlspecialchars($_POST['adminChapterId']);
 
             //On fait une requête pour vérifier si le chapitre choisit existe
             $chapterQuery = $bdd->prepare("SELECT * FROM car_chapters 
@@ -42,11 +42,11 @@ if (isset($_POST['adminChapterId'])
                 while ($chapter = $chapterQuery->fetch())
                 {
                     //On récupère les informations du chapitre
-                    $adminChapterId = stripslashes($chapter['chapterId']);
-                    $adminChapterMonsterId = stripslashes($chapter['chapterMonsterId']);
-                    $adminChapterTitle = stripslashes($chapter['chapterTitle']);
-                    $adminChapterOpening = stripslashes($chapter['chapterOpening']);
-                    $adminChapterEnding = stripslashes($chapter['chapterEnding']);
+                    $adminChapterId = $chapter['chapterId'];
+                    $adminChapterMonsterId = $chapter['chapterMonsterId'];
+                    $adminChapterTitle = $chapter['chapterTitle'];
+                    $adminChapterOpening = $chapter['chapterOpening'];
+                    $adminChapterEnding = $chapter['chapterEnding'];
                 }
 
                 //On récupère les informations du monstre du chapitre
@@ -58,8 +58,8 @@ if (isset($_POST['adminChapterId'])
                 while ($monster = $monsterQuery->fetch())
                 {
                     //On récupère les informations du monstre
-                    $adminMonsterId = stripslashes($monster['monsterId']);
-                    $adminMonsterName = stripslashes($monster['monsterName']);
+                    $adminMonsterId = $monster['monsterId'];
+                    $adminMonsterName = $monster['monsterName'];
                 }
                 $monsterQuery->closeCursor();
                 ?>
@@ -84,8 +84,8 @@ if (isset($_POST['adminChapterId'])
                             while ($monster = $monsterQuery->fetch())
                             {
                                 //On récupère les informations du monstre
-                                $adminMonsterId = stripslashes($monster['monsterId']); 
-                                $adminMonsterName = stripslashes($monster['monsterName']);
+                                $adminMonsterId = $monster['monsterId']; 
+                                $adminMonsterName = $monster['monsterName'];
                                 ?>
                                 <option value="<?php echo $adminMonsterId ?>"><?php echo "N°$adminMonsterId - $adminMonsterName" ?></option>
                                 <?php

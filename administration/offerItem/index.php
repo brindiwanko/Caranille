@@ -24,10 +24,10 @@ require_once("../html/header.php");
         while ($item = $itemQuery->fetch())
         {
             //On récupère les informations de l'objet
-            $adminItemId = stripslashes($item['itemId']);
-            $adminItemName = stripslashes($item['itemName']);
-            $adminItemTypeName = stripslashes($item['itemTypeName']);
-            $adminItemTypeNameShow = stripslashes($item['itemTypeNameShow']);
+            $adminItemId = $item['itemId'];
+            $adminItemName = $item['itemName'];
+            $adminItemTypeName = $item['itemTypeName'];
+            $adminItemTypeNameShow = $item['itemTypeNameShow'];
             ?>
             <option value="<?php echo $adminItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminItemName"; ?></option>
             <?php
@@ -48,8 +48,8 @@ require_once("../html/header.php");
         //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
         while ($character = $characterQuery->fetch())
         {
-            $adminCharacterId = stripslashes($character['characterId']);
-            $adminCharacterName =  stripslashes($character['characterName']);
+            $adminCharacterId = $character['characterId'];
+            $adminCharacterName =  $character['characterName'];
             ?>
             <option value="<?php echo $adminCharacterId ?>"><?php echo "$adminCharacterName"; ?></option>
             <?php

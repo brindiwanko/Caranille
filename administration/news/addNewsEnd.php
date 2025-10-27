@@ -22,9 +22,9 @@ if (isset($_POST['adminNewsPicture'])
         $_SESSION['token'] = NULL;
 
         //On récupère les informations du formulaire
-        $adminNewsPicture = htmlspecialchars(addslashes($_POST['adminNewsPicture']));
-        $adminNewsTitle = htmlspecialchars(addslashes($_POST['adminNewsTitle']));
-        $adminNewsMessage = htmlspecialchars(addslashes($_POST['adminNewsMessage']));
+        $adminNewsPicture = htmlspecialchars($_POST['adminNewsPicture']);
+        $adminNewsTitle = htmlspecialchars($_POST['adminNewsTitle']);
+        $adminNewsMessage = htmlspecialchars($_POST['adminNewsMessage']);
         $adminNewsAccountPseudo = $accountPseudo;
         $adminNewsDate = date('Y-m-d H:i:s');
 

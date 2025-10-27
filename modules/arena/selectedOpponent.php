@@ -21,7 +21,7 @@ if (isset($_POST['token'])
         && $_POST['opponentCharacterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $opponentId = htmlspecialchars(addslashes($_POST['opponentCharacterId']));
+            $opponentId = htmlspecialchars($_POST['opponentCharacterId']);
     
             //On fait une requête pour vérifier si le personnage existe bien
             $opponentQuery = $bdd->prepare("SELECT * FROM car_characters 
@@ -36,8 +36,8 @@ if (isset($_POST['token'])
                 while ($opponent = $opponentQuery->fetch())
                 {
                     //On récupère les informations de l'opposant
-                    $opponentHp = stripslashes($opponent['characterHpTotal']);
-                    $opponentMp = stripslashes($opponent['characterMpTotal']);
+                    $opponentHp = $opponent['characterHpTotal'];
+                    $opponentMp = $opponent['characterMpTotal'];
                 }
                 
                 //Insertion du combat dans la base de donnée avec les données

@@ -32,14 +32,14 @@ if (isset($_POST['accountPseudo'])
         && $_POST['characterSex'] <= 1)
         {
             //On récupère les valeurs du formulaire dans une variable
-            $accountPseudo = htmlspecialchars(addslashes($_POST['accountPseudo']));
+            $accountPseudo = htmlspecialchars($_POST['accountPseudo']);
             $accountPassword = $_POST['accountPassword'];
             $accountPasswordConfirm = $_POST['accountPasswordConfirm'];
-            $accountEmail = htmlspecialchars(addslashes($_POST['accountEmail']));
-            $accountEmailConfirm = htmlspecialchars(addslashes($_POST['accountEmailConfirm']));
-            $characterRaceId = htmlspecialchars(addslashes($_POST['characterRaceId']));
-            $characterSex = htmlspecialchars(addslashes($_POST['characterSex']));
-            $characterName = htmlspecialchars(addslashes($_POST['characterName']));
+            $accountEmail = htmlspecialchars($_POST['accountEmail']);
+            $accountEmailConfirm = htmlspecialchars($_POST['accountEmailConfirm']);
+            $characterRaceId = htmlspecialchars($_POST['characterRaceId']);
+            $characterSex = htmlspecialchars($_POST['characterSex']);
+            $characterName = htmlspecialchars($_POST['characterName']);
     
             //On vérifie si les deux mots de passes sont identiques (avant hash)
             if ($accountPassword == $accountPasswordConfirm) 

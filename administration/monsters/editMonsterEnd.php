@@ -64,7 +64,7 @@ if (isset($_POST['adminMonsterId'])
         && $_POST['adminMonsterQuantity'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterId']));
+            $adminMonsterId = htmlspecialchars($_POST['adminMonsterId']);
 
             //On fait une requête pour vérifier si le monstre choisit existe
             $monsterQuery = $bdd->prepare("SELECT * FROM car_monsters 
@@ -76,23 +76,23 @@ if (isset($_POST['adminMonsterId'])
             if ($monsterRow == 1) 
             {
                 //On récupère les informations du formulaire
-                $adminMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterId']));
-                $adminMonsterCategoryCategoryId = htmlspecialchars(addslashes($_POST['adminMonsterCategoryCategoryId']));
-                $adminMonsterPicture = htmlspecialchars(addslashes($_POST['adminMonsterPicture']));
-                $adminMonsterName = htmlspecialchars(addslashes($_POST['adminMonsterName']));
-                $adminMonsterDescription = htmlspecialchars(addslashes($_POST['adminMonsterDescription']));
-                $adminMonsterLevel = htmlspecialchars(addslashes($_POST['adminMonsterLevel']));
-                $adminMonsterHp = htmlspecialchars(addslashes($_POST['adminMonsterHp']));
-                $adminMonsterMp = htmlspecialchars(addslashes($_POST['adminMonsterMp']));
-                $adminMonsterStrength = htmlspecialchars(addslashes($_POST['adminMonsterStrength']));
-                $adminMonsterMagic = htmlspecialchars(addslashes($_POST['adminMonsterMagic']));
-                $adminMonsterAgility = htmlspecialchars(addslashes($_POST['adminMonsterAgility']));
-                $adminMonsterDefense = htmlspecialchars(addslashes($_POST['adminMonsterDefense']));
-                $adminMonsterDefenseMagic = htmlspecialchars(addslashes($_POST['adminMonsterDefenseMagic']));   
-                $adminMonsterExperience = htmlspecialchars(addslashes($_POST['adminMonsterExperience']));          
-                $adminMonsterGold = htmlspecialchars(addslashes($_POST['adminMonsterGold']));
-                $adminMonsterLimited = htmlspecialchars(addslashes($_POST['adminMonsterLimited']));
-                $adminMonsterQuantity = htmlspecialchars(addslashes($_POST['adminMonsterQuantity']));
+                $adminMonsterId = htmlspecialchars($_POST['adminMonsterId']);
+                $adminMonsterCategoryCategoryId = htmlspecialchars($_POST['adminMonsterCategoryCategoryId']);
+                $adminMonsterPicture = htmlspecialchars($_POST['adminMonsterPicture']);
+                $adminMonsterName = htmlspecialchars($_POST['adminMonsterName']);
+                $adminMonsterDescription = htmlspecialchars($_POST['adminMonsterDescription']);
+                $adminMonsterLevel = htmlspecialchars($_POST['adminMonsterLevel']);
+                $adminMonsterHp = htmlspecialchars($_POST['adminMonsterHp']);
+                $adminMonsterMp = htmlspecialchars($_POST['adminMonsterMp']);
+                $adminMonsterStrength = htmlspecialchars($_POST['adminMonsterStrength']);
+                $adminMonsterMagic = htmlspecialchars($_POST['adminMonsterMagic']);
+                $adminMonsterAgility = htmlspecialchars($_POST['adminMonsterAgility']);
+                $adminMonsterDefense = htmlspecialchars($_POST['adminMonsterDefense']);
+                $adminMonsterDefenseMagic = htmlspecialchars($_POST['adminMonsterDefenseMagic']);   
+                $adminMonsterExperience = htmlspecialchars($_POST['adminMonsterExperience']);          
+                $adminMonsterGold = htmlspecialchars($_POST['adminMonsterGold']);
+                $adminMonsterLimited = htmlspecialchars($_POST['adminMonsterLimited']);
+                $adminMonsterQuantity = htmlspecialchars($_POST['adminMonsterQuantity']);
 
                 //On met le monstre à jour dans la base de donnée
                 $updateMonster = $bdd->prepare("UPDATE car_monsters 

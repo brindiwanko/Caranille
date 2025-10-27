@@ -30,8 +30,8 @@ if (isset($_POST['adminplaceMonsterPlaceId'])
         && $_POST['adminplaceMonsterMonsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminplaceMonsterPlaceId = htmlspecialchars(addslashes($_POST['adminplaceMonsterPlaceId']));
-            $adminplaceMonsterMonsterId = htmlspecialchars(addslashes($_POST['adminplaceMonsterMonsterId']));
+            $adminplaceMonsterPlaceId = htmlspecialchars($_POST['adminplaceMonsterPlaceId']);
+            $adminplaceMonsterMonsterId = htmlspecialchars($_POST['adminplaceMonsterMonsterId']);
 
             //On fait une requête pour vérifier si le lieu choisie existe
             $placeQuery = $bdd->prepare("SELECT * FROM car_places 
@@ -46,8 +46,8 @@ if (isset($_POST['adminplaceMonsterPlaceId'])
                 while ($place = $placeQuery->fetch())
                 {
                     //On récupère les informations du lieu
-                    $adminPlaceMonsterplacePicture = stripslashes($place['placePicture']);
-                    $adminPlaceMonsterplaceName = stripslashes($place['placeName']);
+                    $adminPlaceMonsterplacePicture = $place['placePicture'];
+                    $adminPlaceMonsterplaceName = $place['placeName'];
                 }
                 $placeQuery->closeCursor();
 
@@ -64,8 +64,8 @@ if (isset($_POST['adminplaceMonsterPlaceId'])
                     while ($monster = $monsterQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $adminPlaceMonsterMonsterPicture = stripslashes($monster['monsterPicture']);
-                        $adminPlaceMonsterMonsterName = stripslashes($monster['monsterName']);
+                        $adminPlaceMonsterMonsterPicture = $monster['monsterPicture'];
+                        $adminPlaceMonsterMonsterName = $monster['monsterName'];
                     }
                     $monsterQuery->closeCursor();
 

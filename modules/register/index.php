@@ -24,8 +24,8 @@ require_once("../../html/header.php");
             while ($raceList = $raceListQuery->fetch())
             {
                 //on récupère les valeurs de chaque classes qu'on va ensuite mettre dans le menu déroulant
-                $raceId = stripslashes($raceList['raceId']); 
-                $raceName = stripslashes($raceList['raceName']);
+                $raceId = $raceList['raceId']; 
+                $raceName = $raceList['raceName'];
                 ?>
                 <option value="<?php echo $raceId ?>"><?php echo $raceName ?></option>
                 <?php

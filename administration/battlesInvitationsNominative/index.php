@@ -25,9 +25,9 @@ if ($battleInvitationRow > 0)
             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
             while ($battleInvitation = $battleInvitationQuery->fetch())
             {
-                $adminBattleInvitationId = stripslashes($battleInvitation['battleInvitationId']);
-                $adminBattleInvitationName = stripslashes($battleInvitation['battleInvitationName']);
-                $adminBattleInvitationMonsterName = stripslashes($battleInvitation['monsterName']);
+                $adminBattleInvitationId = $battleInvitation['battleInvitationId'];
+                $adminBattleInvitationName = $battleInvitation['battleInvitationName'];
+                $adminBattleInvitationMonsterName = $battleInvitation['monsterName'];
                 ?>
                 <option value="<?php echo $adminBattleInvitationId ?>"><?php echo "$adminBattleInvitationName ($adminBattleInvitationMonsterName)"; ?></option>
                 <?php

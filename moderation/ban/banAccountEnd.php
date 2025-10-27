@@ -28,8 +28,8 @@ if (isset($_POST['modoAccountId'])
         && $_POST['modoAccountId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $modoAccountId = htmlspecialchars(addslashes($_POST['modoAccountId']));
-            $modoBanReason = htmlspecialchars(addslashes($_POST['modoBanReason']));
+            $modoAccountId = htmlspecialchars($_POST['modoAccountId']);
+            $modoBanReason = htmlspecialchars($_POST['modoBanReason']);
 
             //On fait une requête pour vérifier si le compte choisit existe
             $accountQuery = $bdd->prepare("SELECT * FROM car_accounts 
@@ -44,9 +44,9 @@ if (isset($_POST['modoAccountId'])
                 while ($account = $accountQuery->fetch())
                 {
                     //On récupère les informations du compte
-                    $modoAccountPseudo = stripslashes($account['accountPseudo']);
-                    $modoAccountStatus = stripslashes($account['accountStatus']);
-                    $modoAccountReason = stripslashes($account['accountReason']);
+                    $modoAccountPseudo = $account['accountPseudo'];
+                    $modoAccountStatus = $account['accountStatus'];
+                    $modoAccountReason = $account['accountReason'];
                 }
 
                 //Si le compte n'est pas encore banni

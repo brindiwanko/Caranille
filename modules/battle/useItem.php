@@ -23,7 +23,7 @@ if (isset($_POST['token'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
             
             //On fait une requête pour vérifier si l'objet choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -49,13 +49,13 @@ if (isset($_POST['token'])
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $inventoryId = stripslashes($item['inventoryId']);
-                        $itemId = stripslashes($item['itemId']);
-                        $itemName = stripslashes($item['itemName']);
-                        $itemDescription = stripslashes($item['itemDescription']);
-                        $itemQuantity = stripslashes($item['inventoryQuantity']);
-                        $itemHpEffect = stripslashes($item['itemHpEffect']);
-                        $itemMpEffect = stripslashes($item['itemMpEffect']);
+                        $inventoryId = $item['inventoryId'];
+                        $itemId = $item['itemId'];
+                        $itemName = $item['itemName'];
+                        $itemDescription = $item['itemDescription'];
+                        $itemQuantity = $item['inventoryQuantity'];
+                        $itemHpEffect = $item['itemHpEffect'];
+                        $itemMpEffect = $item['itemMpEffect'];
                     }
                     $itemQuery->closeCursor();
                     

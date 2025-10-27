@@ -24,15 +24,15 @@ if ($monsterRow > 0)
             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
             while ($monster = $monsterQuery->fetch())
             {
-                $adminMonsterId = stripslashes($monster['monsterId']);
-                $adminMonsterName = stripslashes($monster['monsterName']);
-                $adminMonsterLimited = stripslashes($monster['monsterLimited']);
-                $adminMonsterQuantity = stripslashes($monster['monsterQuantity']);
-                $adminMonsterQuantityBattle = stripslashes($monster['monsterQuantityBattle']);
-                $adminMonsterQuantityEscaped = stripslashes($monster['monsterQuantityEscaped']);
-                $adminMonsterQuantityVictory = stripslashes($monster['monsterQuantityVictory']);
-                $adminMonsterQuantityDefeated = stripslashes($monster['monsterQuantityDefeated']);
-                $adminMonsterQuantityDraw = stripslashes($monster['monsterQuantityDraw']);
+                $adminMonsterId = $monster['monsterId'];
+                $adminMonsterName = $monster['monsterName'];
+                $adminMonsterLimited = $monster['monsterLimited'];
+                $adminMonsterQuantity = $monster['monsterQuantity'];
+                $adminMonsterQuantityBattle = $monster['monsterQuantityBattle'];
+                $adminMonsterQuantityEscaped = $monster['monsterQuantityEscaped'];
+                $adminMonsterQuantityVictory = $monster['monsterQuantityVictory'];
+                $adminMonsterQuantityDefeated = $monster['monsterQuantityDefeated'];
+                $adminMonsterQuantityDraw = $monster['monsterQuantityDraw'];
 
                 if ($adminMonsterLimited == "No")
                 {

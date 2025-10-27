@@ -25,9 +25,9 @@ if ($placeRow > 0)
             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
             while ($place = $placeQuery->fetch())
             {
-                $adminPlaceId = stripslashes($place['placeId']);
-                $adminplaceName = stripslashes($place['placeName']);
-				$adminplaceChapter = stripslashes($place['placeChapter']);
+                $adminPlaceId = $place['placeId'];
+                $adminplaceName = $place['placeName'];
+				$adminplaceChapter = $place['placeChapter'];
                 ?>
                 <option value="<?php echo $adminPlaceId ?>"><?php echo "Chapitre $adminplaceChapter - $adminplaceName"; ?></option>
                 <?php

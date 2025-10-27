@@ -25,8 +25,8 @@ if (isset($_POST['tradeCharacterId'])
         && $_POST['tradeCharacterId'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $tradeCharacterId = htmlspecialchars(addslashes($_POST['tradeCharacterId']));
-            $tradeMessage = htmlspecialchars(addslashes($_POST['tradeMessage']));
+            $tradeCharacterId = htmlspecialchars($_POST['tradeCharacterId']);
+            $tradeMessage = htmlspecialchars($_POST['tradeMessage']);
             
             //On fait une requête pour vérifier si le personnage choisit existe
             $characterQuery = $bdd->prepare("SELECT * FROM car_characters 

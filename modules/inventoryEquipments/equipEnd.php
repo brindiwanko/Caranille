@@ -27,7 +27,7 @@ if (isset($_POST['itemId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
     
             //On cherche à savoir si l'équipement que l'on va équipper appartient bien au joueur
             $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_inventory 
@@ -44,10 +44,10 @@ if (isset($_POST['itemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'équippement
-                    $inventoryId = stripslashes($item['inventoryId']);
-                    $itemRaceId = stripslashes($item['itemRaceId']);
-                    $itemItemTypeId = stripslashes($item['itemItemTypeId']);
-                    $itemName = stripslashes($item['itemName']);
+                    $inventoryId = $item['inventoryId'];
+                    $itemRaceId = $item['itemRaceId'];
+                    $itemItemTypeId = $item['itemItemTypeId'];
+                    $itemName = $item['itemName'];
                 }
                 $itemQuery->closeCursor();
     
@@ -69,7 +69,7 @@ if (isset($_POST['itemId'])
                         while ($equipment = $equipmentQuery->fetch())
                         {
                             //On récupère les informations de l'inventaire
-                            $inventoryId = stripslashes($equipment['inventoryId']);
+                            $inventoryId = $equipment['inventoryId'];
     
                             //On rend l'objet non équipé
                             $updateInventory = $bdd->prepare("UPDATE car_inventory SET
@@ -129,15 +129,15 @@ if (isset($_POST['itemId'])
                     while ($equipment = $equipmentEquipedQuery->fetch())
                     {
                         //On récupère les informations de l'équippement
-                        $hpBonus = $hpBonus + stripslashes($equipment['itemHpEffect']);
-                        $mpBonus = $mpBonus + stripslashes($equipment['itemMpEffect']);
-                        $strengthBonus = $strengthBonus + stripslashes($equipment['itemStrengthEffect']);
-                        $magicBonus = $magicBonus + stripslashes($equipment['itemMagicEffect']);
-                        $agilityBonus = $agilityBonus + stripslashes($equipment['itemAgilityEffect']);
-                        $defenseBonus = $defenseBonus + stripslashes($equipment['itemDefenseEffect']);
-                        $defenseMagicBonus = $defenseMagicBonus + stripslashes($equipment['itemDefenseMagicEffect']);
-                        $wisdomBonus = $wisdomBonus + stripslashes($equipment['itemWisdomEffect']);
-                        $prospectingBonus = $prospectingBonus + stripslashes($equipment['itemProspectingEffect']);
+                        $hpBonus = $hpBonus + $equipment['itemHpEffect'];
+                        $mpBonus = $mpBonus + $equipment['itemMpEffect'];
+                        $strengthBonus = $strengthBonus + $equipment['itemStrengthEffect'];
+                        $magicBonus = $magicBonus + $equipment['itemMagicEffect'];
+                        $agilityBonus = $agilityBonus + $equipment['itemAgilityEffect'];
+                        $defenseBonus = $defenseBonus + $equipment['itemDefenseEffect'];
+                        $defenseMagicBonus = $defenseMagicBonus + $equipment['itemDefenseMagicEffect'];
+                        $wisdomBonus = $wisdomBonus + $equipment['itemWisdomEffect'];
+                        $prospectingBonus = $prospectingBonus + $equipment['itemProspectingEffect'];
                     }
                     $equipmentEquipedQuery->closeCursor();
     

@@ -23,7 +23,7 @@ if (isset($_POST['token'])
         && $_POST['battleMonsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $opponentId = htmlspecialchars(addslashes($_POST['battleMonsterId']));
+            $opponentId = htmlspecialchars($_POST['battleMonsterId']);
     
             //On fait une requête pour vérifier si le monstre est bien disponible dans le lieu du joueur
             $opponentQuery = $bdd->prepare("SELECT * FROM car_monsters, car_places, car_places_monsters
@@ -40,10 +40,10 @@ if (isset($_POST['token'])
                 while ($opponent = $opponentQuery->fetch())
                 {
                     //On récupère les informations du monstre
-                    $opponentHp = stripslashes($opponent['monsterHp']);
-                    $opponentMp = stripslashes($opponent['monsterMp']);
-                    $monsterLimited = stripslashes($opponent['monsterLimited']);
-                    $monsterQuantity = stripslashes($opponent['monsterQuantity']);
+                    $opponentHp = $opponent['monsterHp'];
+                    $opponentMp = $opponent['monsterMp'];
+                    $monsterLimited = $opponent['monsterLimited'];
+                    $monsterQuantity = $opponent['monsterQuantity'];
                 }
                 $opponentQuery->closeCursor();
 

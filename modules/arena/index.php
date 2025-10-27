@@ -27,8 +27,8 @@ if ($opponentRow > 0)
             while ($opponent = $opponentQuery->fetch())
             {
                 //On récupère les informations de l'adversaire
-                $characterId = stripslashes($opponent['characterId']); 
-                $characterName = stripslashes($opponent['characterName']);
+                $characterId = $opponent['characterId']; 
+                $characterName = $opponent['characterName'];
                 ?>
                 <option value="<?php echo $characterId ?>"><?php echo $characterName ?></option>
                 <?php

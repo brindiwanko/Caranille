@@ -27,8 +27,8 @@ if ($chapterRow > 0)
             while ($chapter = $chapterQuery->fetch())
             {
                 //On récupère les informations du monstre
-                $chapterId = stripslashes($chapter['chapterId']); 
-                $chapterTitle = stripslashes($chapter['chapterTitle']);
+                $chapterId = $chapter['chapterId']; 
+                $chapterTitle = $chapter['chapterTitle'];
                 ?>
                 <option value="<?php echo $chapterId ?>"><?php echo "Chapitre $chapterId - $chapterTitle"; ?></option>
                 <?php

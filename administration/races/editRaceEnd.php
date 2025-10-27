@@ -54,19 +54,19 @@ if (isset($_POST['adminRaceId'])
         && $_POST['adminRaceProspectingBonus'] >= 0)
         {
             //On récupère les informations du formulaire
-            $adminRaceId = htmlspecialchars(addslashes($_POST['adminRaceId']));
-            $adminRacePicture = htmlspecialchars(addslashes($_POST['adminRacePicture']));
-            $adminRaceName = htmlspecialchars(addslashes($_POST['adminRaceName']));
-            $adminRaceDescription = htmlspecialchars(addslashes($_POST['adminRaceDescription']));
-            $adminRaceHpBonus = htmlspecialchars(addslashes($_POST['adminRaceHpBonus']));
-            $adminRaceMpBonus = htmlspecialchars(addslashes($_POST['adminRaceMpBonus']));
-            $adminRaceStrengthBonus = htmlspecialchars(addslashes($_POST['adminRaceStrengthBonus']));
-            $adminRaceMagicBonus = htmlspecialchars(addslashes($_POST['adminRaceMagicBonus']));
-            $adminRaceAgilityBonus = htmlspecialchars(addslashes($_POST['adminRaceAgilityBonus']));
-            $adminRaceDefenseBonus = htmlspecialchars(addslashes($_POST['adminRaceDefenseBonus']));
-            $adminRaceDefenseMagicBonus = htmlspecialchars(addslashes($_POST['adminRaceDefenseMagicBonus']));
-            $adminRaceWisdomBonus = htmlspecialchars(addslashes($_POST['adminRaceWisdomBonus']));
-            $adminRaceProspectingBonus = htmlspecialchars(addslashes($_POST['adminRaceProspectingBonus']));
+            $adminRaceId = htmlspecialchars($_POST['adminRaceId']);
+            $adminRacePicture = htmlspecialchars($_POST['adminRacePicture']);
+            $adminRaceName = htmlspecialchars($_POST['adminRaceName']);
+            $adminRaceDescription = htmlspecialchars($_POST['adminRaceDescription']);
+            $adminRaceHpBonus = htmlspecialchars($_POST['adminRaceHpBonus']);
+            $adminRaceMpBonus = htmlspecialchars($_POST['adminRaceMpBonus']);
+            $adminRaceStrengthBonus = htmlspecialchars($_POST['adminRaceStrengthBonus']);
+            $adminRaceMagicBonus = htmlspecialchars($_POST['adminRaceMagicBonus']);
+            $adminRaceAgilityBonus = htmlspecialchars($_POST['adminRaceAgilityBonus']);
+            $adminRaceDefenseBonus = htmlspecialchars($_POST['adminRaceDefenseBonus']);
+            $adminRaceDefenseMagicBonus = htmlspecialchars($_POST['adminRaceDefenseMagicBonus']);
+            $adminRaceWisdomBonus = htmlspecialchars($_POST['adminRaceWisdomBonus']);
+            $adminRaceProspectingBonus = htmlspecialchars($_POST['adminRaceProspectingBonus']);
             
             //On fait une requête pour vérifier si la race choisie existe
             $raceQuery = $bdd->prepare("SELECT * FROM car_races 

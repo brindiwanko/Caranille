@@ -30,8 +30,8 @@ if (isset($_POST['adminMonsterDropMonsterId'])
         && $_POST['adminMonsterDropItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterDropMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterDropMonsterId']));
-            $adminMonsterDropItemId = htmlspecialchars(addslashes($_POST['adminMonsterDropItemId']));
+            $adminMonsterDropMonsterId = htmlspecialchars($_POST['adminMonsterDropMonsterId']);
+            $adminMonsterDropItemId = htmlspecialchars($_POST['adminMonsterDropItemId']);
 
             //On fait une requête pour vérifier si le monstre choisit existe
             $monsterQuery = $bdd->prepare("SELECT * FROM car_monsters 

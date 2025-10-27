@@ -15,8 +15,8 @@ if (isset($_POST['accountPseudo'])
         $_SESSION['token'] = NULL;
 
         //On récupère les valeurs du formulaire dans une variable
-        $accountPseudo = htmlspecialchars(addslashes($_POST['accountPseudo']));
-        $accountEmail = htmlspecialchars(addslashes($_POST['accountEmail']));
+        $accountPseudo = htmlspecialchars($_POST['accountPseudo']);
+        $accountEmail = htmlspecialchars($_POST['accountEmail']);
 
         //On fait une requête pour vérifier si la combinaison pseudo et adresse Email est bonne
         $accountQuery = $bdd->prepare("SELECT * FROM car_accounts 
@@ -32,7 +32,7 @@ if (isset($_POST['accountPseudo'])
             while ($account = $accountQuery->fetch())
             {
                 //On récupère les informations du compte
-                $accountId = stripslashes($account['accountId']);
+                $accountId = $account['accountId'];
             }
 
             //On génère un code

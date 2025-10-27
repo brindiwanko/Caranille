@@ -24,7 +24,7 @@ if (isset($_POST['adminCharacterLevel'])
         && $_POST['adminCharacterLevel'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminCharacterLevel = htmlspecialchars(addslashes($_POST['adminCharacterLevel']));
+            $adminCharacterLevel = htmlspecialchars($_POST['adminCharacterLevel']);
             
             //On va calculer les statistiques du joueur pour son nouveau niveau
             $hpLevel = 100 + $hPByLevel * $adminCharacterLevel;
@@ -98,7 +98,7 @@ if (isset($_POST['adminCharacterLevel'])
             while ($inventory = $inventoryQuery->fetch())
             {
                 //On récupère les informations de l'inventaire
-                $adminInventoryId = stripslashes($inventory['inventoryId']);
+                $adminInventoryId = $inventory['inventoryId'];
 
                 //On va rendre l'équipement non équipé
                 $updateInventory = $bdd->prepare("UPDATE car_inventory SET

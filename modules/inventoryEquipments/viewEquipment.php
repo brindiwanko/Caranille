@@ -27,7 +27,7 @@ if (isset($_POST['itemId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
             
             //On fait une requête pour vérifier si l'équipement choisit existe
             $equipmentQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -59,27 +59,27 @@ if (isset($_POST['itemId'])
                     while ($equipmentInventory = $equipmentInventoryQuery->fetch())
                     {
                         //On récupère les informations de l'équippement
-                        $equipmentId = stripslashes($equipmentInventory['itemId']);
-                        $equipmentTypeName = stripslashes($equipmentInventory['itemTypeName']);
-                        $equipmentTypeNameShow = stripslashes($equipmentInventory['itemTypeNameShow']);
-                        $equipmentRaceId = stripslashes($equipmentInventory['itemRaceId']);
-                        $equipmentPicture = stripslashes($equipmentInventory['itemPicture']);
-                        $equipmentName = stripslashes($equipmentInventory['itemName']);
-                        $equipmentDescription = stripslashes($equipmentInventory['itemDescription']);
-                        $equipmentLevel = stripslashes($equipmentInventory['itemLevel']);
-                        $equipmentLevelRequired = stripslashes($equipmentInventory['itemLevelRequired']);
-                        $equipmentQuantity = stripslashes($equipmentInventory['inventoryQuantity']);
-                        $equipmentHpEffect = stripslashes($equipmentInventory['itemHpEffect']);
-                        $equipmentMpEffect = stripslashes($equipmentInventory['itemMpEffect']);
-                        $equipmentStrengthEffect = stripslashes($equipmentInventory['itemStrengthEffect']);
-                        $equipmentMagicEffect = stripslashes($equipmentInventory['itemMagicEffect']);
-                        $equipmentAgilityEffect = stripslashes($equipmentInventory['itemAgilityEffect']);
-                        $equipmentDefenseEffect = stripslashes($equipmentInventory['itemDefenseEffect']);
-                        $equipmentDefenseMagicEffect = stripslashes($equipmentInventory['itemDefenseMagicEffect']);
-                        $equipmentWisdomEffect = stripslashes($equipmentInventory['itemWisdomEffect']);
-                        $equipmentProspectingEffect = stripslashes($equipmentInventory['itemProspectingEffect']);
-                        $equipmentSalePrice = stripslashes($equipmentInventory['itemSalePrice']);
-                        $equipmentEquipped = stripslashes($equipmentInventory['inventoryEquipped']);
+                        $equipmentId = $equipmentInventory['itemId'];
+                        $equipmentTypeName = $equipmentInventory['itemTypeName'];
+                        $equipmentTypeNameShow = $equipmentInventory['itemTypeNameShow'];
+                        $equipmentRaceId = $equipmentInventory['itemRaceId'];
+                        $equipmentPicture = $equipmentInventory['itemPicture'];
+                        $equipmentName = $equipmentInventory['itemName'];
+                        $equipmentDescription = $equipmentInventory['itemDescription'];
+                        $equipmentLevel = $equipmentInventory['itemLevel'];
+                        $equipmentLevelRequired = $equipmentInventory['itemLevelRequired'];
+                        $equipmentQuantity = $equipmentInventory['inventoryQuantity'];
+                        $equipmentHpEffect = $equipmentInventory['itemHpEffect'];
+                        $equipmentMpEffect = $equipmentInventory['itemMpEffect'];
+                        $equipmentStrengthEffect = $equipmentInventory['itemStrengthEffect'];
+                        $equipmentMagicEffect = $equipmentInventory['itemMagicEffect'];
+                        $equipmentAgilityEffect = $equipmentInventory['itemAgilityEffect'];
+                        $equipmentDefenseEffect = $equipmentInventory['itemDefenseEffect'];
+                        $equipmentDefenseMagicEffect = $equipmentInventory['itemDefenseMagicEffect'];
+                        $equipmentWisdomEffect = $equipmentInventory['itemWisdomEffect'];
+                        $equipmentProspectingEffect = $equipmentInventory['itemProspectingEffect'];
+                        $equipmentSalePrice = $equipmentInventory['itemSalePrice'];
+                        $equipmentEquipped = $equipmentInventory['inventoryEquipped'];
             
                         //Si la race de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
                         if ($equipmentRaceId >= 1)
@@ -92,7 +92,7 @@ if (isset($_POST['itemId'])
                             while ($race = $raceQuery->fetch())
                             {
                                 //On récupère les informations de la classe
-                                $equipmentRaceName = stripslashes($race['raceName']);
+                                $equipmentRaceName = $race['raceName'];
                             }
                             $raceQuery->closeCursor();
                         }

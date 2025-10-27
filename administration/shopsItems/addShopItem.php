@@ -32,9 +32,9 @@ if (isset($_POST['adminShopItemShopId'])
         && $_POST['adminShopItemItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminShopItemShopId = htmlspecialchars(addslashes($_POST['adminShopItemShopId']));
-            $adminShopItemItemId = htmlspecialchars(addslashes($_POST['adminShopItemItemId']));
-            $adminShopItemDiscount = htmlspecialchars(addslashes($_POST['adminShopItemDiscount']));
+            $adminShopItemShopId = htmlspecialchars($_POST['adminShopItemShopId']);
+            $adminShopItemItemId = htmlspecialchars($_POST['adminShopItemItemId']);
+            $adminShopItemDiscount = htmlspecialchars($_POST['adminShopItemDiscount']);
 
             //Si la réduction est entre 0 et 100 on ajoute l'objet
             if ($adminShopItemDiscount >= 0 && $adminShopItemDiscount <= 100)
@@ -52,8 +52,8 @@ if (isset($_POST['adminShopItemShopId'])
                     while ($shop = $shopQuery->fetch())
                     {
                         //On récupère les informations du magasin
-                        $adminShopItemShopPicture = stripslashes($shop['shopPicture']);
-                        $adminShopItemShopName = stripslashes($shop['shopName']);
+                        $adminShopItemShopPicture = $shop['shopPicture'];
+                        $adminShopItemShopName = $shop['shopName'];
                     }
 
                     //On fait une requête pour vérifier si l'objet choisit existe
@@ -69,8 +69,8 @@ if (isset($_POST['adminShopItemShopId'])
                         while ($item = $itemQuery->fetch())
                         {
                             ///On récupère les informations de l'objet
-                            $adminShopItemItemPicture = stripslashes($item['itemPicture']);
-                            $adminShopItemItemName = stripslashes($item['itemName']);
+                            $adminShopItemItemPicture = $item['itemPicture'];
+                            $adminShopItemItemName = $item['itemName'];
                         }
                         $itemQuery->closeCursor();
                 

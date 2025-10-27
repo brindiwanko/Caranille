@@ -14,10 +14,10 @@ if ($newsRow > 0)
     {
         ?>
         
-        <p><img src="<?php echo stripslashes($news['newsPicture']) ?>" height="100" width="100"></p>
+        <p><img src="<?php echo $news['newsPicture'] ?>" height="100" width="100"></p>
         
-        <h4><?php echo stripslashes($news['newsTitle']); ?> (le <?php echo (new DateTime($news['newsDate']))->format('d-m-Y') ?> par <?php echo stripslashes($news['newsAccountPseudo']); ?>)</h4>
-        <?php echo stripslashes(nl2br($news['newsMessage'])) ?><br /><br />
+        <h4><?php echo $news['newsTitle']; ?> (le <?php echo (new DateTime($news['newsDate']))->format('d-m-Y') ?> par <?php echo $news['newsAccountPseudo']; ?>)</h4>
+        <?php echo nl2br(htmlspecialchars($news['newsMessage'])) ?><br /><br />
         
         <hr>
         

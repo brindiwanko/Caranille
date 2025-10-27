@@ -31,12 +31,12 @@ if (isset($_POST['adminplacePicture'])
         && $_POST['adminplaceChapter'] >= 1)
         {
             //On récupère les informations du formulaire
-            $adminplacePicture = htmlspecialchars(addslashes($_POST['adminplacePicture']));
-            $adminplaceName = htmlspecialchars(addslashes($_POST['adminplaceName']));
-            $adminplaceDescription = htmlspecialchars(addslashes($_POST['adminplaceDescription']));
-            $adminplacePriceInn = htmlspecialchars(addslashes($_POST['adminplacePriceInn']));
-            $adminplaceChapter = htmlspecialchars(addslashes($_POST['adminplaceChapter']));
-            $adminplaceAccess = htmlspecialchars(addslashes($_POST['adminplaceAccess']));
+            $adminplacePicture = htmlspecialchars($_POST['adminplacePicture']);
+            $adminplaceName = htmlspecialchars($_POST['adminplaceName']);
+            $adminplaceDescription = htmlspecialchars($_POST['adminplaceDescription']);
+            $adminplacePriceInn = htmlspecialchars($_POST['adminplacePriceInn']);
+            $adminplaceChapter = htmlspecialchars($_POST['adminplaceChapter']);
+            $adminplaceAccess = htmlspecialchars($_POST['adminplaceAccess']);
 
             //On ajoute le lieu dans la base de donnée
             $addPlace = $bdd->prepare("INSERT INTO car_places VALUES(

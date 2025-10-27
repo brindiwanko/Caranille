@@ -17,7 +17,7 @@ if (isset($_POST['battleInvitationCharacterId'])
     && $_POST['battleInvitationCharacterId'] >= 1)
     {
         //On récupère l'id du formulaire précédent
-        $battleInvitationCharacterId = htmlspecialchars(addslashes($_POST['battleInvitationCharacterId']));
+        $battleInvitationCharacterId = htmlspecialchars($_POST['battleInvitationCharacterId']);
 
         //On fait une requête pour vérifier si l'invitation de combat choisit existe
         $battleInvitationQuery = $bdd->prepare("SELECT * FROM car_battles_invitations, car_battles_invitations_characters, car_monsters
@@ -35,10 +35,10 @@ if (isset($_POST['battleInvitationCharacterId'])
             while ($battleInvitation = $battleInvitationQuery->fetch())
             {
                 //On récupère les informations de l'invitation de combat
-                $battleInvitationName = stripslashes($battleInvitation['battleInvitationName']);
-                $battleInvitationDescription = stripslashes(nl2br($battleInvitation['battleInvitationDescription']));
-                $battleInvitationMonsterName = stripslashes($battleInvitation['monsterName']);
-                $battleInvitationMonsterLevel = stripslashes($battleInvitation['monsterLevel']);
+                $battleInvitationName = $battleInvitation['battleInvitationName'];
+                $battleInvitationDescription = nl2br(htmlspecialchars($battleInvitation['battleInvitationDescription']));
+                $battleInvitationMonsterName = $battleInvitation['monsterName'];
+                $battleInvitationMonsterLevel = $battleInvitation['monsterLevel'];
             }
             ?>
 

@@ -27,7 +27,7 @@ if (isset($_POST['adminItemTypeId'])
         && $_POST['adminItemTypeId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminItemTypeId = htmlspecialchars(addslashes($_POST['adminItemTypeId']));
+            $adminItemTypeId = htmlspecialchars($_POST['adminItemTypeId']);
 
             //On fait une requête pour vérifier si le type d'objet choisit existe
             $itemTypeQuery = $bdd->prepare("SELECT * FROM car_items_types
@@ -42,9 +42,9 @@ if (isset($_POST['adminItemTypeId'])
                 while ($itemType = $itemTypeQuery->fetch())
                 {
                     //On récupère les informations du chapitre
-                    $adminItemTypeId = stripslashes($itemType['itemTypeId']);
-                    $adminItemTypeName = stripslashes($itemType['itemTypeName']);
-                    $adminItemTypeNameShow = stripslashes($itemType['itemTypeNameShow']);
+                    $adminItemTypeId = $itemType['itemTypeId'];
+                    $adminItemTypeName = $itemType['itemTypeName'];
+                    $adminItemTypeNameShow = $itemType['itemTypeNameShow'];
                 }
                 ?>
 

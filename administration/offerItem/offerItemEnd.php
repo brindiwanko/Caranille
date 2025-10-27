@@ -23,9 +23,9 @@ if (isset($_POST['adminCharacterId'])
     && $_POST['adminItemQuantity'] >= 0)
     {
         //On récupère les informations du formulaire précédent
-        $adminCharacterId = htmlspecialchars(addslashes($_POST['adminCharacterId']));
-        $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
-        $adminItemQuantity = htmlspecialchars(addslashes($_POST['adminItemQuantity']));
+        $adminCharacterId = htmlspecialchars($_POST['adminCharacterId']);
+        $adminItemId = htmlspecialchars($_POST['adminItemId']);
+        $adminItemQuantity = htmlspecialchars($_POST['adminItemQuantity']);
         
         //Si l'objet à offrir est pour tous les joueurs
         if ($adminCharacterId == 0)
@@ -43,8 +43,8 @@ if (isset($_POST['adminCharacterId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'objet
-                    $adminItemId = stripslashes($item['itemId']);
-                    $adminItemName = stripslashes($item['itemName']);
+                    $adminItemId = $item['itemId'];
+                    $adminItemName = $item['itemName'];
                 }
 
                 //On fait une requêtes pour récupérer chaque personnage
@@ -55,8 +55,8 @@ if (isset($_POST['adminCharacterId'])
                 while ($character = $characterQuery->fetch())
                 {
                     //On récupère l'id et le nom du personnage
-                    $adminCharacterId = stripslashes($character['characterId']);
-                    $adminCharacterName =  stripslashes($character['characterName']);
+                    $adminCharacterId = $character['characterId'];
+                    $adminCharacterName =  $character['characterName'];
 
                     //On vérifie si le joueur possède déjà cet objet ou équipement
                     $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_inventory 
@@ -73,9 +73,9 @@ if (isset($_POST['adminCharacterId'])
                         while ($item = $itemQuery->fetch())
                         {
                             //On récupère les informations de l'inventaire
-                            $inventoryId = stripslashes($item['inventoryId']);
-                            $itemQuantity = stripslashes($item['inventoryQuantity']);
-                            $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                            $inventoryId = $item['inventoryId'];
+                            $itemQuantity = $item['inventoryQuantity'];
+                            $inventoryEquipped = $item['inventoryEquipped'];
                         }
 
                         //On met l'inventaire à jour
@@ -139,7 +139,7 @@ if (isset($_POST['adminCharacterId'])
                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                 while ($character = $characterQuery->fetch())
                 {
-                    $adminCharacterName = stripslashes($character['characterName']);
+                    $adminCharacterName = $character['characterName'];
                 }
 
                 //On fait une requête pour vérifier si l'objet choisit existe
@@ -155,8 +155,8 @@ if (isset($_POST['adminCharacterId'])
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $adminItemId = stripslashes($item['itemId']);
-                        $adminItemName = stripslashes($item['itemName']);
+                        $adminItemId = $item['itemId'];
+                        $adminItemName = $item['itemName'];
                     }
 
                     //On vérifie si le joueur possède déjà cet objet ou équipement
@@ -174,9 +174,9 @@ if (isset($_POST['adminCharacterId'])
                         while ($item = $itemQuery->fetch())
                         {
                             //On récupère les informations de l'inventaire
-                            $inventoryId = stripslashes($item['inventoryId']);
-                            $itemQuantity = stripslashes($item['inventoryQuantity']);
-                            $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                            $inventoryId = $item['inventoryId'];
+                            $itemQuantity = $item['inventoryQuantity'];
+                            $inventoryEquipped = $item['inventoryEquipped'];
                         }
 
                         //On met l'inventaire à jour

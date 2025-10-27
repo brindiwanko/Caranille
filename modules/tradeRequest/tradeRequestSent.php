@@ -38,9 +38,9 @@ if (isset($_POST['token']))
                     while ($tradeRequest = $tradeRequestQuery->fetch())
                     {
                         //On récupère les valeurs de chaque objets
-                        $tradeRequestId = stripslashes($tradeRequest['tradeRequestId']);
-                        $tradeRequestCharacterTwoId = stripslashes($tradeRequest['tradeRequestCharacterTwoId']);
-                        $tradeRequestMessage = stripslashes($tradeRequest['tradeRequestMessage']);
+                        $tradeRequestId = $tradeRequest['tradeRequestId'];
+                        $tradeRequestCharacterTwoId = $tradeRequest['tradeRequestCharacterTwoId'];
+                        $tradeRequestMessage = $tradeRequest['tradeRequestMessage'];
         
                         //On fait une requête pour récupérer le nom du personnage dans la base de donnée
                         $characterQuery = $bdd->prepare("SELECT * FROM car_characters
@@ -51,7 +51,7 @@ if (isset($_POST['token']))
                         while ($character = $characterQuery->fetch())
                         {
                             //On récupère les valeurs de la demande d'échange
-                            $tradeRequestCharacterName = stripslashes($character['characterName']);
+                            $tradeRequestCharacterName = $character['characterName'];
                         }
                         $characterQuery->closeCursor();
                         ?>

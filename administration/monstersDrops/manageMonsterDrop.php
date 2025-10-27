@@ -27,7 +27,7 @@ if (isset($_POST['adminMonsterDropMonsterId'])
         && $_POST['adminMonsterDropMonsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterDropMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterDropMonsterId']));
+            $adminMonsterDropMonsterId = htmlspecialchars($_POST['adminMonsterDropMonsterId']);
 
             //On fait une requête pour vérifier si le monstre choisit existe
             $monsterQuery = $bdd->prepare("SELECT * FROM car_monsters 
@@ -60,11 +60,11 @@ if (isset($_POST['adminMonsterDropMonsterId'])
                         while ($monsterDrop = $monsterDropQuery->fetch())
                         {
                             //On récupère les informations des objets du monstre
-                            $adminMonsterDropItemId = stripslashes($monsterDrop['itemId']);
-                            $adminMonsterDropItemName = stripslashes($monsterDrop['itemName']);
-                            $adminMonsterDropRate = stripslashes($monsterDrop['monsterDropRate']);
-                            $adminItemTypeName = stripslashes($monsterDrop['itemTypeName']);
-                            $adminItemTypeNameShow = stripslashes($monsterDrop['itemTypeNameShow']);
+                            $adminMonsterDropItemId = $monsterDrop['itemId'];
+                            $adminMonsterDropItemName = $monsterDrop['itemName'];
+                            $adminMonsterDropRate = $monsterDrop['monsterDropRate'];
+                            $adminItemTypeName = $monsterDrop['itemTypeName'];
+                            $adminItemTypeNameShow = $monsterDrop['itemTypeNameShow'];
                             ?>
                             <option value="<?php echo $adminMonsterDropItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminMonsterDropItemName ($adminMonsterDropRate/1000)"; ?></option>
                             <?php
@@ -106,10 +106,10 @@ if (isset($_POST['adminMonsterDropMonsterId'])
                             while ($item = $itemQuery->fetch())
                             {
                                 //On récupère les informations des objets
-                                $adminMonsterDropItemId = stripslashes($item['itemId']);
-                                $adminMonsterDropItemName = stripslashes($item['itemName']);
-                                $adminItemTypeName = stripslashes($item['itemTypeName']);
-                                $adminItemTypeNameShow = stripslashes($item['itemTypeNameShow']);
+                                $adminMonsterDropItemId = $item['itemId'];
+                                $adminMonsterDropItemName = $item['itemName'];
+                                $adminItemTypeName = $item['itemTypeName'];
+                                $adminItemTypeNameShow = $item['itemTypeNameShow'];
                                 ?>
                                 <option value="<?php echo $adminMonsterDropItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminMonsterDropItemName"; ?></option>
                                 <?php

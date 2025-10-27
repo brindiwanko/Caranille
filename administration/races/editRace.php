@@ -27,7 +27,7 @@ if (isset($_POST['adminRaceId'])
         && $_POST['adminRaceId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminRaceId = htmlspecialchars(addslashes($_POST['adminRaceId']));
+            $adminRaceId = htmlspecialchars($_POST['adminRaceId']);
 
             //On fait une requête pour vérifier si le compte choisit existe
             $raceQuery = $bdd->prepare("SELECT * FROM car_races 
@@ -42,18 +42,18 @@ if (isset($_POST['adminRaceId'])
                 while ($race = $raceQuery->fetch())
                 {
                     //On récupère les informations de la classe
-                    $adminRacePicture = stripslashes($race['racePicture']);
-                    $adminRaceName = stripslashes($race['raceName']);
-                    $adminRaceDescription = stripslashes($race['raceDescription']);
-                    $adminRaceHpBonus = stripslashes($race['raceHpBonus']);
-                    $adminRaceMpBonus = stripslashes($race['raceMpBonus']);
-                    $adminRaceStrengthBonus = stripslashes($race['raceStrengthBonus']);
-                    $adminRaceMagicBonus = stripslashes($race['raceMagicBonus']);
-                    $adminRaceAgilityBonus = stripslashes($race['raceAgilityBonus']);
-                    $adminRaceDefenseBonus = stripslashes($race['raceDefenseBonus']);
-                    $adminRaceDefenseMagicBonus = stripslashes($race['raceDefenseMagicBonus']);
-                    $adminRaceWisdomBonus = stripslashes($race['raceWisdomBonus']);
-                    $adminRaceProspectingBonus = stripslashes($race['raceProspectingBonus']);
+                    $adminRacePicture = $race['racePicture'];
+                    $adminRaceName = $race['raceName'];
+                    $adminRaceDescription = $race['raceDescription'];
+                    $adminRaceHpBonus = $race['raceHpBonus'];
+                    $adminRaceMpBonus = $race['raceMpBonus'];
+                    $adminRaceStrengthBonus = $race['raceStrengthBonus'];
+                    $adminRaceMagicBonus = $race['raceMagicBonus'];
+                    $adminRaceAgilityBonus = $race['raceAgilityBonus'];
+                    $adminRaceDefenseBonus = $race['raceDefenseBonus'];
+                    $adminRaceDefenseMagicBonus = $race['raceDefenseMagicBonus'];
+                    $adminRaceWisdomBonus = $race['raceWisdomBonus'];
+                    $adminRaceProspectingBonus = $race['raceProspectingBonus'];
                 }
                 ?>
 

@@ -46,13 +46,13 @@ if (isset($_POST['adminGameName'])
             //On récupère les informations du formulaire
             $adminGameName = $_POST['adminGameName'];
             $adminGamePresentation = $_POST['adminGamePresentation'];
-            $adminGameMaxLevel = htmlspecialchars(addslashes($_POST['adminGameMaxLevel']));
-            $adminGameExperience = htmlspecialchars(addslashes($_POST['adminGameExperience']));
-            $adminGameSkillPoint = htmlspecialchars(addslashes($_POST['adminGameSkillPoint']));
-            $adminGameExperienceBonus = htmlspecialchars(addslashes($_POST['adminGameExperienceBonus']));
-            $adminGameGoldBonus = htmlspecialchars(addslashes($_POST['adminGameGoldBonus']));
-            $adminGameDropBonus = htmlspecialchars(addslashes($_POST['adminGameDropBonus']));
-            $adminGameAccess = htmlspecialchars(addslashes($_POST['adminGameAccess']));
+            $adminGameMaxLevel = htmlspecialchars($_POST['adminGameMaxLevel']);
+            $adminGameExperience = htmlspecialchars($_POST['adminGameExperience']);
+            $adminGameSkillPoint = htmlspecialchars($_POST['adminGameSkillPoint']);
+            $adminGameExperienceBonus = htmlspecialchars($_POST['adminGameExperienceBonus']);
+            $adminGameGoldBonus = htmlspecialchars($_POST['adminGameGoldBonus']);
+            $adminGameDropBonus = htmlspecialchars($_POST['adminGameDropBonus']);
+            $adminGameAccess = htmlspecialchars($_POST['adminGameAccess']);
 
             //On fait une requête dans la base de donnée pour récupérer les informations du jeu
             $configurationQuery = $bdd->query("SELECT * FROM car_configuration");
@@ -61,15 +61,15 @@ if (isset($_POST['adminGameName'])
             while ($configuration = $configurationQuery->fetch())
             {
                 //On récupère les informations du jeu
-                $adminGameId = stripslashes($configuration['configurationId']);
-                $adminOldGameName = stripslashes($configuration['configurationGameName']);
-                $adminOldGamePresentation = stripslashes($configuration['configurationPresentation']);   
-                $adminOldGameExperience = stripslashes($configuration['configurationExperience']);
-                $adminOldGameSkillPoint = stripslashes($configuration['configurationSkillPoint']);
-                $adminOldGameExperienceBonus = stripslashes($configuration['configurationExperienceBonus']);
-                $adminOldGameGoldBonus = stripslashes($configuration['configurationGoldBonus']);
-                $adminOldGameDropBonus = stripslashes($configuration['configurationDropBonus']);
-                $adminOldGameAccess = stripslashes($configuration['configurationAccess']);
+                $adminGameId = $configuration['configurationId'];
+                $adminOldGameName = $configuration['configurationGameName'];
+                $adminOldGamePresentation = $configuration['configurationPresentation'];   
+                $adminOldGameExperience = $configuration['configurationExperience'];
+                $adminOldGameSkillPoint = $configuration['configurationSkillPoint'];
+                $adminOldGameExperienceBonus = $configuration['configurationExperienceBonus'];
+                $adminOldGameGoldBonus = $configuration['configurationGoldBonus'];
+                $adminOldGameDropBonus = $configuration['configurationDropBonus'];
+                $adminOldGameAccess = $configuration['configurationAccess'];
             }
             $configurationQuery->closeCursor();
             ?>
@@ -77,8 +77,8 @@ if (isset($_POST['adminGameName'])
             <p>Récapitulatif de la configuration :</p>
 
             <?php
-            echo "Nom du jeu : " .stripslashes($adminGameName). "<br />";
-            echo "Présentation : " .stripslashes($adminGamePresentation). "<br />";
+            echo "Nom du jeu : " .$adminGameName. "<br />";
+            echo "Présentation : " .$adminGamePresentation. "<br />";
             echo "Niveau Max : $adminGameMaxLevel<br />";
             echo "Base d'expérience : $adminGameExperience<br />";
             echo "PC par niveau : $adminGameSkillPoint<br />";

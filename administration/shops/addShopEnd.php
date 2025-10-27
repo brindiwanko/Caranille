@@ -22,9 +22,9 @@ if (isset($_POST['adminShopPicture'])
         $_SESSION['token'] = NULL;
 
         //On récupère les informations du formulaire
-        $adminShopPicture = htmlspecialchars(addslashes($_POST['adminShopPicture']));
-        $adminShopName = htmlspecialchars(addslashes($_POST['adminShopName']));
-        $adminShopDescription = htmlspecialchars(addslashes($_POST['adminShopDescription']));
+        $adminShopPicture = htmlspecialchars($_POST['adminShopPicture']);
+        $adminShopName = htmlspecialchars($_POST['adminShopName']);
+        $adminShopDescription = htmlspecialchars($_POST['adminShopDescription']);
 
         //On ajoute le magasin dans la base de donnée
         $addShop = $bdd->prepare("INSERT INTO car_shops VALUES(

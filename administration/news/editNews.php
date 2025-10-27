@@ -27,7 +27,7 @@ if (isset($_POST['adminNewsId'])
         && $_POST['adminNewsId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminNewsId = htmlspecialchars(addslashes($_POST['adminNewsId']));
+            $adminNewsId = htmlspecialchars($_POST['adminNewsId']);
 
             //On fait une requête pour vérifier si la news choisie existe
             $newsQuery = $bdd->prepare("SELECT * FROM car_news 
@@ -42,10 +42,10 @@ if (isset($_POST['adminNewsId'])
                 while ($news = $newsQuery->fetch())
                 {
                     //On récupère les informations de la news
-                    $adminNewsId = stripslashes($news['newsId']);
-                    $adminNewsPicture = stripslashes($news['newsPicture']);
-                    $adminNewsTitle = stripslashes($news['newsTitle']);
-                    $adminNewsMessage = stripslashes($news['newsMessage']);
+                    $adminNewsId = $news['newsId'];
+                    $adminNewsPicture = $news['newsPicture'];
+                    $adminNewsTitle = $news['newsTitle'];
+                    $adminNewsMessage = $news['newsMessage'];
                 }
                 ?>
 

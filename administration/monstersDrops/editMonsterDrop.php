@@ -35,11 +35,11 @@ if (isset($_POST['adminMonsterDropMonsterId'])
         && $_POST['adminMonsterDropRate'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterDropMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterDropMonsterId']));
-            $adminMonsterDropItemId = htmlspecialchars(addslashes($_POST['adminMonsterDropItemId']));
-            $adminMonsterDropItemVisible = htmlspecialchars(addslashes($_POST['adminMonsterDropItemVisible']));
-            $adminMonsterDropRate = htmlspecialchars(addslashes($_POST['adminMonsterDropRate']));
-            $adminMonsterDropRateVisible = htmlspecialchars(addslashes($_POST['adminMonsterDropRateVisible']));
+            $adminMonsterDropMonsterId = htmlspecialchars($_POST['adminMonsterDropMonsterId']);
+            $adminMonsterDropItemId = htmlspecialchars($_POST['adminMonsterDropItemId']);
+            $adminMonsterDropItemVisible = htmlspecialchars($_POST['adminMonsterDropItemVisible']);
+            $adminMonsterDropRate = htmlspecialchars($_POST['adminMonsterDropRate']);
+            $adminMonsterDropRateVisible = htmlspecialchars($_POST['adminMonsterDropRateVisible']);
 
             //Si le taux d'obtention est entre 0 et 100 on ajoute l'objet
             if ($adminMonsterDropRate >= 0 && $adminMonsterDropRate <= 1000)

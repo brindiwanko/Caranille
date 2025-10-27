@@ -20,8 +20,8 @@ $raceQuery = $bdd->query("SELECT * FROM car_races");
         while ($race = $raceQuery->fetch())
         {
             //On récupère les informations de la classe
-            $adminRaceId = stripslashes($race['raceId']);
-            $adminRaceName = stripslashes($race['raceName']);
+            $adminRaceId = $race['raceId'];
+            $adminRaceName = $race['raceName'];
             ?>
             <option value="<?php echo $adminRaceId ?>"><?php echo "$adminRaceName"; ?></option>
             <?php

@@ -27,7 +27,7 @@ if (isset($_POST['itemId'])
         && $_POST['itemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $itemId = htmlspecialchars(addslashes($_POST['itemId']));
+            $itemId = htmlspecialchars($_POST['itemId']);
                     
             //On fait une requête pour vérifier si l'objet choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -55,22 +55,22 @@ if (isset($_POST['itemId'])
                     while ($itemInventory = $itemInventoryQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $itemId = stripslashes($itemInventory['itemId']);
-                        $itemTypeName = stripslashes($itemInventory['itemTypeName']);
-                        $itemTypeNameShow = stripslashes($itemInventory['itemTypeNameShow']);
-                        $itemPicture = stripslashes($itemInventory['itemPicture']);
-                        $itemName = stripslashes($itemInventory['itemName']);
-                        $itemDescription = stripslashes($itemInventory['itemDescription']);
-                        $itemQuantity = stripslashes($itemInventory['inventoryQuantity']);
-                        $itemHpEffect = stripslashes($itemInventory['itemHpEffect']);
-                        $itemMpEffect = stripslashes($itemInventory['itemMpEffect']);
-                        $itemStrengthEffect = stripslashes($itemInventory['itemStrengthEffect']);
-                        $itemMagicEffect = stripslashes($itemInventory['itemMagicEffect']);
-                        $itemAgilityEffect = stripslashes($itemInventory['itemAgilityEffect']);
-                        $itemDefenseEffect = stripslashes($itemInventory['itemDefenseEffect']);
-                        $itemDefenseMagicEffect = stripslashes($itemInventory['itemDefenseMagicEffect']);
-                        $itemWisdomEffect = stripslashes($itemInventory['itemWisdomEffect']);
-                        $itemSalePrice = stripslashes($itemInventory['itemSalePrice']);
+                        $itemId = $itemInventory['itemId'];
+                        $itemTypeName = $itemInventory['itemTypeName'];
+                        $itemTypeNameShow = $itemInventory['itemTypeNameShow'];
+                        $itemPicture = $itemInventory['itemPicture'];
+                        $itemName = $itemInventory['itemName'];
+                        $itemDescription = $itemInventory['itemDescription'];
+                        $itemQuantity = $itemInventory['inventoryQuantity'];
+                        $itemHpEffect = $itemInventory['itemHpEffect'];
+                        $itemMpEffect = $itemInventory['itemMpEffect'];
+                        $itemStrengthEffect = $itemInventory['itemStrengthEffect'];
+                        $itemMagicEffect = $itemInventory['itemMagicEffect'];
+                        $itemAgilityEffect = $itemInventory['itemAgilityEffect'];
+                        $itemDefenseEffect = $itemInventory['itemDefenseEffect'];
+                        $itemDefenseMagicEffect = $itemInventory['itemDefenseMagicEffect'];
+                        $itemWisdomEffect = $itemInventory['itemWisdomEffect'];
+                        $itemSalePrice = $itemInventory['itemSalePrice'];
                         ?>
     
                         <p><img src="<?php echo $itemPicture ?>" height="100" width="100"></p>

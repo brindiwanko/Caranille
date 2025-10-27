@@ -42,8 +42,8 @@ if (isset($_POST['token'])
 				while ($character = $characterQuery->fetch())
 				{
 					//On récupère les informations du personnage
-					$adminCharacterId = stripslashes($character['characterId']);
-					$adminCharacterName = stripslashes($character['characterName']);
+					$adminCharacterId = $character['characterId'];
+					$adminCharacterName = $character['characterName'];
 					?>
 					<option value="<?php echo $adminCharacterId ?>"><?php echo $adminCharacterName ?></option>
 					<?php
@@ -57,8 +57,8 @@ if (isset($_POST['token'])
 					//On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
 					while ($monster = $monsterQuery->fetch())
 					{
-						$adminMonsterId = stripslashes($monster['monsterId']);
-						$adminMonsterName = stripslashes($monster['monsterName']);
+						$adminMonsterId = $monster['monsterId'];
+						$adminMonsterName = $monster['monsterName'];
 						?>
 						<option value="<?php echo $adminMonsterId ?>"><?php echo "N°$adminMonsterId - $adminMonsterName" ?></option>
 						<?php

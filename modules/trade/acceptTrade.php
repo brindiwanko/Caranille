@@ -25,8 +25,8 @@ if (isset($_POST['tradeId'])
         && $_POST['tradeId'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $tradeId = htmlspecialchars(addslashes($_POST['tradeId']));
-            $tradeDate = htmlspecialchars(addslashes($_POST['tradeDate']));
+            $tradeId = htmlspecialchars($_POST['tradeId']);
+            $tradeDate = htmlspecialchars($_POST['tradeDate']);
             
             //On fait une requête pour vérifier si cette demande existe et est bien attribué au joueur
             $tradeQuery = $bdd->prepare("SELECT * FROM car_trades
@@ -43,13 +43,13 @@ if (isset($_POST['tradeId'])
                 while ($trade = $tradeQuery->fetch())
                 {
                     //On récupère les valeurs de la demande d'échange
-                    $tradeId = stripslashes($trade['tradeId']);
-                    $tradeCharacterOneId = stripslashes($trade['tradeCharacterOneId']);
-                    $tradeCharacterTwoId = stripslashes($trade['tradeCharacterTwoId']);
-                    $tradeMessage = stripslashes($trade['tradeMessage']);
-                    $tradeLastUpdate = stripslashes($trade['tradeLastUpdate']);
-                    $tradeCharacterOneTradeAccepted = stripslashes($trade['tradeCharacterOneTradeAccepted']);
-                    $tradeCharacterTwoTradeAccepted = stripslashes($trade['tradeCharacterTwoTradeAccepted']);
+                    $tradeId = $trade['tradeId'];
+                    $tradeCharacterOneId = $trade['tradeCharacterOneId'];
+                    $tradeCharacterTwoId = $trade['tradeCharacterTwoId'];
+                    $tradeMessage = $trade['tradeMessage'];
+                    $tradeLastUpdate = $trade['tradeLastUpdate'];
+                    $tradeCharacterOneTradeAccepted = $trade['tradeCharacterOneTradeAccepted'];
+                    $tradeCharacterTwoTradeAccepted = $trade['tradeCharacterTwoTradeAccepted'];
                 }
                 
                 if ($tradeDate == $tradeLastUpdate)
@@ -78,8 +78,8 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeItem = $tradeItemQuery->fetch())
                             {
-                                $tradeItemId = stripslashes($tradeItem['tradeItemItemId']);
-                                $tradeItemQuantity = stripslashes($tradeItem['tradeItemItemQuantity']);
+                                $tradeItemId = $tradeItem['tradeItemItemId'];
+                                $tradeItemQuantity = $tradeItem['tradeItemItemQuantity'];
                                 
                                 //On fait une requête pour récupérer les informations de l'objet
                                 $itemQuery = $bdd->prepare("SELECT * FROM car_items
@@ -89,7 +89,7 @@ if (isset($_POST['tradeId'])
                                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                                 while ($item = $itemQuery->fetch())
                                 {
-                                    $itemName = stripslashes($item['itemName']);
+                                    $itemName = $item['itemName'];
                                 }
     
                                 //On cherche à savoir si l'objet que le joueur va recevoir appartient déjà au joueur
@@ -107,11 +107,11 @@ if (isset($_POST['tradeId'])
                                     while ($item = $itemQuery->fetch())
                                     {
                                         //On récupère les informations de l'inventaire
-                                        $itemId = stripslashes($item['itemId']);
-                                        $itemName = stripslashes($item['itemName']);
-                                        $inventoryId = stripslashes($item['inventoryId']);
-                                        $itemQuantity = stripslashes($item['inventoryQuantity']);
-                                        $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                                        $itemId = $item['itemId'];
+                                        $itemName = $item['itemName'];
+                                        $inventoryId = $item['inventoryId'];
+                                        $itemQuantity = $item['inventoryQuantity'];
+                                        $inventoryEquipped = $item['inventoryEquipped'];
                                     }
                                     $itemQuery->closeCursor();
                                     
@@ -152,7 +152,7 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeGold = $tradeGoldQuery->fetch())
                             {
-                                $tradeGoldQuantity = stripslashes($tradeGold['tradeGoldQuantity']);
+                                $tradeGoldQuantity = $tradeGold['tradeGoldQuantity'];
                             }
                             
                             echo "Vous avez reçu $tradeGoldQuantity pièce(s) d'or<br />";
@@ -179,8 +179,8 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeItem = $tradeItemQuery->fetch())
                             {
-                                $tradeItemId = stripslashes($tradeItem['tradeItemItemId']);
-                                $tradeItemQuantity = stripslashes($tradeItem['tradeItemItemQuantity']);
+                                $tradeItemId = $tradeItem['tradeItemItemId'];
+                                $tradeItemQuantity = $tradeItem['tradeItemItemQuantity'];
                                 
                                 //On fait une requête pour récupérer les informations de l'objet
                                 $itemQuery = $bdd->prepare("SELECT * FROM car_items
@@ -190,7 +190,7 @@ if (isset($_POST['tradeId'])
                                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                                 while ($item = $itemQuery->fetch())
                                 {
-                                    $itemName = stripslashes($item['itemName']);
+                                    $itemName = $item['itemName'];
                                 }
                                 
                                 //On cherche à savoir si l'objet que le joueur va recevoir appartient déjà au joueur
@@ -208,11 +208,11 @@ if (isset($_POST['tradeId'])
                                     while ($item = $itemQuery->fetch())
                                     {
                                         //On récupère les informations de l'inventaire
-                                        $itemId = stripslashes($item['itemId']);
-                                        $itemName = stripslashes($item['itemName']);
-                                        $inventoryId = stripslashes($item['inventoryId']);
-                                        $itemQuantity = stripslashes($item['inventoryQuantity']);
-                                        $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                                        $itemId = $item['itemId'];
+                                        $itemName = $item['itemName'];
+                                        $inventoryId = $item['inventoryId'];
+                                        $itemQuantity = $item['inventoryQuantity'];
+                                        $inventoryEquipped = $item['inventoryEquipped'];
                                     }
                                     $itemQuery->closeCursor();
                                     
@@ -251,7 +251,7 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeGold = $tradeGoldQuery->fetch())
                             {
-                                $tradeGoldQuantity = stripslashes($tradeGold['tradeGoldQuantity']);
+                                $tradeGoldQuantity = $tradeGold['tradeGoldQuantity'];
                             }
                             
                             //On ajoute l'argent au joueur
@@ -347,8 +347,8 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeItem = $tradeItemQuery->fetch())
                             {
-                                $tradeItemId = stripslashes($tradeItem['tradeItemItemId']);
-                                $tradeItemQuantity = stripslashes($tradeItem['tradeItemItemQuantity']);
+                                $tradeItemId = $tradeItem['tradeItemItemId'];
+                                $tradeItemQuantity = $tradeItem['tradeItemItemQuantity'];
                                 
                                 //On fait une requête pour récupérer les informations de l'objet
                                 $itemQuery = $bdd->prepare("SELECT * FROM car_items
@@ -358,7 +358,7 @@ if (isset($_POST['tradeId'])
                                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                                 while ($item = $itemQuery->fetch())
                                 {
-                                    $itemName = stripslashes($item['itemName']);
+                                    $itemName = $item['itemName'];
                                 }
                                 
                                 //On cherche à savoir si l'objet que le joueur va recevoir appartient déjà au joueur
@@ -376,11 +376,11 @@ if (isset($_POST['tradeId'])
                                     while ($item = $itemQuery->fetch())
                                     {
                                         //On récupère les informations de l'inventaire
-                                        $itemId = stripslashes($item['itemId']);
-                                        $itemName = stripslashes($item['itemName']);
-                                        $inventoryId = stripslashes($item['inventoryId']);
-                                        $itemQuantity = stripslashes($item['inventoryQuantity']);
-                                        $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                                        $itemId = $item['itemId'];
+                                        $itemName = $item['itemName'];
+                                        $inventoryId = $item['inventoryId'];
+                                        $itemQuantity = $item['inventoryQuantity'];
+                                        $inventoryEquipped = $item['inventoryEquipped'];
                                     }
                                     $itemQuery->closeCursor();
                                     
@@ -421,7 +421,7 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeGold = $tradeGoldQuery->fetch())
                             {
-                                $tradeGoldQuantity = stripslashes($tradeGold['tradeGoldQuantity']);
+                                $tradeGoldQuantity = $tradeGold['tradeGoldQuantity'];
                             }
                             
                             echo "Vous avez reçu $tradeGoldQuantity pièce(s) d'or<br />";
@@ -447,8 +447,8 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeItem = $tradeItemQuery->fetch())
                             {
-                                $tradeItemId = stripslashes($tradeItem['tradeItemItemId']);
-                                $tradeItemQuantity = stripslashes($tradeItem['tradeItemItemQuantity']);
+                                $tradeItemId = $tradeItem['tradeItemItemId'];
+                                $tradeItemQuantity = $tradeItem['tradeItemItemQuantity'];
                                 
                                 //On fait une requête pour récupérer les informations de l'objet
                                 $itemQuery = $bdd->prepare("SELECT * FROM car_items
@@ -458,7 +458,7 @@ if (isset($_POST['tradeId'])
                                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                                 while ($item = $itemQuery->fetch())
                                 {
-                                    $itemName = stripslashes($item['itemName']);
+                                    $itemName = $item['itemName'];
                                 }
                                 
                                 //On cherche à savoir si l'objet que le joueur va recevoir appartient déjà au joueur
@@ -476,11 +476,11 @@ if (isset($_POST['tradeId'])
                                     while ($item = $itemQuery->fetch())
                                     {
                                         //On récupère les informations de l'inventaire
-                                        $itemId = stripslashes($item['itemId']);
-                                        $itemName = stripslashes($item['itemName']);
-                                        $inventoryId = stripslashes($item['inventoryId']);
-                                        $itemQuantity = stripslashes($item['inventoryQuantity']);
-                                        $inventoryEquipped = stripslashes($item['inventoryEquipped']);
+                                        $itemId = $item['itemId'];
+                                        $itemName = $item['itemName'];
+                                        $inventoryId = $item['inventoryId'];
+                                        $itemQuantity = $item['inventoryQuantity'];
+                                        $inventoryEquipped = $item['inventoryEquipped'];
                                     }
                                     $itemQuery->closeCursor();
                                     
@@ -519,7 +519,7 @@ if (isset($_POST['tradeId'])
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
                             while ($tradeGold = $tradeGoldQuery->fetch())
                             {
-                                $tradeGoldQuantity = stripslashes($tradeGold['tradeGoldQuantity']);
+                                $tradeGoldQuantity = $tradeGold['tradeGoldQuantity'];
                             }
                             
                             //On ajoute l'argent au joueur

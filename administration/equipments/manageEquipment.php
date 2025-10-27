@@ -27,7 +27,7 @@ if (isset($_POST['adminItemId'])
         && $_POST['adminItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
 
             //On fait une requête pour vérifier si l'équipement choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -47,7 +47,7 @@ if (isset($_POST['adminItemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'équipement
-                    $adminItemName = stripslashes($item['itemName']);
+                    $adminItemName = $item['itemName'];
                 }
                 $itemQuery->closeCursor();
                 ?>

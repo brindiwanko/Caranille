@@ -32,10 +32,10 @@ if ($equipmentRow > 0)
             while ($equipment = $equipmentQuery->fetch())
             {
                 //On récupère les informations de l'équipement
-                $adminItemId = stripslashes($equipment['itemId']);
-                $adminItemName = stripslashes($equipment['itemName']);
-                $adminItemTypeName = stripslashes($equipment['itemTypeName']);
-                $adminItemTypeNameShow = stripslashes($equipment['itemTypeNameShow']);
+                $adminItemId = $equipment['itemId'];
+                $adminItemName = $equipment['itemName'];
+                $adminItemTypeName = $equipment['itemTypeName'];
+                $adminItemTypeNameShow = $equipment['itemTypeNameShow'];
                 ?>
                 <option value="<?php echo $adminItemId ?>"><?php echo "[$adminItemTypeNameShow] - $adminItemName"; ?></option>
                 <?php

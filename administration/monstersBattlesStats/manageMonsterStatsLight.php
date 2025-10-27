@@ -27,7 +27,7 @@ if (isset($_POST['adminMonsterStatsMonsterId'])
         && $_POST['adminMonsterStatsMonsterId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminMonsterStatsMonsterId = htmlspecialchars(addslashes($_POST['adminMonsterStatsMonsterId']));
+            $adminMonsterStatsMonsterId = htmlspecialchars($_POST['adminMonsterStatsMonsterId']);
 
             //On fait une requête pour vérifier si le monstre choisit existe
             $monsterQuery = $bdd->prepare("SELECT * FROM car_monsters 
@@ -64,8 +64,8 @@ if (isset($_POST['adminMonsterStatsMonsterId'])
                     while ($monsterBattlesStats = $monsterBattlesStatsQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $adminMonsterBattleStatsCharacterName = stripslashes($monsterBattlesStats['characterName']);
-                        $adminMonsterBattleStatsDateTime = stripslashes($monsterBattlesStats['monsterBattleStatsDateTime']);
+                        $adminMonsterBattleStatsCharacterName = $monsterBattlesStats['characterName'];
+                        $adminMonsterBattleStatsDateTime = $monsterBattlesStats['monsterBattleStatsDateTime'];
                         
                         $dateFr = (new DateTime($monsterBattlesStats['monsterBattleStatsDateTime']))->format('d-m-Y H:i') ;
                         echo "($dateFr) - $adminMonsterBattleStatsCharacterName<br />";
@@ -105,8 +105,8 @@ if (isset($_POST['adminMonsterStatsMonsterId'])
                     while ($monsterBattlesStats = $monsterBattlesStatsQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $adminMonsterBattleStatsCharacterName = stripslashes($monsterBattlesStats['characterName']);
-                        $adminMonsterBattleStatsDateTime = stripslashes($monsterBattlesStats['monsterBattleStatsDateTime']);
+                        $adminMonsterBattleStatsCharacterName = $monsterBattlesStats['characterName'];
+                        $adminMonsterBattleStatsDateTime = $monsterBattlesStats['monsterBattleStatsDateTime'];
                         
                         $dateFr = (new DateTime($monsterBattlesStats['monsterBattleStatsDateTime']))->format('d-m-Y H:i');
                         echo "($dateFr) - $adminMonsterBattleStatsCharacterName<br />";
@@ -146,8 +146,8 @@ if (isset($_POST['adminMonsterStatsMonsterId'])
                     while ($monsterBattlesStats = $monsterBattlesStatsQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $adminMonsterBattleStatsCharacterName = stripslashes($monsterBattlesStats['characterName']);
-                        $adminMonsterBattleStatsDateTime = stripslashes($monsterBattlesStats['monsterBattleStatsDateTime']);
+                        $adminMonsterBattleStatsCharacterName = $monsterBattlesStats['characterName'];
+                        $adminMonsterBattleStatsDateTime = $monsterBattlesStats['monsterBattleStatsDateTime'];
                         
                         $dateFr = (new DateTime($monsterBattlesStats['monsterBattleStatsDateTime']))->format('d-m-Y H:i');
                         echo "($dateFr) - $adminMonsterBattleStatsCharacterName<br />";
@@ -187,8 +187,8 @@ if (isset($_POST['adminMonsterStatsMonsterId'])
                     while ($monsterBattlesStats = $monsterBattlesStatsQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $adminMonsterBattleStatsCharacterName = stripslashes($monsterBattlesStats['characterName']);
-                        $adminMonsterBattleStatsDateTime = stripslashes($monsterBattlesStats['monsterBattleStatsDateTime']);
+                        $adminMonsterBattleStatsCharacterName = $monsterBattlesStats['characterName'];
+                        $adminMonsterBattleStatsDateTime = $monsterBattlesStats['monsterBattleStatsDateTime'];
                         
                         $dateFr = (new DateTime($monsterBattlesStats['monsterBattleStatsDateTime']))->format('d-m-Y H:i');
                         echo "($dateFr) - $adminMonsterBattleStatsCharacterName<br />";
@@ -229,8 +229,8 @@ if (isset($_POST['adminMonsterStatsMonsterId'])
                     while ($monsterBattlesStats = $monsterBattlesStatsQuery->fetch())
                     {
                         //On récupère les informations du monstre
-                        $adminMonsterBattleStatsCharacterName = stripslashes($monsterBattlesStats['characterName']);
-                        $adminMonsterBattleStatsDateTime = stripslashes($monsterBattlesStats['monsterBattleStatsDateTime']);
+                        $adminMonsterBattleStatsCharacterName = $monsterBattlesStats['characterName'];
+                        $adminMonsterBattleStatsDateTime = $monsterBattlesStats['monsterBattleStatsDateTime'];
                         
                         $dateFr = (new DateTime($monsterBattlesStats['monsterBattleStatsDateTime']))->format('d-m-Y H:i');
                         echo "($dateFr) - $adminMonsterBattleStatsCharacterName<br />";

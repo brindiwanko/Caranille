@@ -32,9 +32,9 @@ if (isset($_POST['adminShopItemShopId'])
         && $_POST['adminShopItemItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminShopItemShopId = htmlspecialchars(addslashes($_POST['adminShopItemShopId']));
-            $adminShopItemItemId = htmlspecialchars(addslashes($_POST['adminShopItemItemId']));
-            $adminShopItemDiscount = htmlspecialchars(addslashes($_POST['adminShopItemDiscount']));
+            $adminShopItemShopId = htmlspecialchars($_POST['adminShopItemShopId']);
+            $adminShopItemItemId = htmlspecialchars($_POST['adminShopItemItemId']);
+            $adminShopItemDiscount = htmlspecialchars($_POST['adminShopItemDiscount']);
 
             //Si la réduction est entre 0 et 100 on ajoute l'objet
             if ($adminShopItemDiscount >= 0 && $adminShopItemDiscount <= 100)

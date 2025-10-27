@@ -13,13 +13,13 @@ if ($characterPlaceId >= 1)
     while ($place = $placeQuery->fetch())
     {
         //On récupère les informations du lieu
-        $placeId = stripslashes($place['placeId']);
-        $placePicture = stripslashes($place['placePicture']);
-        $placeName = stripslashes($place['placeName']);
-        $placeDescription = stripslashes(nl2br($place['placeDescription']));
-        $placePriceInn = stripslashes($place['placePriceInn']);
-        $placeChapter = stripslashes($place['placeChapter']);
-        $placeAccess = stripslashes($place['placeAccess']);
+        $placeId = $place['placeId'];
+        $placePicture = $place['placePicture'];
+        $placeName = $place['placeName'];
+        $placeDescription = nl2br(htmlspecialchars($place['placeDescription']));
+        $placePriceInn = $place['placePriceInn'];
+        $placeChapter = $place['placeChapter'];
+        $placeAccess = $place['placeAccess'];
     }
     $placeQuery->closeCursor();
 

@@ -33,11 +33,11 @@ if (isset($_POST['adminChapterId'])
         && $_POST['adminChapterMonsterId'] >= 1)
         {
             //On récupère les informations du formulaire
-            $adminChapterId = htmlspecialchars(addslashes($_POST['adminChapterId']));
-            $adminChapterMonsterId = htmlspecialchars(addslashes($_POST['adminChapterMonsterId']));
-            $adminChapterTitle = htmlspecialchars(addslashes($_POST['adminChapterTitle']));
-            $adminChapterOpening = htmlspecialchars(addslashes($_POST['adminChapterOpening']));
-            $adminChapterEnding = htmlspecialchars(addslashes($_POST['adminChapterEnding']));
+            $adminChapterId = htmlspecialchars($_POST['adminChapterId']);
+            $adminChapterMonsterId = htmlspecialchars($_POST['adminChapterMonsterId']);
+            $adminChapterTitle = htmlspecialchars($_POST['adminChapterTitle']);
+            $adminChapterOpening = htmlspecialchars($_POST['adminChapterOpening']);
+            $adminChapterEnding = htmlspecialchars($_POST['adminChapterEnding']);
 
             //On fait une requête pour vérifier si le chapitre choisit existe
             $chapterQuery = $bdd->prepare("SELECT * FROM car_chapters 

@@ -24,7 +24,7 @@ if (isset($_POST['privateConversationCharacterId'])
         && $_POST['privateConversationCharacterId'] >= 0)
         {
             //On récupère l'id du formulaire précédent
-            $privateConversationCharacterId = htmlspecialchars(addslashes($_POST['privateConversationCharacterId']));
+            $privateConversationCharacterId = htmlspecialchars($_POST['privateConversationCharacterId']);
             
             //On fait une requête pour vérifier si le personnage choisit existe
             $characterQuery = $bdd->prepare("SELECT * FROM car_characters 

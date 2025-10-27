@@ -19,7 +19,7 @@ if (isset($_POST['token'])
         $_SESSION['token'] = NULL;
 
         //On récupère les informations du formulaire précédent
-        $adminQuantityMonsterGenerate = htmlspecialchars(addslashes($_POST['adminQuantityMonsterGenerate']));
+        $adminQuantityMonsterGenerate = htmlspecialchars($_POST['adminQuantityMonsterGenerate']);
 
         //Si il y a plus d'un monstre
         if ($adminQuantityMonsterGenerate > 1)

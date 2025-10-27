@@ -27,7 +27,7 @@ if (isset($_POST['adminItemId'])
         && $_POST['adminItemId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminItemId = htmlspecialchars(addslashes($_POST['adminItemId']));
+            $adminItemId = htmlspecialchars($_POST['adminItemId']);
 
             //On fait une requête pour vérifier si l'équipement choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_items_types
@@ -43,27 +43,27 @@ if (isset($_POST['adminItemId'])
                 while ($item = $itemQuery->fetch())
                 {
                     //On récupère les informations de l'équipement
-                    $adminItemId = stripslashes($item['itemId']);
-                    $adminItemRaceId = stripslashes($item['itemRaceId']);
-                    $adminItemPicture = stripslashes($item['itemPicture']);
-                    $adminItemItemTypeId = stripslashes($item['itemItemTypeId']);
-                    $adminItemItemTypeName = stripslashes($item['itemTypeName']);
-                    $adminItemItemTypeNameShow = stripslashes($item['itemTypeNameShow']);
-                    $adminItemName = stripslashes($item['itemName']);
-                    $adminItemDescription = stripslashes($item['itemDescription']);
-                    $adminItemLevel = stripslashes($item['itemLevel']);
-                    $adminItemLevelRequired = stripslashes($item['itemLevelRequired']);
-                    $adminItemHpEffects = stripslashes($item['itemHpEffect']);
-                    $adminItemMpEffect = stripslashes($item['itemMpEffect']);
-                    $adminItemStrengthEffect = stripslashes($item['itemStrengthEffect']);
-                    $adminItemMagicEffect = stripslashes($item['itemMagicEffect']);
-                    $adminItemAgilityEffect = stripslashes($item['itemAgilityEffect']);
-                    $adminItemDefenseEffect = stripslashes($item['itemDefenseEffect']);
-                    $adminItemDefenseMagicEffect = stripslashes($item['itemDefenseMagicEffect']);
-                    $adminItemWisdomEffect = stripslashes($item['itemWisdomEffect']);
-                    $adminItemProspectingEffect = stripslashes($item['itemProspectingEffect']);
-                    $adminItemPurchasePrice = stripslashes($item['itemPurchasePrice']);
-                    $adminItemSalePrice = stripslashes($item['itemSalePrice']);
+                    $adminItemId = $item['itemId'];
+                    $adminItemRaceId = $item['itemRaceId'];
+                    $adminItemPicture = $item['itemPicture'];
+                    $adminItemItemTypeId = $item['itemItemTypeId'];
+                    $adminItemItemTypeName = $item['itemTypeName'];
+                    $adminItemItemTypeNameShow = $item['itemTypeNameShow'];
+                    $adminItemName = $item['itemName'];
+                    $adminItemDescription = $item['itemDescription'];
+                    $adminItemLevel = $item['itemLevel'];
+                    $adminItemLevelRequired = $item['itemLevelRequired'];
+                    $adminItemHpEffects = $item['itemHpEffect'];
+                    $adminItemMpEffect = $item['itemMpEffect'];
+                    $adminItemStrengthEffect = $item['itemStrengthEffect'];
+                    $adminItemMagicEffect = $item['itemMagicEffect'];
+                    $adminItemAgilityEffect = $item['itemAgilityEffect'];
+                    $adminItemDefenseEffect = $item['itemDefenseEffect'];
+                    $adminItemDefenseMagicEffect = $item['itemDefenseMagicEffect'];
+                    $adminItemWisdomEffect = $item['itemWisdomEffect'];
+                    $adminItemProspectingEffect = $item['itemProspectingEffect'];
+                    $adminItemPurchasePrice = $item['itemPurchasePrice'];
+                    $adminItemSalePrice = $item['itemSalePrice'];
                 }
 
                 //On récupère la classe de l'équipement pour l'afficher dans le menu d'information de l'équipement
@@ -73,8 +73,8 @@ if (isset($_POST['adminItemId'])
                 while ($race = $raceQuery->fetch())
                 {
                     //On récupère les informations de la classe
-                    $adminRaceId = stripslashes($race['raceId']);
-                    $adminRaceName = stripslashes($race['raceName']);
+                    $adminRaceId = $race['raceId'];
+                    $adminRaceName = $race['raceName'];
                 }
                 $raceQuery->closeCursor();
                 ?>
@@ -115,8 +115,8 @@ if (isset($_POST['adminItemId'])
                             while ($raceList = $raceListQuery->fetch())
                             {
                                 //On récupère les informations de la classe
-                                $raceId = stripslashes($raceList['raceId']); 
-                                $raceName = stripslashes($raceList['raceName']);
+                                $raceId = $raceList['raceId']; 
+                                $raceName = $raceList['raceName'];
                                 ?>
                                 <option value="<?php echo $raceId ?>"><?php echo $raceName ?></option>
                                 <?php
@@ -147,9 +147,9 @@ if (isset($_POST['adminItemId'])
                         while ($itemType = $itemTypeQuery->fetch())
                         {
                             //On récupère les informations de la classe
-                            $adminItemTypeIdSql = stripslashes($itemType['itemTypeId']);
-                            $adminItemTypeName = stripslashes($itemType['itemTypeName']);
-                            $adminItemTypeNameShow = stripslashes($itemType['itemTypeNameShow']);
+                            $adminItemTypeIdSql = $itemType['itemTypeId'];
+                            $adminItemTypeName = $itemType['itemTypeName'];
+                            $adminItemTypeNameShow = $itemType['itemTypeNameShow'];
                             
                             if ($adminItemTypeIdSql == $adminItemItemTypeId)
                             {

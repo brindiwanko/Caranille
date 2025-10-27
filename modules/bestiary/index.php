@@ -28,9 +28,9 @@ if ($monsterBestiaryRow > 0)
             while ($monsterBestiary = $monsterBestiaryQuery->fetch())
             {
                 //On récupère les informations du monstre
-                $monsterId = stripslashes($monsterBestiary['monsterId']); 
-                $monsterName = stripslashes($monsterBestiary['monsterName']);
-                $bestiaryMonsterQuantity = stripslashes($monsterBestiary['bestiaryMonsterQuantity']);
+                $monsterId = $monsterBestiary['monsterId']; 
+                $monsterName = $monsterBestiary['monsterName'];
+                $bestiaryMonsterQuantity = $monsterBestiary['bestiaryMonsterQuantity'];
                 ?>
                 <option value="<?php echo $monsterId ?>"><?php echo "N°$monsterId - $monsterName ($bestiaryMonsterQuantity victoire(s))" ?></option>
                 <?php

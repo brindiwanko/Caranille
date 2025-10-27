@@ -27,8 +27,8 @@ if ($newsRow > 0)
             while ($news = $newsQuery->fetch())
             {
                 //On récupère les informations de la news
-                $adminNewsId = stripslashes($news['newsId']);
-                $adminNewsTitle = stripslashes($news['newsTitle']);
+                $adminNewsId = $news['newsId'];
+                $adminNewsTitle = $news['newsTitle'];
                 ?>
                 <option value="<?php echo $adminNewsId ?>"><?php echo "$adminNewsTitle"; ?></option>
                 <?php

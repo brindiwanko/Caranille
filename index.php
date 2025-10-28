@@ -13,3 +13,4 @@ else
 	header("Location: kernel/install/modules/step-1.php");
 	exit();
 }
+?>

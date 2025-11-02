@@ -60,7 +60,7 @@ if (isset($_POST['adminAccountId'])
                     $adminCharacterId = $character['characterId'];
                     $adminCharacterAccountId = $character['characterAccountId'];
                     $adminCharacterGuildId = $character['characterGuildId'];
-                    $adminCharacterRaceId = $character['characterRaceId'];
+                    $adminCharacterclasseId = $character['characterclasseId'];
                     $adminCharacterPlaceId = $character['characterPlaceId'];
                     $adminCharacterPicture = $character['characterPicture'];
                     $adminCharacterName = $character['characterName'];
@@ -135,17 +135,17 @@ if (isset($_POST['adminAccountId'])
                 $characterQuery->closeCursor();
 
                 //On récupère la classe du personnage pour l'afficher dans le menu d'information du personnage
-                $raceQuery = $bdd->prepare("SELECT * FROM car_races
-                WHERE raceId = ?");
-                $raceQuery->execute([$adminCharacterRaceId]);
+                $classeQuery = $bdd->prepare("SELECT * FROM car_classes
+                WHERE classeId = ?");
+                $classeQuery->execute([$adminCharacterclasseId]);
 
                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
-                while ($race = $raceQuery->fetch())
+                while ($classe = $classeQuery->fetch())
                 {
                     //On récupère le nom de la classe du personnage
-                    $adminRaceName = $race['raceName'];
+                    $adminclasseName = $classe['classeName'];
                 }
-                $raceQuery->closeCursor();
+                $classeQuery->closeCursor();
 
                 //Si adminCharacterPlaceId à un Id supérieur à zéro c'est que le joueur est dans un lieu
                 if ($adminCharacterPlaceId > 0)
@@ -343,7 +343,7 @@ if (isset($_POST['adminAccountId'])
 
                 <p>Informations du personnage</p>
                 
-                Classe : <?php echo $adminRaceName ?><br />
+                Classe : <?php echo $adminclasseName ?><br />
                 Nom du personnage : <?php echo $adminCharacterName ?><br />
                 Niveau du personnage : <?php echo $adminCharacterLevel ?><br />
                 <?php echo $itemArmorNameShow ?> : <?php echo $adminEquipmentArmorName ?><br />

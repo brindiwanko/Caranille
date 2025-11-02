@@ -33,7 +33,7 @@
 							<li><a class="dropdown-item" href="../../administration/monsters/index.php">Monstres</a></li>
 							<li><a class="dropdown-item" href="../../administration/parchments/index.php">Parchemins</a></li>
 							<li><a class="dropdown-item" href="../../administration/places/index.php">Lieux</a></li>
-							<li><a class="dropdown-item" href="../../administration/races/index.php">Classes</a></li>
+							<li><a class="dropdown-item" href="../../administration/classes/index.php">Classes</a></li>
 							<li><a class="dropdown-item" href="../../administration/shops/index.php">Magasins</a></li>
 						</ul>
 					</li>
@@ -81,7 +81,7 @@
 							<li><a class="dropdown-item" href="../../administration/picturesMonsters/index.php">Monstres</a></li>
 							<li><a class="dropdown-item" href="../../administration/picturesParchments/index.php">Parchemins</a></li>
 							<li><a class="dropdown-item" href="../../administration/picturesPlaces/index.php">Lieux</a></li>
-							<li><a class="dropdown-item" href="../../administration/picturesRaces/index.php">Classes</a></li>
+							<li><a class="dropdown-item" href="../../administration/picturesclasses/index.php">Classes</a></li>
 							<li><a class="dropdown-item" href="../../administration/picturesShops/index.php">Magasins</a></li>
 						</ul>
 					</li>

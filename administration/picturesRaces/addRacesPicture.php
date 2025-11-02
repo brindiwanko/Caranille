@@ -17,7 +17,7 @@ if(isset($_POST['token'])
         //On supprime le token de l'ancien formulaire
         $_SESSION['token'] = NULL;
 
-        $dossier = '../../img/races/';
+        $dossier = '../../img/classes/';
         $fichier = basename($_FILES['picture']['name']);
         $taille_maxi = 1000000;
         $taille = filesize($_FILES['picture']['tmp_name']);

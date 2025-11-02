@@ -58,7 +58,7 @@ if (isset($_POST['shopId'])
                     while ($item = $itemQuery->fetch())
                     {
                         //On récupère les informations de l'objet
-                        $itemRaceId = $item['itemRaceId'];
+                        $itemclasseId = $item['itemclasseId'];
                         $itemTypeName = $item['itemTypeName'];
                         $itemTypeNameShow = $item['itemTypeNameShow'];
                         $itemPicture = $item['itemPicture'];
@@ -78,25 +78,25 @@ if (isset($_POST['shopId'])
                         $itemSalePrice = $item['itemSalePrice'];
                         $itemPurchasePrice = $item['itemPurchasePrice'];
                     }
-                    //Si la race de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
-                    if ($itemRaceId >= 1)
+                    //Si la classe de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
+                    if ($itemclasseId >= 1)
                     {
                         //On récupère la classe de l'équipement
-                        $raceQuery = $bdd->prepare("SELECT * FROM car_races
-                        WHERE raceId = ?");
-                        $raceQuery->execute([$itemRaceId]);
+                        $classeQuery = $bdd->prepare("SELECT * FROM car_classes
+                        WHERE classeId = ?");
+                        $classeQuery->execute([$itemclasseId]);
                         
-                        while ($race = $raceQuery->fetch())
+                        while ($classe = $classeQuery->fetch())
                         {
                             //On récupère le nom de la classe
-                            $itemRaceName = $race['raceName'];
+                            $itemclasseName = $classe['classeName'];
                         }
-                        $raceQuery->closeCursor(); 
+                        $classeQuery->closeCursor(); 
                     }
-                    //Si la race de l'équipement est égal à 0 c'est qu'il est disponible pour toutes les classes
+                    //Si la classe de l'équipement est égal à 0 c'est qu'il est disponible pour toutes les classes
                     else
                     {
-                        $itemRaceName = "Toutes les classes";
+                        $itemclasseName = "Toutes les classes";
                     }
                     
                     //On fait une requête pour récupérer les informations de l'objet du magasin
@@ -153,7 +153,7 @@ if (isset($_POST['shopId'])
                         </tr>
                         
                         <?php
-                        //S'il s'agit d'un équipement on affiche la race de celui-ci ainsi que son niveu requis
+                        //S'il s'agit d'un équipement on affiche la classe de celui-ci ainsi que son niveu requis
                         if ($itemTypeName != "Item")
                         {
                             ?>
@@ -163,7 +163,7 @@ if (isset($_POST['shopId'])
                                 </td>
                             
                                 <td>
-                                    <?php echo $itemRaceName ?>
+                                    <?php echo $itemclasseName ?>
                                 </td>
                             </tr>
 

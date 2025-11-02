@@ -29,7 +29,7 @@
 						<ul class="dropdown-menu" aria-labelledby="dropdown08">
 							<li><a class="dropdown-item" href="../../modules/main/index.php">Actualité</a></li>
 							<li><a class="dropdown-item" href="../../modules/presentation/index.php">Présentation</a></li>
-							<li><a class="dropdown-item" href="../../modules/race/index.php">Les classes</a></li>
+							<li><a class="dropdown-item" href="../../modules/classe/index.php">Les classes</a></li>
 							<li><a class="dropdown-item" href="../../modules/contact/index.php">Contact</a></li>
 							<li><a class="dropdown-item" href="../../modules/about/index.php">A propos</a></li>
 						</ul>

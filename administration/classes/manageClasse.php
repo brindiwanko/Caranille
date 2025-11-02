@@ -9,7 +9,7 @@ if ($accountAccess < 2) { exit(header("Location: ../../index.php")); }
 require_once("../html/header.php");
 
 //Si les variables $_POST suivantes existent
-if (isset($_POST['adminRaceId'])
+if (isset($_POST['adminclasseId'])
 && isset($_POST['token'])
 && isset($_POST['manage']))
 {
@@ -22,36 +22,36 @@ if (isset($_POST['adminRaceId'])
         //Comme il y a un nouveau formulaire on régénère un nouveau token
         $_SESSION['token'] = uniqid();
 
-        //On vérifie si l'id de la race récupéré dans le formulaire est en entier positif
-        if (ctype_digit($_POST['adminRaceId'])
-        && $_POST['adminRaceId'] >= 1)
+        //On vérifie si l'id de la classe récupéré dans le formulaire est en entier positif
+        if (ctype_digit($_POST['adminclasseId'])
+        && $_POST['adminclasseId'] >= 1)
         {
             //On récupère l'id du formulaire précédent
-            $adminRaceId = htmlspecialchars($_POST['adminRaceId']);
+            $adminclasseId = htmlspecialchars($_POST['adminclasseId']);
 
             //On fait une requête pour vérifier si le compte choisit existe
-            $raceQuery = $bdd->prepare("SELECT * FROM car_races 
-            WHERE raceId = ?");
-            $raceQuery->execute([$adminRaceId]);
-            $raceRow = $raceQuery->rowCount();
+            $classeQuery = $bdd->prepare("SELECT * FROM car_classes 
+            WHERE classeId = ?");
+            $classeQuery->execute([$adminclasseId]);
+            $classeRow = $classeQuery->rowCount();
 
             //Si la classe existe
-            if ($raceRow == 1) 
+            if ($classeRow == 1) 
             {
                 //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
-                while ($race = $raceQuery->fetch())
+                while ($classe = $classeQuery->fetch())
                 {
                     //On récupère les informations de la classe
-                    $adminRaceName = $race['raceName'];
+                    $adminclasseName = $classe['classeName'];
                 }
                 ?>
                 
-                Que souhaitez-vous faire de la classe <em><?php echo $adminRaceName ?></em> ?
+                Que souhaitez-vous faire de la classe <em><?php echo $adminclasseName ?></em> ?
 
                 <hr>
                     
-                <form method="POST" action="editRace.php">
-                    <input type="hidden" class="btn btn-secondary btn-lg" name="adminRaceId" value="<?php echo $adminRaceId ?>">
+                <form method="POST" action="editClasse.php">
+                    <input type="hidden" class="btn btn-secondary btn-lg" name="adminclasseId" value="<?php echo $adminclasseId ?>">
                     <input type="hidden" class="btn btn-secondary btn-lg" name="token" value="<?php echo $_SESSION['token'] ?>">
                     <input type="submit" class="btn btn-secondary btn-lg" name="edit" value="Afficher/Modifier la classe">
                 </form>
@@ -69,7 +69,7 @@ if (isset($_POST['adminRaceId'])
             {
                 echo "Erreur : Cette classe n'existe pas";
             }
-            $raceQuery->closeCursor();
+            $classeQuery->closeCursor();
         }
         //Si tous les champs numérique ne contiennent pas un nombre
         else

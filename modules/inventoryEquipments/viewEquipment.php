@@ -62,7 +62,7 @@ if (isset($_POST['itemId'])
                         $equipmentId = $equipmentInventory['itemId'];
                         $equipmentTypeName = $equipmentInventory['itemTypeName'];
                         $equipmentTypeNameShow = $equipmentInventory['itemTypeNameShow'];
-                        $equipmentRaceId = $equipmentInventory['itemRaceId'];
+                        $equipmentclasseId = $equipmentInventory['itemclasseId'];
                         $equipmentPicture = $equipmentInventory['itemPicture'];
                         $equipmentName = $equipmentInventory['itemName'];
                         $equipmentDescription = $equipmentInventory['itemDescription'];
@@ -81,25 +81,25 @@ if (isset($_POST['itemId'])
                         $equipmentSalePrice = $equipmentInventory['itemSalePrice'];
                         $equipmentEquipped = $equipmentInventory['inventoryEquipped'];
             
-                        //Si la race de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
-                        if ($equipmentRaceId >= 1)
+                        //Si la classe de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
+                        if ($equipmentclasseId >= 1)
                         {
                             //On récupère la classe de l'équipement
-                            $raceQuery = $bdd->prepare("SELECT * FROM car_races
-                            WHERE raceId = ?");
-                            $raceQuery->execute([$equipmentRaceId]);
+                            $classeQuery = $bdd->prepare("SELECT * FROM car_classes
+                            WHERE classeId = ?");
+                            $classeQuery->execute([$equipmentclasseId]);
     
-                            while ($race = $raceQuery->fetch())
+                            while ($classe = $classeQuery->fetch())
                             {
                                 //On récupère les informations de la classe
-                                $equipmentRaceName = $race['raceName'];
+                                $equipmentclasseName = $classe['classeName'];
                             }
-                            $raceQuery->closeCursor();
+                            $classeQuery->closeCursor();
                         }
-                        //Si la race de l'équipement est égal à 0 c'est qu'il est disponible pour toutes les classes
+                        //Si la classe de l'équipement est égal à 0 c'est qu'il est disponible pour toutes les classes
                         else
                         {
-                            $equipmentRaceName = "Toutes les classes";
+                            $equipmentclasseName = "Toutes les classes";
                         }
                         ?>
                         
@@ -142,7 +142,7 @@ if (isset($_POST['itemId'])
                                 </td>
                             
                                 <td>
-                                    <?php echo $equipmentRaceName; ?>
+                                    <?php echo $equipmentclasseName; ?>
                                 </td>
                             </tr>
                             
@@ -262,7 +262,7 @@ if (isset($_POST['itemId'])
                                     if ($equipmentEquipped == 0)
                                     {
                                         //On vérifie si la classe du joueur lui permet de s'équiper de cet équipement, ou si celui-ci est pour toutes les classes
-                                        if ($characterRaceId == $equipmentRaceId || $equipmentRaceId == 0)
+                                        if ($characterclasseId == $equipmentclasseId || $equipmentclasseId == 0)
                                         {
                                             //Si le niveau du joueur est supérieur ou égal à celui du niveau requis
                                             if ($characterLevel >= $equipmentLevelRequired)

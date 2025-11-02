@@ -25,29 +25,29 @@ if (isset($_POST['token'])
         <p>Informations de l'équipement</p>
 
         <form method="POST" action="addEquipmentEnd.php">
-            Classe <select name="adminItemRaceId" class="form-control">
+            Classe <select name="adminItemclasseId" class="form-control">
             <option value="0">Toutes les classes</option>
             
                 <?php
                 //On rempli le menu déroulant avec la liste des classes disponible
-                $raceListQuery = $bdd->query("SELECT * FROM car_races");
-                $raceList = $raceListQuery->rowCount();
+                $classeListQuery = $bdd->query("SELECT * FROM car_classes");
+                $classeList = $classeListQuery->rowCount();
                 
                 //S'il y a au moins une classe de disponible on les affiches dans le menu déroulant
-                if ($raceList >= 1)
+                if ($classeList >= 1)
                 {
                     //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
-                    while ($raceList = $raceListQuery->fetch())
+                    while ($classeList = $classeListQuery->fetch())
                     {
                         //On récupère les informations de la classe
-                        $raceId = $raceList['raceId']; 
-                        $raceName = $raceList['raceName'];
+                        $classeId = $classeList['classeId']; 
+                        $classeName = $classeList['classeName'];
                         ?>
-                        <option value="<?php echo $raceId ?>"><?php echo $raceName ?></option>
+                        <option value="<?php echo $classeId ?>"><?php echo $classeName ?></option>
                         <?php
                     }
                 }
-                $raceListQuery->closeCursor();
+                $classeListQuery->closeCursor();
                 ?>
                 
             </select>

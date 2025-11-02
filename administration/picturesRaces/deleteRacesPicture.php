@@ -23,7 +23,7 @@ if (isset($_POST['token'])
 
         if ($adminFile != "default.png")
         {
-            unlink("../../img/races/" . $adminFile);
+            unlink("../../img/classes/" . $adminFile);
 
             ?>
 

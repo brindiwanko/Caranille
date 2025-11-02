@@ -1,3 +1,9 @@
+--
+-- Contenu de la table `car_classes`
+--
+
+INSERT INTO `car_classes` (`classeId`, `classePicture`, `classeName`, `classeDescription`, `classeHpBonus`, `classeMpBonus`, `classestrengthBonus`, `classeMagicBonus`, `classeAgilityBonus`, `classeDefenseBonus`, `classeDefenseMagicBonus`, `classeWisdomBonus`, `classeProspectingBonus`) VALUES
+(1, '../../img/empty.png', 'Humain', 'Classe par défaut', 10, 1, 1, 1, 1, 1, 1, 1, 0);
 
 --
 -- Contenu de la table `car_configuration`
@@ -27,10 +33,3 @@ INSERT INTO `car_monsters_categories` (`monsterCategoryId`, `monsterCategoryName
 (2, 'Unusual', 'Peu commun'),
 (3, 'Legendary', 'Légendaire'),
 (4, 'Mythical', 'Mythique');
-
---
--- Contenu de la table `car_races`
---
-
-INSERT INTO `car_races` (`raceId`, `racePicture`, `raceName`, `raceDescription`, `raceHpBonus`, `raceMpBonus`, `raceStrengthBonus`, `raceMagicBonus`, `raceAgilityBonus`, `raceDefenseBonus`, `raceDefenseMagicBonus`, `raceWisdomBonus`, `raceProspectingBonus`) VALUES
-(1, '../../img/empty.png', 'Humain', 'Classe par défaut', 10, 1, 1, 1, 1, 1, 1, 1, 0);

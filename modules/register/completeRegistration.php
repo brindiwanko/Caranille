@@ -9,7 +9,7 @@ if (isset($_POST['accountPseudo'])
 && isset($_POST['accountPasswordConfirm'])
 && isset($_POST['accountEmail'])
 && isset($_POST['accountEmailConfirm'])
-&& isset($_POST['characterRaceId'])
+&& isset($_POST['characterclasseId'])
 && isset($_POST['characterSex'])
 && isset($_POST['characterName'])
 && isset($_POST['token'])
@@ -22,9 +22,9 @@ if (isset($_POST['accountPseudo'])
         $_SESSION['token'] = NULL;
         
         //On vérifie si tous les champs numérique contiennent bien un nombre entier positif
-        if (ctype_digit($_POST['characterRaceId'])
+        if (ctype_digit($_POST['characterclasseId'])
         && ctype_digit($_POST['characterSex'])
-        && $_POST['characterRaceId'] >= 1
+        && $_POST['characterclasseId'] >= 1
         && $_POST['characterSex'] >= 0
         && $_POST['characterSex'] <= 1)
         {
@@ -34,7 +34,7 @@ if (isset($_POST['accountPseudo'])
             $accountPasswordConfirm = $_POST['accountPasswordConfirm'];
             $accountEmail = htmlspecialchars($_POST['accountEmail']);
             $accountEmailConfirm = htmlspecialchars($_POST['accountEmailConfirm']);
-            $characterRaceId = htmlspecialchars($_POST['characterRaceId']);
+            $characterclasseId = htmlspecialchars($_POST['characterclasseId']);
             $characterSex = htmlspecialchars($_POST['characterSex']);
             $characterName = htmlspecialchars($_POST['characterName']);
     
@@ -75,14 +75,14 @@ if (isset($_POST['accountPseudo'])
                             if ($characterRow == 0) 
                             {
                                 //On fait une requête pour vérifier si le nom du personnage est déjà utilisé
-                                $raceQuery = $bdd->prepare("SELECT * FROM car_races 
-                                WHERE raceId = ?");
-                                $raceQuery->execute([$characterRaceId]);
-                                $raceRow = $raceQuery->rowCount();
-                                $raceQuery->closeCursor();
+                                $classeQuery = $bdd->prepare("SELECT * FROM car_classes 
+                                WHERE classeId = ?");
+                                $classeQuery->execute([$characterclasseId]);
+                                $classeRow = $classeQuery->rowCount();
+                                $classeQuery->closeCursor();
             
-                                //Si la race du personnage existe
-                                if ($raceRow >= 1) 
+                                //Si la classe du personnage existe
+                                if ($classeRow >= 1) 
                                 {
                                     //Hash du mot de passe une seule fois après validation
                                     $accountPasswordHash = PasswordManager::hashPassword($accountPassword);
@@ -176,7 +176,7 @@ if (isset($_POST['accountPseudo'])
                                     NULL, //characterId
                                     :accountId, //characterAccountId
                                     '0', //characterGuildId
-                                    :characterRaceId, //characterRaceId
+                                    :characterclasseId, //characterclasseId
                                     '0', //characterPlaceId
                                     'http://localhost/character.png', //characterPicture
                                     :characterName, //characterName
@@ -253,7 +253,7 @@ if (isset($_POST['accountPseudo'])
                                     NULL,
                                     :accountId,
                                     '0',
-                                    :characterRaceId,
+                                    :characterclasseId,
                                     '0',
                                     '../../img/empty.png',
                                     :characterName,
@@ -327,7 +327,7 @@ if (isset($_POST['accountPseudo'])
                                     )");
                                     $addCharacter->execute([
                                     'accountId' => $accountId,
-                                    'characterRaceId' => $characterRaceId,
+                                    'characterclasseId' => $characterclasseId,
                                     'characterName' => $characterName,
                                     'characterSex' => $characterSex]);
                                     $addCharacter->closeCursor();
@@ -348,7 +348,7 @@ if (isset($_POST['accountPseudo'])
                                 {
                                     echo "La classe choisit n'existe pas";
                                 }
-                                $raceQuery->closeCursor();  
+                                $classeQuery->closeCursor();  
                             }
                             //Si le nom du personnage a déjà été utilisé
                             else

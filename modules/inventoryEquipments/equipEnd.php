@@ -45,14 +45,14 @@ if (isset($_POST['itemId'])
                 {
                     //On récupère les informations de l'équippement
                     $inventoryId = $item['inventoryId'];
-                    $itemRaceId = $item['itemRaceId'];
+                    $itemclasseId = $item['itemclasseId'];
                     $itemItemTypeId = $item['itemItemTypeId'];
                     $itemName = $item['itemName'];
                 }
                 $itemQuery->closeCursor();
     
                 //On vérifie si la classe du joueur lui permet de s'équiper de cet équipement, ou si celui-ci est pour toutes les classes
-                if ($characterRaceId == $itemRaceId || $itemRaceId == 0)
+                if ($characterclasseId == $itemclasseId || $itemclasseId == 0)
                 {
                     //On va vérifier si ce type d'équippement est déjà équipé
                     $equipmentQuery = $bdd->prepare("SELECT * FROM car_items, car_inventory 

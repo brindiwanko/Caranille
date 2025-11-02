@@ -22,11 +22,11 @@ if (isset($_POST['token'])
         $adminFile = htmlspecialchars($_POST['pictureFile']);
         ?>
         
-        <p><img src="../../img/races/<?php echo $adminFile ?>"></p>
+        <p><img src="../../img/classes/<?php echo $adminFile ?>"></p>
 
         Pour utiliser cette image veuillez copier/coller le texte ci-dessous dans le champs image : <br/>
 
-        ../../img/races/<?php echo $adminFile ?>
+        ../../img/classes/<?php echo $adminFile ?>
         
         <hr>
 
@@ -65,13 +65,13 @@ else if (isset($_POST['token'])
 
             Vous êtes sur le point de supprimer cette image : 
         
-            <p><img src="../../img/races/<?php echo $adminFile ?>"></p>
+            <p><img src="../../img/classes/<?php echo $adminFile ?>"></p>
         
             Confirmez-vous la suppression ?
         
             <hr>
                 
-            <form method="POST" action="deleteRacesPicture.php">
+            <form method="POST" action="deleteclassesPicture.php">
                 <input type="hidden" class="btn btn-secondary btn-lg" name="pictureFile" value="<?php echo $adminFile ?>">
                 <input type="hidden" class="btn btn-secondary btn-lg" name="token" value="<?php echo $_SESSION['token'] ?>">
                 <input type="submit" class="btn btn-secondary btn-lg" name="finalDelete" value="Je confirme la suppression">

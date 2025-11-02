@@ -9,29 +9,29 @@ require_once("../../html/header.php");
     Confirmez : <input type="password" class="form-control" name="accountPasswordConfirm" required>
     Email : <input type="email" class="form-control" name="accountEmail" required>
     Confirmez l'email : <input type="email" class="form-control" name="accountEmailConfirm" required>
-    Classe <select class="form-control" name="characterRaceId">
+    Classe <select class="form-control" name="characterclasseId">
 
         <?php
         //On rempli le menu déroulant avec la liste des classes disponible
-        $raceListQuery = $bdd->query("SELECT * FROM car_races");
+        $classeListQuery = $bdd->query("SELECT * FROM car_classes");
 
-        $raceList = $raceListQuery->rowCount();
+        $classeList = $classeListQuery->rowCount();
         
         //S'il y a au moins une classe de disponible on les affiches dans le menu déroulant
-        if ($raceList >= 1)
+        if ($classeList >= 1)
         {
             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
-            while ($raceList = $raceListQuery->fetch())
+            while ($classeList = $classeListQuery->fetch())
             {
                 //on récupère les valeurs de chaque classes qu'on va ensuite mettre dans le menu déroulant
-                $raceId = $raceList['raceId']; 
-                $raceName = $raceList['raceName'];
+                $classeId = $classeList['classeId']; 
+                $classeName = $classeList['classeName'];
                 ?>
-                <option value="<?php echo $raceId ?>"><?php echo $raceName ?></option>
+                <option value="<?php echo $classeId ?>"><?php echo $classeName ?></option>
                 <?php
             }
         }
-        $raceListQuery->closeCursor();
+        $classeListQuery->closeCursor();
         ?>
     
     </select>

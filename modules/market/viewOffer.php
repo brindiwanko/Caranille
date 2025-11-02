@@ -52,7 +52,7 @@ if (isset($_POST['marketId'])
                     $marketItemId = $market['itemId'];
                     $marketItemName = $market['itemName'];
                     $marketSalePrice = $market['marketSalePrice'];
-                    $marketItemRaceId = $market['itemRaceId'];
+                    $marketItemclasseId = $market['itemclasseId'];
                     $marketItemLevel = $market['itemLevel'];
                     $marketItemLevelRequired = $market['itemLevelRequired'];
                     $marketItemName = $market['itemName'];
@@ -68,25 +68,25 @@ if (isset($_POST['marketId'])
                     $marketItemProspectingEffect = $market['itemProspectingEffect'];
                 }
 
-                //Si la race de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
-                if ($marketItemRaceId >= 1)
+                //Si la classe de l'équipement est supérieur à 1 c'est qu'il est attitré à une classe
+                if ($marketItemclasseId >= 1)
                 {
                     //On récupère la classe de l'équipement
-                    $raceQuery = $bdd->prepare("SELECT * FROM car_races
-                    WHERE raceId = ?");
-                    $raceQuery->execute([$marketItemRaceId]);
+                    $classeQuery = $bdd->prepare("SELECT * FROM car_classes
+                    WHERE classeId = ?");
+                    $classeQuery->execute([$marketItemclasseId]);
                     
-                    while ($race = $raceQuery->fetch())
+                    while ($classe = $classeQuery->fetch())
                     {
                         //On récupère le nom de la classe
-                        $marketItemRaceName = $race['raceName'];
+                        $marketItemclasseName = $classe['classeName'];
                     }
-                    $raceQuery->closeCursor(); 
+                    $classeQuery->closeCursor(); 
                 }
-                //Si la race de l'équipement est égal à 0 c'est qu'il est disponible pour toutes les classes
+                //Si la classe de l'équipement est égal à 0 c'est qu'il est disponible pour toutes les classes
                 else
                 {
-                    $marketItemRaceName = "Toutes les classes";
+                    $marketItemclasseName = "Toutes les classes";
                 }
                 ?>
                 
@@ -125,7 +125,7 @@ if (isset($_POST['marketId'])
                     </tr>
                     
                     <?php
-                    //S'il s'agit d'un équipement on affiche la race de celui-ci ainsi que son niveu requis
+                    //S'il s'agit d'un équipement on affiche la classe de celui-ci ainsi que son niveu requis
                     if ($marketTypeName != "Item")
                     {
                         ?>
@@ -135,7 +135,7 @@ if (isset($_POST['marketId'])
                             </td>
                         
                             <td>
-                                <?php echo $marketItemRaceName ?>
+                                <?php echo $marketItemclasseName ?>
                             </td>
                         </tr>
 

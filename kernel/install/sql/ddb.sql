@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `car_characters` (
   `characterId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `characterAccountId` int(11) NOT NULL,
   `characterGuildId` int(11) NOT NULL,
-  `characterRaceId` int(11) NOT NULL,
+  `characterclasseId` int(11) NOT NULL,
   `characterPlaceId` int(11) NOT NULL,
   `characterPicture` varchar(50) NOT NULL,
   `characterName` varchar(30) NOT NULL,
@@ -151,6 +151,23 @@ CREATE TABLE IF NOT EXISTS `car_chat`
   `chatMessage` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `car_classes` 
+(
+  `classeId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `classePicture` varchar(50) NOT NULL,
+  `classeName` varchar(30) NOT NULL,
+  `classeDescription` text NOT NULL,
+  `classeHpBonus` int(11) NOT NULL,
+  `classeMpBonus` int(11) NOT NULL,
+  `classestrengthBonus` int(11) NOT NULL,
+  `classeMagicBonus` int(11) NOT NULL,
+  `classeAgilityBonus` int(11) NOT NULL,
+  `classeDefenseBonus` int(11) NOT NULL,
+  `classeDefenseMagicBonus` int(11) NOT NULL,
+  `classeWisdomBonus` int(11) NOT NULL,
+  `classeProspectingBonus` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `car_codes` (
   `codeId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `codeName` date NOT NULL,
@@ -220,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `car_inventory`
 CREATE TABLE IF NOT EXISTS `car_items` (
   `itemId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `itemItemTypeId` int(11) NOT NULL,
-  `itemRaceId` int(11) NOT NULL,
+  `itemclasseId` int(11) NOT NULL,
   `itemPicture` text NOT NULL,
   `itemName` varchar(30) NOT NULL,
   `itemDescription` text NOT NULL,
@@ -360,23 +377,6 @@ CREATE TABLE IF NOT EXISTS `car_private_conversation_message`
   `privateConversationMessageDateTime` datetime NOT NULL,
   `privateConversationMessage` text NOT NULL,
   `privateConversationMessageRead` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `car_races` 
-(
-  `raceId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `racePicture` varchar(50) NOT NULL,
-  `raceName` varchar(30) NOT NULL,
-  `raceDescription` text NOT NULL,
-  `raceHpBonus` int(11) NOT NULL,
-  `raceMpBonus` int(11) NOT NULL,
-  `raceStrengthBonus` int(11) NOT NULL,
-  `raceMagicBonus` int(11) NOT NULL,
-  `raceAgilityBonus` int(11) NOT NULL,
-  `raceDefenseBonus` int(11) NOT NULL,
-  `raceDefenseMagicBonus` int(11) NOT NULL,
-  `raceWisdomBonus` int(11) NOT NULL,
-  `raceProspectingBonus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `car_shops` 

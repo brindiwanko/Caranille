@@ -44,7 +44,7 @@ if (isset($_POST['adminItemId'])
                 {
                     //On récupère les informations de l'équipement
                     $adminItemId = $item['itemId'];
-                    $adminItemRaceId = $item['itemRaceId'];
+                    $adminItemclasseId = $item['itemclasseId'];
                     $adminItemPicture = $item['itemPicture'];
                     $adminItemItemTypeId = $item['itemItemTypeId'];
                     $adminItemItemTypeName = $item['itemTypeName'];
@@ -67,16 +67,16 @@ if (isset($_POST['adminItemId'])
                 }
 
                 //On récupère la classe de l'équipement pour l'afficher dans le menu d'information de l'équipement
-                $raceQuery = $bdd->prepare("SELECT * FROM car_races
-                WHERE raceId = ?");
-                $raceQuery->execute([$adminItemRaceId]);
-                while ($race = $raceQuery->fetch())
+                $classeQuery = $bdd->prepare("SELECT * FROM car_classes
+                WHERE classeId = ?");
+                $classeQuery->execute([$adminItemclasseId]);
+                while ($classe = $classeQuery->fetch())
                 {
                     //On récupère les informations de la classe
-                    $adminRaceId = $race['raceId'];
-                    $adminRaceName = $race['raceName'];
+                    $adminclasseId = $classe['classeId'];
+                    $adminclasseName = $classe['classeName'];
                 }
-                $raceQuery->closeCursor();
+                $classeQuery->closeCursor();
                 ?>
 
                 <p>Informations de l'équipement</p>
@@ -84,14 +84,14 @@ if (isset($_POST['adminItemId'])
                 <p><img src="<?php echo $adminItemPicture ?>" height="100" width="100"></p>
 
                 <form method="POST" action="editEquipmentEnd.php">
-                    Classe <select name="adminItemRaceId" class="form-control">
+                    Classe <select name="adminItemclasseId" class="form-control">
                         
                         <?php
                         //Si l'équipement a une classe attribuée on l'affiche par défaut
-                        if (isset($adminRaceId))
+                        if (isset($adminclasseId))
                         {
                             ?>
-                            <option selected="selected" value="<?php echo $adminRaceId ?>"><?php echo $adminRaceName ?></option>
+                            <option selected="selected" value="<?php echo $adminclasseId ?>"><?php echo $adminclasseName ?></option>
                             <?php
                         }
                         //Si l'équipement n'a pas de classe attribuée c'est qu'il est disponible pour toutes les classes
@@ -103,29 +103,29 @@ if (isset($_POST['adminItemId'])
                         }
 
                         //On rempli le menu déroulant avec la liste des classes disponible sans afficher la classe actuelle qui est affiché juste au dessus
-                        $raceListQuery = $bdd->prepare("SELECT * FROM car_races
-                        WHERE raceId != ?");
-                        $raceListQuery->execute([$adminItemRaceId]);
-                        $raceList = $raceListQuery->rowCount();
+                        $classeListQuery = $bdd->prepare("SELECT * FROM car_classes
+                        WHERE classeId != ?");
+                        $classeListQuery->execute([$adminItemclasseId]);
+                        $classeList = $classeListQuery->rowCount();
                         
                         //S'il y a au moins une classe de disponible on les affiches dans le menu déroulant
-                        if ($raceList >= 1)
+                        if ($classeList >= 1)
                         {
                             //On fait une boucle sur le ou les résultats obtenu pour récupérer les informations
-                            while ($raceList = $raceListQuery->fetch())
+                            while ($classeList = $classeListQuery->fetch())
                             {
                                 //On récupère les informations de la classe
-                                $raceId = $raceList['raceId']; 
-                                $raceName = $raceList['raceName'];
+                                $classeId = $classeList['classeId']; 
+                                $classeName = $classeList['classeName'];
                                 ?>
-                                <option value="<?php echo $raceId ?>"><?php echo $raceName ?></option>
+                                <option value="<?php echo $classeId ?>"><?php echo $classeName ?></option>
                                 <?php
                             }
                         }
-                        $raceListQuery->closeCursor();
+                        $classeListQuery->closeCursor();
                         
                         //Si l'équipement a une classe attribuée on donne la possibilité au joueur de le rendre disponible à toutes les classes
-                        if (isset($adminRaceId))
+                        if (isset($adminclasseId))
                         {
                             ?>
                             <option value="0">Toutes les classes</option>

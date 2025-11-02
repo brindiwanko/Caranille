@@ -13,7 +13,7 @@ while ($character = $characterQuery->fetch())
     $characterId = $character['characterId'];
     $characterAccountId = $character['characterAccountId'];
     $characterGuildId = $character['characterGuildId'];
-    $characterRaceId = $character['characterRaceId'];
+    $characterclasseId = $character['characterclasseId'];
     $characterPlaceId = $character['characterPlaceId'];
     $characterPicture = $character['characterPicture'];
     $characterName = $character['characterName'];
@@ -87,38 +87,38 @@ while ($character = $characterQuery->fetch())
 }
 $characterQuery->closeCursor();
 
-//On fait une recherche dans la base de donnée pour récupérer la race du personnage
-$raceQuery = $bdd->prepare("SELECT * FROM car_races 
-WHERE raceId = ?");
-$raceQuery->execute([$characterRaceId]);
+//On fait une recherche dans la base de donnée pour récupérer la classe du personnage
+$classeQuery = $bdd->prepare("SELECT * FROM car_classes 
+WHERE classeId = ?");
+$classeQuery->execute([$characterclasseId]);
 
 //On récupère les augmentations de statistique lié à la classe
-while ($race = $raceQuery->fetch())
+while ($classe = $classeQuery->fetch())
 {
     //On récupère les informations de la classe
-    $characterRaceName = $race['raceName'];
-    $raceHpBonus = $race['raceHpBonus'];
-    $raceMpBonus = $race['raceMpBonus'];
-    $raceStrengthBonus = $race['raceStrengthBonus'];
-    $raceMagicBonus = $race['raceMagicBonus'];
-    $raceAgilityBonus = $race['raceAgilityBonus'];
-    $raceDefenseBonus = $race['raceDefenseBonus'];
-    $raceDefenseMagicBonus = $race['raceDefenseMagicBonus'];
-    $raceWisdomBonus = $race['raceWisdomBonus'];
-    $raceProspectingBonus = $race['raceProspectingBonus'];
+    $characterclasseName = $classe['classeName'];
+    $classeHpBonus = $classe['classeHpBonus'];
+    $classeMpBonus = $classe['classeMpBonus'];
+    $classestrengthBonus = $classe['classestrengthBonus'];
+    $classeMagicBonus = $classe['classeMagicBonus'];
+    $classeAgilityBonus = $classe['classeAgilityBonus'];
+    $classeDefenseBonus = $classe['classeDefenseBonus'];
+    $classeDefenseMagicBonus = $classe['classeDefenseMagicBonus'];
+    $classeWisdomBonus = $classe['classeWisdomBonus'];
+    $classeProspectingBonus = $classe['classeProspectingBonus'];
 }
-$raceQuery->closeCursor();
+$classeQuery->closeCursor();
 
 //Valeurs des statistiques qui seront ajouté à la monté d'un niveau
-$hPByLevel = $raceHpBonus;
-$mPByLevel = $raceMpBonus;
-$strengthByLevel = $raceStrengthBonus;
-$magicByLevel = $raceMagicBonus;
-$agilityByLevel = $raceAgilityBonus;
-$defenseByLevel = $raceDefenseBonus;
-$defenseMagicByLevel = $raceDefenseMagicBonus;
-$wisdomByLevel = $raceWisdomBonus;
-$prospectingByLevel = $raceProspectingBonus;
+$hPByLevel = $classeHpBonus;
+$mPByLevel = $classeMpBonus;
+$strengthByLevel = $classestrengthBonus;
+$magicByLevel = $classeMagicBonus;
+$agilityByLevel = $classeAgilityBonus;
+$defenseByLevel = $classeDefenseBonus;
+$defenseMagicByLevel = $classeDefenseMagicBonus;
+$wisdomByLevel = $classeWisdomBonus;
+$prospectingByLevel = $classeProspectingBonus;
 
 //Valeur des points de compétences obtenu à la monté d'un niveau ($gameSkillPoint = kernel/configuration/index.php)
 $skillPointsByLevel = $gameSkillPoint;

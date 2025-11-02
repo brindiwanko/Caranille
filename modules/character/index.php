@@ -16,7 +16,7 @@ Informations
 <p><img src="<?php echo $characterPicture ?>" height="100" width="100"></p>
 
 Pseudo : <?php echo $characterName ?><br />
-Classe : <?php echo $characterRaceName ?><br />
+Classe : <?php echo $characterclasseName ?><br />
 
 <hr>
 Statistiques

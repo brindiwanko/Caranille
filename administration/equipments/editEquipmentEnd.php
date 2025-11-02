@@ -11,7 +11,7 @@ require_once("../html/header.php");
 //Si les variables $_POST suivantes existent
 if (isset($_POST['adminItemId']) 
 && isset($_POST['adminItemItemTypeId'])
-&& isset($_POST['adminItemRaceId'])
+&& isset($_POST['adminItemclasseId'])
 && isset($_POST['adminItemPicture'])
 && isset($_POST['adminItemName'])
 && isset($_POST['adminItemDescription'])
@@ -40,7 +40,7 @@ if (isset($_POST['adminItemId'])
         //On vérifie si tous les champs numérique contiennent bien un nombre entier positif
         if (ctype_digit($_POST['adminItemId']) 
         && ctype_digit($_POST['adminItemItemTypeId'])
-        && ctype_digit($_POST['adminItemRaceId'])
+        && ctype_digit($_POST['adminItemclasseId'])
         && ctype_digit($_POST['adminItemLevel'])
         && ctype_digit($_POST['adminItemLevelRequired'])
         && ctype_digit($_POST['adminItemHpEffects'])
@@ -56,7 +56,7 @@ if (isset($_POST['adminItemId'])
         && ctype_digit($_POST['adminItemSalePrice'])
         && $_POST['adminItemId'] >= 0
         && $_POST['adminItemItemTypeId'] >= 0
-        && $_POST['adminItemRaceId'] >= 0
+        && $_POST['adminItemclasseId'] >= 0
         && $_POST['adminItemLevel'] >= 0
         && $_POST['adminItemLevelRequired'] >= 0
         && $_POST['adminItemHpEffects'] >= 0
@@ -74,7 +74,7 @@ if (isset($_POST['adminItemId'])
             //On récupère l'id du formulaire précédent
             $adminItemId = htmlspecialchars($_POST['adminItemId']);
             $adminItemItemTypeId = htmlspecialchars($_POST['adminItemItemTypeId']);
-            $adminItemRaceId = htmlspecialchars($_POST['adminItemRaceId']);
+            $adminItemclasseId = htmlspecialchars($_POST['adminItemclasseId']);
             
             //On fait une requête pour vérifier si l'équipement choisit existe
             $itemQuery = $bdd->prepare("SELECT * FROM car_items 
@@ -95,28 +95,28 @@ if (isset($_POST['adminItemId'])
                 if ($itemTypeRow == 1) 
                 {
                     //Si la classe choisit est supérieur à zéro c'est que l'équipement est dedié à une classe
-                    if ($adminItemRaceId > 0)
+                    if ($adminItemclasseId > 0)
                     {
                         //On fait une requête pour vérifier si la classe choisie existe
-                        $raceQuery = $bdd->prepare("SELECT * FROM car_races 
-                        WHERE raceId = ?");
-                        $raceQuery->execute([$adminItemRaceId]);
-                        $raceRow = $raceQuery->rowCount();
+                        $classeQuery = $bdd->prepare("SELECT * FROM car_classes 
+                        WHERE classeId = ?");
+                        $classeQuery->execute([$adminItemclasseId]);
+                        $classeRow = $classeQuery->rowCount();
                     }
                     //Si la classe choisit est égal à zéro c'est qu'il s'agit d'un équipement pour toutes les classes
                     else
                     {
-                        //On met $raceRow à 1 pour passer à la suite
-                        $raceRow = 1;
+                        //On met $classeRow à 1 pour passer à la suite
+                        $classeRow = 1;
                     }
         
                     //Si la classe est disponible ou que la classe est à zéro
-                    if ($raceRow == 1) 
+                    if ($classeRow == 1) 
                     {
                         //On récupère les informations du formulaire
                         $adminItemId = htmlspecialchars($_POST['adminItemId']);
                         $adminItemItemTypeId = htmlspecialchars($_POST['adminItemItemTypeId']);
-                        $adminItemRaceId = htmlspecialchars($_POST['adminItemRaceId']);
+                        $adminItemclasseId = htmlspecialchars($_POST['adminItemclasseId']);
                         $adminItemPicture = htmlspecialchars($_POST['adminItemPicture']);
                         $adminItemName = htmlspecialchars($_POST['adminItemName']);
                         $adminItemDescription = htmlspecialchars($_POST['adminItemDescription']);
@@ -137,7 +137,7 @@ if (isset($_POST['adminItemId'])
                         //On met à jour l'équipement dans la base de donnée
                         $updateItems = $bdd->prepare("UPDATE car_items 
                         SET itemItemTypeId = :adminItemItemTypeId, 
-                        itemRaceId = :adminItemRaceId, 
+                        itemclasseId = :adminItemclasseId, 
                         itemPicture = :adminItemPicture,
                         itemName = :adminItemName,
                         itemDescription = :adminItemDescription,
@@ -157,7 +157,7 @@ if (isset($_POST['adminItemId'])
                         WHERE itemId = :adminItemId");
                         $updateItems->execute([
                         'adminItemItemTypeId' => $adminItemItemTypeId,
-                        'adminItemRaceId' => $adminItemRaceId,
+                        'adminItemclasseId' => $adminItemclasseId,
                         'adminItemPicture' => $adminItemPicture,
                         'adminItemName' => $adminItemName,
                         'adminItemDescription' => $adminItemDescription,

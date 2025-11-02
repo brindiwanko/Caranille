@@ -1,4 +1,12 @@
 --
+-- Contenu de la table `car_classes`
+--
+
+INSERT INTO `car_classes` (`classeId`, `classePicture`, `classeName`, `classeDescription`, `classeHpBonus`, `classeMpBonus`, `classestrengthBonus`, `classeMagicBonus`, `classeAgilityBonus`, `classeDefenseBonus`, `classeDefenseMagicBonus`, `classeWisdomBonus`, `classeProspectingBonus`) VALUES
+(1, '../../img/empty.png', 'Chevalier', 'Classe de personnage axé sur la force.', 10, 1, 2, 1, 1, 1, 1, 0, 0),
+(2, '../../img/empty.png', 'Mage', 'Classe de personnage axé sur la magie.', 10, 1, 1, 2, 1, 1, 1, 0, 0);
+
+--
 -- Contenu de la table `car_configuration`
 --
 
@@ -9,7 +17,7 @@ INSERT INTO `car_configuration` (`configurationId`, `configurationGameName`, `co
 -- Contenu de la table `car_items`
 --
 
-INSERT INTO `car_items` (`itemId`, `itemItemTypeId`, `itemRaceId`, `itemPicture`, `itemName`, `itemDescription`, `itemLevel`, `itemLevelRequired`, `itemHpEffect`, `itemMpEffect`, `itemStrengthEffect`, `itemMagicEffect`, `itemAgilityEffect`, `itemDefenseEffect`, `itemDefenseMagicEffect`, `itemWisdomEffect`, `itemProspectingEffect`, `itemPurchasePrice`, `itemSalePrice`) VALUES
+INSERT INTO `car_items` (`itemId`, `itemItemTypeId`, `itemclasseId`, `itemPicture`, `itemName`, `itemDescription`, `itemLevel`, `itemLevelRequired`, `itemHpEffect`, `itemMpEffect`, `itemStrengthEffect`, `itemMagicEffect`, `itemAgilityEffect`, `itemDefenseEffect`, `itemDefenseMagicEffect`, `itemWisdomEffect`, `itemProspectingEffect`, `itemPurchasePrice`, `itemSalePrice`) VALUES
 (1, 1, 0, '../../img/empty.png', 'Armure de cuivre', 'Cette armure vous donnera un peu de défense', 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 100, 50),
 (2, 1, 0, '../../img/empty.png', 'Cape de lin', 'Cette cape vous donnera un peu de défense magique', 1, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 100, 50),
 (3, 2, 0, '../../img/empty.png', 'Bottes de cuivre', 'Ses bottes vous donneront un peu de défense', 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 100, 50),
@@ -70,13 +78,6 @@ INSERT INTO `car_monsters_drops` (`monsterDropID`, `monsterDropMonsterId`, `mons
 (1, 1, 1, 'Yes', 100, 'Yes');
 
 --
--- Contenu de la table `car_races`
---
-
-INSERT INTO `car_races` (`raceId`, `racePicture`, `raceName`, `raceDescription`, `raceHpBonus`, `raceMpBonus`, `raceStrengthBonus`, `raceMagicBonus`, `raceAgilityBonus`, `raceDefenseBonus`, `raceDefenseMagicBonus`, `raceWisdomBonus`, `raceProspectingBonus`) VALUES
-(1, '../../img/empty.png', 'Chevalier', 'Classe de personnage axé sur la force.', 10, 1, 2, 1, 1, 1, 1, 0, 0),
-(2, '../../img/empty.png', 'Mage', 'Classe de personnage axé sur la magie.', 10, 1, 1, 2, 1, 1, 1, 0, 0);
---
 -- Contenu de la table `car_shops`
 --
 
@@ -95,7 +96,7 @@ INSERT INTO `car_shops_items` (`shopItemId`, `shopItemShopId`, `shopItemItemId`,
 --
 
 INSERT INTO `car_places` (`placeId`, `placePicture`, `placeName`, `placeDescription`, `placePriceInn`, `placeChapter`, `placeAccess`) VALUES
-(1, '../../img/empty.png', 'Indicia', 'Petit village situé à proximité d\\\'une grand forêt', 10, 1, 'Yes');
+(1, '../../img/empty.png', 'Indicia', 'Petit village situé à proximité d\'une grande forêt', 10, 1, 'Yes');
 
 --
 -- Contenu de la table `car_places_monsters`

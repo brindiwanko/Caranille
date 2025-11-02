@@ -9,7 +9,7 @@ if ($accountAccess < 2) { exit(header("Location: ../../index.php")); }
 require_once("../html/header.php");
 ?>
     
-<form method="POST" action="manageclassesPicture.php">
+<form method="POST" action="manageClassesPicture.php">
     Images d'équipements : <select name="pictureFile" class="form-control">
             
         <?php
@@ -41,7 +41,7 @@ require_once("../html/header.php");
 
 <hr>
 
-<form method="POST" action="addclassesPicture.php" enctype="multipart/form-data">
+<form method="POST" action="addClassesPicture.php" enctype="multipart/form-data">
     <!-- On limite le fichier à 1000Ko -->
     <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
     <input type="file" name="picture">

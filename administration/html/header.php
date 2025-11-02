@@ -81,7 +81,7 @@
 							<li><a class="dropdown-item" href="../../administration/picturesMonsters/index.php">Monstres</a></li>
 							<li><a class="dropdown-item" href="../../administration/picturesParchments/index.php">Parchemins</a></li>
 							<li><a class="dropdown-item" href="../../administration/picturesPlaces/index.php">Lieux</a></li>
-							<li><a class="dropdown-item" href="../../administration/picturesclasses/index.php">Classes</a></li>
+							<li><a class="dropdown-item" href="../../administration/picturesClasses/index.php">Classes</a></li>
 							<li><a class="dropdown-item" href="../../administration/picturesShops/index.php">Magasins</a></li>
 						</ul>
 					</li>

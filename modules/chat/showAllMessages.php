@@ -81,11 +81,11 @@ if (isset($_POST['token'])
 	                    </td>
 	                    
 	                    <td>
-	                        <?php echo htmlspecialchars($chatCharacterName, ENT_QUOTES, 'UTF-8') ?>
+	                        <?php echo htmlspecialchars($chatCharacterName) ?>
 	                    </td>
 	                    
 	                    <td>
-	                        <?php echo htmlspecialchars($chatMessage, ENT_QUOTES, 'UTF-8') ?>
+	                        <?php echo htmlspecialchars($chatMessage) ?>
 	                    </td>
 	                    
 	                    <?php

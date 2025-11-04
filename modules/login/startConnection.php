@@ -54,7 +54,10 @@ if (isset($_POST['accountPseudo'])
                         //On créer une session qui ne contiendra que l'id du compte
                         $_SESSION['account']['id'] = $account['accountId'];
                         $accountId = $_SESSION['account']['id'];
-                        
+
+                        //On régénère l'ID de session pour éviter les attaques de fixation de session
+                        session_regenerate_id(true);
+
                         //On met la date de connexion à jour
                         $updateAccount = $bdd->prepare("UPDATE car_accounts SET 
                         accountLastConnection = :accountLastConnection
@@ -78,7 +81,10 @@ if (isset($_POST['accountPseudo'])
                             //On créer une session qui ne contiendra que l'id du compte
                             $_SESSION['account']['id'] = $account['accountId'];
                             $accountId = $_SESSION['account']['id'];
-                            
+
+                            //On régénère l'ID de session pour éviter les attaques de fixation de session
+                            session_regenerate_id(true);
+
                             //On met la date de connexion à jour
                             $updateAccount = $bdd->prepare("UPDATE car_accounts SET 
                             accountLastConnection = :accountLastConnection

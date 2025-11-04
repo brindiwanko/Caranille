@@ -440,7 +440,7 @@
         <div class="header">
             <h1>🎮 CARANILLE</h1>
             <p class="subtitle">Analyse Technique Complète et Approfondie</p>
-            <p style="opacity: 0.9; margin-top: 20px; font-size: 1.1em;">Évaluation exhaustive de 388 fichiers, 106 dossiers, 35 modules et 39 tables SQL</p>
+            <p style="opacity: 0.9; margin-top: 20px; font-size: 1.1em;">Évaluation exhaustive de 388 fichiers, 106 dossiers, 35 modules et 36 tables SQL</p>
             <div class="update-badge">✅ 2 VULNÉRABILITÉS MAJEURES CORRIGÉES ! - 4 novembre 2025</div>
         </div>
 
@@ -658,7 +658,7 @@
                         <span class="label">Modules de jeu</span>
                     </div>
                     <div class="stat-box">
-                        <span class="number">39</span>
+                        <span class="number">36</span>
                         <span class="label">Tables SQL</span>
                     </div>
                     <div class="stat-box">
@@ -759,10 +759,10 @@
 
             <!-- BASE DE DONNÉES -->
             <div class="section">
-                <h2><span class="icon">🗄️</span>Schéma de Base de Données - 39 Tables</h2>
+                <h2><span class="icon">🗄️</span>Schéma de Base de Données - 36 Tables</h2>
 
                 <p style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #2196F3;">
-                    <strong>Note :</strong> L'analyse initiale mentionnait 36 tables, mais une analyse approfondie révèle 39 tables au total avec le préfixe <code>car_</code> (Caranille).
+                    <strong>Schéma complet vérifié :</strong> Le projet contient exactement 36 tables avec le préfixe <code>car_</code> (Caranille), toutes définies dans <code>kernel/install/sql/ddb.sql</code>.
                 </p>
 
                 <h3>Tables d'Authentification et Comptes (3)</h3>
@@ -829,6 +829,344 @@
                 <div class="db-table"><strong>car_codes</strong> - Codes promotionnels disponibles</div>
                 <div class="db-table"><strong>car_codes_gift</strong> - Récompenses associées aux codes</div>
                 <div class="db-table"><strong>car_codes_used</strong> - Historique d'utilisation des codes</div>
+
+                <h3>Liste Complète des 36 Tables et Relations</h3>
+
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin: 30px 0;">
+                    <h4 style="color: #667eea;">📋 Tables d'Authentification et Comptes (3)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_accounts</strong></td>
+                                <td>→ car_characters (1:N)<br>→ car_accounts_verifications (1:N)<br>→ car_forgets_passwords (1:N)<br>→ car_codes_used (1:N)</td>
+                                <td>Comptes utilisateurs (login, email, rôle, statut)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_accounts_verifications</strong></td>
+                                <td>← car_accounts (N:1)</td>
+                                <td>Tokens de vérification d'email</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_forgets_passwords</strong></td>
+                                <td>← car_accounts (N:1)</td>
+                                <td>Tokens de récupération de mot de passe</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">👤 Tables de Personnages (2)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_characters</strong></td>
+                                <td>← car_accounts (N:1)<br>← car_classes (N:1)<br>← car_places (N:1)<br>→ car_inventory (1:N)<br>→ car_battles (1:N)<br>→ car_market (1:N)<br>→ car_bestiary (1:N)<br>→ car_trades (1:N)<br>→ car_notifications (1:N)<br>→ car_chat (1:N)<br>→ car_private_conversation (1:N)</td>
+                                <td>⚠️ God Object - 68 colonnes (stats, HP/MP, attributs)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_classes</strong></td>
+                                <td>→ car_characters (1:N)<br>→ car_items (1:N)</td>
+                                <td>Classes de personnages avec bonus spécifiques</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">⚔️ Tables de Combat (7)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_battles</strong></td>
+                                <td>← car_characters (N:1)<br>← car_monsters (N:1 ou personnage PvP)</td>
+                                <td>Combats en cours (HP/MP restants de l'adversaire)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_battles_invitations</strong></td>
+                                <td>← car_monsters (N:1)<br>→ car_battles_invitations_characters (1:N)</td>
+                                <td>Invitations de combat PvP</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_battles_invitations_characters</strong></td>
+                                <td>← car_battles_invitations (N:1)<br>← car_characters (N:1)</td>
+                                <td>Participants aux invitations de combat</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_monsters</strong></td>
+                                <td>← car_monsters_categories (N:1)<br>→ car_battles (1:N)<br>→ car_bestiary (1:N)<br>→ car_monsters_drops (1:N)<br>→ car_places_monsters (1:N)<br>→ car_chapters (1:N)</td>
+                                <td>Monstres avec statistiques complètes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_monsters_battles_stats</strong></td>
+                                <td>← car_monsters (N:1)<br>← car_characters (N:1)</td>
+                                <td>Historique des combats (victoires, défaites)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_monsters_categories</strong></td>
+                                <td>→ car_monsters (1:N)</td>
+                                <td>Catégories (Commun, Rare, Légendaire, Mythique)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_monsters_drops</strong></td>
+                                <td>← car_monsters (N:1)<br>← car_items (N:1)</td>
+                                <td>Système de loot avec taux de drop</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">🎒 Tables d'Inventaire et Items (3)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_inventory</strong></td>
+                                <td>← car_characters (N:1)<br>← car_items (N:1)</td>
+                                <td>Inventaire des joueurs (quantités, équipé)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_items</strong></td>
+                                <td>← car_items_types (N:1)<br>← car_classes (N:1)<br>→ car_inventory (1:N)<br>→ car_market (1:N)<br>→ car_monsters_drops (1:N)<br>→ car_shops_items (1:N)</td>
+                                <td>Tous les objets (stats, effets, prix)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_items_types</strong></td>
+                                <td>→ car_items (1:N)</td>
+                                <td>7 types: Armor, Boots, Gloves, Helmet, Weapon, Item, Parchment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">📖 Tables de Progression (2)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_chapters</strong></td>
+                                <td>← car_monsters (N:1)<br>← car_characters.characterChapter (référence)</td>
+                                <td>Chapitres de l'histoire principale</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_bestiary</strong></td>
+                                <td>← car_characters (N:1)<br>← car_monsters (N:1)</td>
+                                <td>Monstres découverts par chaque joueur</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">🗺️ Tables de Monde (3)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_places</strong></td>
+                                <td>→ car_characters (1:N)<br>→ car_places_monsters (1:N)<br>→ car_places_shops (1:N)</td>
+                                <td>Lieux du monde (villes, donjons, zones)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_places_monsters</strong></td>
+                                <td>← car_places (N:1)<br>← car_monsters (N:1)</td>
+                                <td>Monstres disponibles par lieu (table de liaison)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_places_shops</strong></td>
+                                <td>← car_places (N:1)<br>← car_shops (N:1)</td>
+                                <td>Boutiques disponibles par lieu (table de liaison)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">🏪 Tables de Commerce (3)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_shops</strong></td>
+                                <td>→ car_shops_items (1:N)<br>→ car_places_shops (1:N)</td>
+                                <td>Boutiques NPC</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_shops_items</strong></td>
+                                <td>← car_shops (N:1)<br>← car_items (N:1)</td>
+                                <td>Inventaire des boutiques avec réductions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_market</strong></td>
+                                <td>← car_characters (N:1)<br>← car_items (N:1)</td>
+                                <td>Marché entre joueurs (ventes P2P)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">🤝 Tables d'Échange (4)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_trades</strong></td>
+                                <td>← car_characters (N:1) x2<br>→ car_trades_items (1:N)<br>→ car_trades_golds (1:N)</td>
+                                <td>Échanges en cours entre deux joueurs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_trades_items</strong></td>
+                                <td>← car_trades (N:1)<br>← car_items (N:1)<br>← car_characters (N:1)</td>
+                                <td>Objets proposés dans l'échange</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_trades_golds</strong></td>
+                                <td>← car_trades (N:1)<br>← car_characters (N:1)</td>
+                                <td>Or proposé dans l'échange</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_trades_requests</strong></td>
+                                <td>← car_characters (N:1) x2</td>
+                                <td>Demandes d'échange en attente</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">💬 Tables de Communication (4)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_chat</strong></td>
+                                <td>← car_characters (N:1)</td>
+                                <td>Messages du chat public avec timestamps</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_private_conversation</strong></td>
+                                <td>← car_characters (N:1) x2<br>→ car_private_conversation_message (1:N)</td>
+                                <td>Conversations privées entre deux joueurs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_private_conversation_message</strong></td>
+                                <td>← car_private_conversation (N:1)<br>← car_characters (N:1)</td>
+                                <td>Messages privés individuels</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_notifications</strong></td>
+                                <td>← car_characters (N:1)</td>
+                                <td>Notifications système et joueurs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">⚙️ Tables Système (2)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_configuration</strong></td>
+                                <td>Aucune</td>
+                                <td>Configuration globale du jeu (nom, niveau max, bonus)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_news</strong></td>
+                                <td>Aucune (pseudo auteur en varchar)</td>
+                                <td>Actualités affichées sur la page d'accueil</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="color: #667eea; margin-top: 30px;">🎁 Tables de Codes Cadeaux (3)</h4>
+                    <table style="margin: 15px 0;">
+                        <thead>
+                            <tr>
+                                <th>Table</th>
+                                <th>Relations</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>car_codes</strong></td>
+                                <td>→ car_codes_gift (1:N)<br>→ car_codes_used (1:N)</td>
+                                <td>Codes promotionnels disponibles</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_codes_gift</strong></td>
+                                <td>← car_codes (N:1)<br>← car_items (référence optionnelle)<br>← car_monsters (référence optionnelle)</td>
+                                <td>Récompenses associées aux codes (items, stats, XP, or)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>car_codes_used</strong></td>
+                                <td>← car_codes (N:1)<br>← car_accounts (N:1)</td>
+                                <td>Historique d'utilisation des codes par compte</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="background: white; padding: 20px; border-radius: 10px; margin: 30px 0; border-left: 4px solid #667eea;">
+                        <h4 style="color: #667eea; margin-top: 0;">📊 Statistiques des Relations</h4>
+                        <ul style="margin: 10px 0 0 25px; line-height: 1.8;">
+                            <li><strong>Table centrale :</strong> car_characters (68 colonnes, 15+ relations)</li>
+                            <li><strong>Tables de liaison :</strong> 8 tables (places_monsters, places_shops, etc.)</li>
+                            <li><strong>Tables indépendantes :</strong> 2 tables (configuration, news)</li>
+                            <li><strong>Relations 1:N :</strong> Majorité des relations</li>
+                            <li><strong>Relations N:N :</strong> Gérées via tables de liaison</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="info-card" style="margin-top: 30px; border-left-color: #ffc107;">
                     <h4 style="color: #856404;">⚠️ Problème Architectural Majeur : God Object</h4>
@@ -1545,7 +1883,7 @@ configurationAccess            → "Opened" ou "Closed" (contrôle accès)
             <p><strong style="color: #28a745;">✅ Mise à jour après corrections CSRF + Session : 4 novembre 2025</strong></p>
             <p>Projet : Caranille - MMORPG Browser-Based</p>
             <p>Version analysée : Commit 4de0691 (branche main)</p>
-            <p style="margin-top: 20px;">Analyse exhaustive de 388 fichiers, 106 dossiers, 35 modules et 39 tables SQL</p>
+            <p style="margin-top: 20px;">Analyse exhaustive de 388 fichiers, 106 dossiers, 35 modules et 36 tables SQL</p>
             <p style="margin-top: 15px; opacity: 0.8;">Ce rapport a été généré par une analyse approfondie et minutieuse du code source, de l'architecture, de la base de données, des pratiques de sécurité et de la qualité du code.</p>
 
             <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, rgba(40, 167, 69, 0.2) 0%, rgba(32, 201, 151, 0.2) 100%); border-radius: 15px; border: 2px solid rgba(40, 167, 69, 0.5);">

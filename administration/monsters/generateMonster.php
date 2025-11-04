@@ -18,28 +18,26 @@ if (isset($_POST['token'])
         //On supprime le token de l'ancien formulaire
         $_SESSION['token'] = NULL;
 
-        //On récupère les informations du formulaire précédent
-        $adminQuantityMonsterGenerate = htmlspecialchars($_POST['adminQuantityMonsterGenerate']);
+        //On récupère les informations du formulaire précédent et on valide que c'est un entier
+        $adminQuantityMonsterGenerate = $_POST['adminQuantityMonsterGenerate'];
 
-        //Si il y a plus d'un monstre
-        if ($adminQuantityMonsterGenerate > 1)
+        //Validation stricte : doit être un nombre entier positif
+        if (!ctype_digit($adminQuantityMonsterGenerate) || $adminQuantityMonsterGenerate < 1 || $adminQuantityMonsterGenerate > 1000)
         {
-            $generateMonsterSQL = "INSERT INTO car_monsters VALUES";
-
-            for ($i = 0; $i < $adminQuantityMonsterGenerate -1; $i++)
-            {
-                $generateMonsterSQL = $generateMonsterSQL . "(null, '1', '../../img/empty.png', 'Empty', 'Empty', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'No', 0, 0, 0, 0, 0, 0),";
-            }
-            $generateMonsterSQL = $generateMonsterSQL . "(null, '1', '../../img/empty.png', 'Empty', 'Empty', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'No', 0, 0, 0, 0, 0, 0);";
-        }
-        //Si il n'y a qu'un monstre
-        else
-        {
-            $generateMonsterSQL = "INSERT INTO car_monsters VALUES";
-            $generateMonsterSQL = $generateMonsterSQL . "(null, '1', '../../img/empty.png', 'Empty', 'Empty', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'No', 0, 0, 0, 0, 0, 0);";
+            echo "Erreur : La quantité doit être un nombre entre 1 et 1000";
+            exit();
         }
 
-        $bdd->query($generateMonsterSQL);
+        $adminQuantityMonsterGenerate = (int)$adminQuantityMonsterGenerate;
+
+        //Utilisation d'une requête préparée pour insérer les monstres de manière sécurisée
+        $insertMonsterStmt = $bdd->prepare("INSERT INTO car_monsters VALUES (null, '1', '../../img/empty.png', 'Empty', 'Empty', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'No', 0, 0, 0, 0, 0, 0)");
+
+        //On insère le nombre de monstres demandé
+        for ($i = 0; $i < $adminQuantityMonsterGenerate; $i++)
+        {
+            $insertMonsterStmt->execute();
+        }
         ?>
 
         <br />Vous venez de générer <?php echo $adminQuantityMonsterGenerate ?> monstre(s) vierge.

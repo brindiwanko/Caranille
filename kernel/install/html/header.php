@@ -5,7 +5,7 @@ session_start();
 if (empty($_SESSION['token']))
 {
 	//On génère un token qu'on stock dans une session pour sécuriser les formulaires
-	$_SESSION['token'] = uniqid(); 
+	$_SESSION['token'] = bin2hex(random_bytes(32)); 
 }
 ?>
 

@@ -19,7 +19,7 @@ if (isset($_POST['token'])
         $_SESSION['token'] = NULL;
 
         //Comme il y a un nouveau formulaire on régénère un nouveau token
-        $_SESSION['token'] = uniqid();
+        $_SESSION['token'] = bin2hex(random_bytes(32));
 
         //On vérifie S'il existe au moins un monstre pour créer le monstre du chapitre (le boss)
         $monsterQuery = $bdd->query("SELECT * FROM car_monsters");

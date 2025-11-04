@@ -18,7 +18,7 @@ if (isset($_POST['token'])
 		$_SESSION['token'] = NULL;
 
 		//Comme il y a un nouveau formulaire on régénère un nouveau token
-		$_SESSION['token'] = uniqid();
+		$_SESSION['token'] = bin2hex(random_bytes(32));
 
 		//On fait une recherche dans la base de donnée de tous les monstres
 		$monsterQuery = $bdd->query("SELECT * FROM car_monsters");

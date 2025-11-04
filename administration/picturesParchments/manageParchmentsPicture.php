@@ -52,7 +52,7 @@ else if (isset($_POST['token'])
         $_SESSION['token'] = NULL;
 
         //Comme il y a un nouveau formulaire on régénère un nouveau token
-        $_SESSION['token'] = uniqid();
+        $_SESSION['token'] = bin2hex(random_bytes(32));
 
         //On récupère le nom de l'image du formulaire précédent
         $adminFile = htmlspecialchars($_POST['pictureFile']);

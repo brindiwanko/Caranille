@@ -19,7 +19,7 @@ if (isset($_POST['token'])
         $_SESSION['token'] = NULL;
         
         //Comme il y a un nouveau formulaire on régénère un nouveau token
-        $_SESSION['token'] = uniqid();
+        $_SESSION['token'] = bin2hex(random_bytes(32));
 
         //On fait une requête pour vérifier tous les objets et équippement qui sont dans l'inventaire du joueur
         $itemQuery = $bdd->prepare("SELECT * FROM car_items, car_items_types, car_inventory 

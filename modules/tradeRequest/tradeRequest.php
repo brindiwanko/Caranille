@@ -18,7 +18,7 @@ if (isset($_POST['token']))
 		$_SESSION['token'] = NULL;
 		
 		//Comme il y a un nouveau formulaire on régénère un nouveau token
-        $_SESSION['token'] = uniqid();
+        $_SESSION['token'] = bin2hex(random_bytes(32));
 
         //On fait une recherche dans la base de donnée de tous les personnage avec qui on a pas de demande d'échange ou d'échange en cours
         $characterTradeQuery = $bdd->prepare("SELECT * FROM car_characters

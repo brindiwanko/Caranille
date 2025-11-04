@@ -7,7 +7,7 @@ if ($_POST['token'] == $_SESSION['token'])
     $_SESSION['token'] = NULL;
     
     //Comme il y a un nouveau formulaire on régénère un nouveau token
-    $_SESSION['token'] = uniqid();
+    $_SESSION['token'] = bin2hex(random_bytes(32));
     ?>
 
     <p><h4>Etape 2/4 - Configuration de la base de donnée (Mysql)</h4></p>

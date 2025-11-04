@@ -20,7 +20,7 @@ if (isset($_POST['adminChapterId'])
         $_SESSION['token'] = NULL;
 
         //Comme il y a un nouveau formulaire on régénère un nouveau token
-        $_SESSION['token'] = uniqid();
+        $_SESSION['token'] = bin2hex(random_bytes(32));
             
         //On vérifie si tous les champs numérique contiennent bien un nombre entier positif
         if (ctype_digit($_POST['adminChapterId'])

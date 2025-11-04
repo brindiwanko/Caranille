@@ -1,0 +1,52 @@
+# Configuration des headers de sécurité HTTP
+
+# Strict-Transport-Security (HSTS)
+# Force l'utilisation du HTTPS pendant 1 an (31536000 secondes)
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# X-Content-Type-Options
+# Empêche le navigateur de deviner le type MIME des fichiers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# X-Frame-Options
+# Protège contre le clickjacking en empêchant l'intégration dans des iframes
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# X-XSS-Protection
+# Active la protection XSS du navigateur
+<IfModule mod_headers.c>
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Content-Security-Policy (CSP)
+# Politique de sécurité du contenu pour limiter les sources de scripts
+<IfModule mod_headers.c>
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'self';"
+</IfModule>
+
+# Referrer-Policy
+# Contrôle les informations de référence envoyées
+<IfModule mod_headers.c>
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Permissions-Policy (anciennement Feature-Policy)
+# Contrôle les fonctionnalités du navigateur accessibles
+<IfModule mod_headers.c>
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=(), vibrate=()"
+</IfModule>
+
+# Cache-Control pour les ressources sensibles
+<FilesMatch "\.(php|html)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </IfModule>
+</FilesMatch>

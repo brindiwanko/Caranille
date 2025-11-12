@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Notation du projet Caranille</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: "Segoe UI", Arial, sans-serif; margin: 2rem; line-height: 1.6; color: #222; }
+        header { margin-bottom: 2.5rem; }
+        h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+        h2 { margin-top: 2rem; color: #2b4c7e; }
+        h3 { margin-top: 1.5rem; color: #33658a; }
+        section { margin-bottom: 2rem; }
+        ul { padding-left: 1.4rem; }
+        .scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .card { border: 1px solid #dde3ea; border-radius: 8px; padding: 1rem; background: #f9fbfd; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .card strong { display: block; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .badge { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 4px; background: #2b4c7e; color: #fff; font-size: 0.75rem; margin-left: 0.4rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #dde3ea; padding: 0.6rem 0.8rem; text-align: left; }
+        th { background: #eef3f8; }
+        footer { margin-top: 3rem; font-size: 0.9rem; color: #666; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rapport d'évaluation du projet «&nbsp;Caranille&nbsp;»</h1>
+        <p>Analyse technique et fonctionnelle réalisée à partir du dépôt fourni. Ce document synthétise les points forts, les axes d'amélioration et les recommandations prioritaires pour valoriser et faire évoluer le produit.</p>
+    </header>
+
+    <section id="overview">
+        <h2>Vue d'ensemble</h2>
+        <p>Caranille est un RPG en ligne entièrement développé en PHP procédural, organisé autour d'un noyau (<em>kernel</em>) centralisant la configuration et le chargement des modules fonctionnels. Le périmètre fonctionnel couvre la création de comptes et de personnages, la gestion de quêtes et de combats, ainsi que des fonctionnalités multijoueurs comme les échanges, le marché ou les conversations privées.</p>
+        <div class="scorecard">
+            <div class="card">
+                <strong>Portée fonctionnelle</strong>
+                <p>Large panel de modules ludiques (combat, boutique, commerce, chat) et outils d'administration intégrés.</p>
+            </div>
+            <div class="card">
+                <strong>Maturité technique</strong>
+                <p>Code historique, principalement procédural, avec quelques mesures de sécurité modernes (hash bcrypt, jetons CSRF).</p>
+            </div>
+            <div class="card">
+                <strong>Opportunité</strong>
+                <p>Projet prêt pour une refonte progressive vers une architecture MVC ou framework afin de gagner en maintenabilité et performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="strengths">
+        <h2>Points forts</h2>
+        <h3>Fondations techniques sécurisées</h3>
+        <ul>
+            <li>Génération d'un jeton CSRF cryptographiquement sûr pour l'ensemble des formulaires sensibles, stocké en session dès l'initialisation du noyau.</li>
+            <li>Gestionnaire de mots de passe dédié exploitant <code>password_hash</code>/<code>password_verify</code> pour l'authentification.</li>
+        </ul>
+        <h3>Richesse fonctionnelle</h3>
+        <ul>
+            <li>Processus d'inscription détaillé contrôlant la cohérence des données, la disponibilité des pseudos, des emails et des classes, puis créant les entrées liées (compte, personnage).</li>
+            <li>Structure modulaire claire (<code>modules/</code>, <code>kernel/</code>, <code>html/</code>) permettant d'isoler les responsabilités fonctionnelles et d'étendre le jeu par ajouts de nouveaux modules.</li>
+        </ul>
+        <h3>Expérience utilisateur</h3>
+        <ul>
+            <li>Formulaires enrichis (par exemple l'inscription) intégrant aides visuelles comme l'affichage intégré des conditions d'utilisation et le préremplissage dynamique des options disponibles (classes de personnage).</li>
+        </ul>
+    </section>
+
+    <section id="weaknesses">
+        <h2>Points faibles &amp; risques</h2>
+        <h3>Dette technique</h3>
+        <ul>
+            <li>Couplage fort entre logique métier et présentation&nbsp;: le HTML et le PHP sont mêlés dans la plupart des modules, compliquant les tests et la réutilisation.</li>
+            <li>Absence de gestionnaire de dépendances et d'autoloading moderne, ce qui impose des <code>require_once</code> manuels et complique l'intégration de bibliothèques tierces.</li>
+            <li>Très longues séquences procédurales (ex.&nbsp;création de personnage) qui pourraient être encapsulées dans des services ou des classes dédiées.</li>
+        </ul>
+        <h3>Sécurité &amp; conformité</h3>
+        <ul>
+            <li>Usage de requêtes SQL directes pour certaines lectures sans recours systématique aux requêtes préparées, ce qui laisse une surface d'erreur en cas d'ajout futur de paramètres utilisateur.</li>
+            <li>Validation côté serveur perfectible sur certains formulaires publics (ex.&nbsp;la sélection de classe dans l'inscription n'est pas limitée par défaut côté base, ouvrant la porte à des manipulations si d'autres contrôles cèdent).</li>
+        </ul>
+        <h3>Performance &amp; scalabilité</h3>
+        <ul>
+            <li>Chargement massif des dépendances dans le noyau à chaque requête, même lorsque certaines données ne sont pas nécessaires, augmentant le coût d'exécution.</li>
+        </ul>
+    </section>
+
+    <section id="recommendations">
+        <h2>Recommandations prioritaires</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Priorité</th>
+                    <th>Recommandation</th>
+                    <th>Bénéfices clés</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge">Immédiat</span></td>
+                    <td>Séparer la logique métier de la vue (mise en place d'un mini-framework MVC ou d'un moteur de templates).</td>
+                    <td>Maintenance facilitée, tests unitaires plus simples, meilleure qualité de code.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">Court terme</span></td>
+                    <td>Généraliser les requêtes préparées et centraliser l'accès aux données via un composant DAO.</td>
+                    <td>Réduction des risques d'injection SQL, traçabilité des accès base.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">Court terme</span></td>
+                    <td>Introduire Composer et un autoloader PSR-4 pour standardiser le chargement des classes.</td>
+                    <td>Adoption facilitée de bibliothèques modernes (tests, ORM, messagerie).</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">Moyen terme</span></td>
+                    <td>Factoriser la logique de création d'entités (compte, personnage) dans des services réutilisables avec validations centralisées.</td>
+                    <td>Diminution des duplications, fiabilité accrue en cas d'évolutions.</td>
+                </tr>
+                <tr>
+                    <td><span class="badge">Moyen terme</span></td>
+                    <td>Modulariser le chargement du noyau pour n'initialiser que les composants requis par chaque module.</td>
+                    <td>Temps de réponse amélioré, réduction de la consommation serveur.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="selling-points">
+        <h2>Argumentaire commercial</h2>
+        <p>Caranille offre une base solide pour proposer un MMORPG sur navigateur :</p>
+        <ul>
+            <li>Fonctionnalités sociales et compétitives déjà en place (marché, arène, chat, conversations privées), réduisant le time-to-market.</li>
+            <li>Outils d'évènements et de configuration dynamiques permettant d'animer la communauté sans intervention technique lourde.</li>
+            <li>Infrastructure logicielle autonome (pas de dépendances externes critiques), gage de facilité de déploiement sur des hébergements mutualisés.</li>
+        </ul>
+        <p>Avec une modernisation ciblée (architecture, sécurité, automatisation), le projet peut être positionné comme une solution "white-label" personnalisable pour des studios indépendants ou des communautés de joueurs.</p>
+    </section>
+
+    <footer>
+        <p>Rapport généré automatiquement &ndash; ajustez ou complétez selon le positionnement marketing souhaité.</p>
+    </footer>
+</body>
+</html>

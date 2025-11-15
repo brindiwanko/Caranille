@@ -2,7 +2,7 @@
 
 class PasswordManager {
 
-    //On hash le mot de passe avec bcrypt
+    //On hash le mot de passe soumit avec bcrypt
     public static function hashPassword($password) {
         return password_hash($password, PASSWORD_DEFAULT);
     }

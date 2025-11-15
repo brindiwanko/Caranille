@@ -33,7 +33,7 @@ if (isset($_POST['accountPseudo'])
             //On récupère le hash stocké
             $storedPassword = $account['accountPassword'];
             
-            //Vérification du mot de passe avec bcrypt
+            //On vérifie si le mot de passe soumis est correct
             if (PasswordManager::verifyPassword($accountPassword, $storedPassword))
             {
                 //On récupère les informations du compte comme l'id et les accès (joueur, modérateur, administrateur)

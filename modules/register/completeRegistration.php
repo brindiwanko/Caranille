@@ -84,7 +84,7 @@ if (isset($_POST['accountPseudo'])
                                 //Si la classe du personnage existe
                                 if ($classeRow >= 1) 
                                 {
-                                    //On Hash le mot de passe
+                                    //On hash le mot de passe soumis
                                     $accountPasswordHash = PasswordManager::hashPassword($accountPassword);
                                     
                                     //Variables pour la création d'un compte

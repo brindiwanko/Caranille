@@ -40,10 +40,10 @@ if (isset($_POST['oldPassword'])
                 $account = $accountQuery->fetch();
                 $storedPassword = $account['accountPassword'];
                 
-                //Vérifier l'ancien mot de passe
+                //On vérifie si le mot de passe soumis est correct
                 if (PasswordManager::verifyPassword($accountOldPassword, $storedPassword))
                 {
-                    //Hash du nouveau mot de passe avec bcrypt
+                    //On hash le mot de passe soumis
                     $accountNewPasswordHash = PasswordManager::hashPassword($accountNewPassword);
                     
                     //On met à jour le mot de passe dans la base de donnée

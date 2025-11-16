@@ -23,7 +23,7 @@ if (isset($_POST['accountCode'])
         $accountPassword = $_POST['accountPassword'];
         $accountPasswordConfirm = $_POST['accountPasswordConfirm'];
 
-        //On vérifie si les deux mots de passes sont identiques (avant hash)
+        //On vérifie si les deux mots de passes sont identiques
         if ($accountPassword == $accountPasswordConfirm) 
         {
             //On fait une requête pour vérifier si une demande de vérification est en cours
@@ -44,7 +44,7 @@ if (isset($_POST['accountCode'])
                     $accountForgetPasswordEmailAdress = $accountForgetPassword['accountForgetPasswordEmailAdress'];
                 }
 
-                //Hash du nouveau mot de passe une seule fois après validation
+                //On hash le mot de passe soumis
                 $accountPasswordHash = PasswordManager::hashPassword($accountPassword);
                 
                 //On supprime la demande de réinitialisation du mot de passe
